@@ -21,7 +21,7 @@ namespace BusinessLayer
             data_Usuario    =   idUser_Empresa;
         }
 
-        public void Post(Data_Documentos IE_IdDocumento)
+        public void Post(Data_Documentos IE_IdDocumento)    // Ejecución
         {
             try
             {
