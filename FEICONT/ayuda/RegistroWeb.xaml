@@ -1,0 +1,103 @@
+﻿<Page x:Class="FEICONT.ayuda.RegistroWeb"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FEICONT.ayuda"
+      mc:Ignorable="d" 
+      MinHeight="300" MinWidth="300"
+      Title="RegistroWeb" Background="White">
+
+    <ScrollViewer  VerticalScrollBarVisibility="Visible">
+        <Grid   Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center">
+                <TextBlock TextWrapping="Wrap"  TextBlock.TextAlignment="Center"  TextBlock.FontWeight="Bold" TextBlock.FontSize="14">
+                   ALMACEN DE REGISTROS WEB (CONFIGURACIÓN DE BASE DE DATOS SQL WEB)
+                </TextBlock>
+            </Label>
+
+            <Label Grid.Column="0" Grid.Row="1">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+                   Ésta opción me permite configurar y crear una base de datos web, para almacenar todos los comprobantes electrónicos ACEPTADOS por SUNAT, mismos que podrán ser consultados mediante página web (Hosting) del emisor electrónico.<LineBreak/>
+Se ingresará a la opción Configuración del Sistema, opción “Almacén de registros web”.
+
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_CWeb.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="3">
+
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+                 A continuación se mostrará la siguiente ventana:
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_CWeb_Ventana.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="5"/>
+            <Label Grid.Column="0" Grid.Row="6">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+                 ► <Bold>Gestor BD</Bold>: Se escogerá BD Microsoft SQL Server. <LineBreak/>
+►	<Bold>Driver de Gestor BD (ODBC)</Bold>: Se escogerá Microsoft SQL Server. <LineBreak/>
+►	<Bold>Servidor BD</Bold>: Es el nombre de la instancia que se indicó al momento de la instalación del SQL Server. <LineBreak/>
+►	<Bold>Puerto del Servidor BD</Bold>: Por default el puerto habilitado para conexión de Base de Datos es el puerto 1433, a menos que al momento de la instalación del SQL Server se haya indicado otro puerto para conexión de base de datos. <LineBreak/>
+►	<Bold>Nombre de base de datos</Bold>:Se podrá poner el nombre que se considere conveniente. <LineBreak/>
+►	<Bold>Usuario</Bold>: Se habilitará un usuario en el SQL Server para manejo de la base de datos FEICONT, mismo que será ingresado en éste campo. <LineBreak/>
+►	<Bold>Contraseña</Bold>:El usuario habilitado para manejo de la base de datos FEICONT, tendrá una contraseña se acceso por seguridad, misma que será ingresada en éste campo. <LineBreak/>
+
+Luego de ingresar todos los datos necesarios para crear la base de datos, se procederá a presionar el botón “Crear Base de Datos”. <LineBreak/>
+
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_CWeb_VentanaUno.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="8">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+                  Luego de presionar el botón “Crear base  de datos”, se creará una Base de Datos para el Sistema FEICONT en WEB, con las tablas y estructuras correspondientes.
+                </TextBlock>
+            </Label>
+            <Label Grid.Column="0" Grid.Row="10">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+                <Bold>CAMBIAR LA BASE DE DATOS WEB Y/O ACTUALIZAR INFORMACIÓN LA CONEXIÓN.</Bold> <LineBreak/>
+                En caso se desee cambiar y/o actualizar el gestor de Base de datos web, el nombre de la base de datos, puerto, usuario de acceso, o cambiar base de datos, se podrá proceder a realizar los cambios necesarios y presionará el botón “Guardar” para mantener todos los cambios.
+
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="11" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_CWeb_VentanaDos.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="12">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+               Luego de presionar el botón “Guardar”, se mostrará el siguiente mensaje al cual le daremos “Aceptar”.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="13" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_CLocal_VentanaCorrecto.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="14">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+                   En caso se presione el botón “Crear base de datos”, sin haber antes cambiado el nombre de la BD, se mostrará la siguiente advertencia, el cual sólo aceptaremos, porque nos indica que la base de datos Ya Existe.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="15" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_CWeb_VentanaError.png" Stretch="None" />
+
+        </Grid>
+    </ScrollViewer>
+</Page>

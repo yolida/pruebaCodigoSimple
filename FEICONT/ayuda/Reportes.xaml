@@ -1,0 +1,44 @@
+﻿<Page x:Class="FEICONT.ayuda.Reportes"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FEICONT.ayuda"
+      mc:Ignorable="d" 
+      MinHeight="300" MinWidth="300"
+      Title="Reportes" Background="White">
+
+    <Grid Margin="10" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center">
+            <TextBlock TextWrapping="Wrap"  TextBlock.TextAlignment="Center"  TextBlock.FontWeight="Bold" TextBlock.FontSize="14">
+               OPCIONES DEL PROGRAMA
+            </TextBlock>
+        </Label>
+
+        <Label Grid.Column="0" Grid.Row="1">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+            Mostrará los reportes que se podrán generar por tipo de documento electrónico. <LineBreak/>
+            <Bold>Tipo de Reportes: </Bold> <LineBreak/>
+►	Reporte de Factura Electrónica<LineBreak/>
+►	Reporte de Resumen Diario<LineBreak/>
+►	Reporte de Boletas de Venta<LineBreak/>
+►	Reporte de Comunicación de Baja<LineBreak/>
+►	Reporte de Comprobación de Retención <LineBreak/>
+►	Reporte General<LineBreak/>
+
+            </TextBlock>
+        </Label>
+        <Image Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_reporte.png" Stretch="None" />
+
+    </Grid>
+</Page>

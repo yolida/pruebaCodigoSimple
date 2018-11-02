@@ -1,0 +1,319 @@
+﻿<Page x:Class="FEICONT.pages.Retencion_Sunat"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FEICONT.pages"
+      mc:Ignorable="d" 
+      Title="Retención Sunat" Loaded="Page_Loaded" KeyDown="Page_KeyDown">
+
+    <Page.Resources>
+        <ContextMenu x:Key="MyContextMenu">
+            <!--<MenuItem Header="Detalle del documento" Click="DetalleItem_Click"  />-->
+            <MenuItem Header="Descargar XML envio" Click="XMLEnvio_Click"  />
+            <MenuItem Header="Descargar XML recepcion" Click="XMLRecepcion_Click"  />
+        </ContextMenu>
+        <Style x:Key="BaseButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Background" Value="#1ba1e2"/>
+            <Setter Property="BorderBrush" Value="#1684ba"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="#000000"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="16,3,16,3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Chrome"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter Name="Presenter" Margin="{TemplateBinding Padding}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    RecognizesAccessKey="True"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#333333" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#dddddd" />
+                                <Setter Property="BorderBrush" Value="#cccccc" />
+                                <Setter Property="Foreground" Value="#333333" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#1ba1e2" />
+                                <Setter Property="BorderBrush" Value="#1ba1e2"/>
+                                <Setter Property="Foreground" Value="#ffffff"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter TargetName="Chrome" Property="BorderBrush" Value="#1ba1e2" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" x:Name="label" Content="ENVIO DE COMPROBANTES DE RETENCION" HorizontalContentAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Calibri" Background="#dbeaf9" />
+        <Border Grid.Column="0" Grid.Row="1" Margin="10,10,10,10"
+              BorderBrush="#DBDBDB" 
+              CornerRadius="0" BorderThickness="1, 1, 1, 1" 
+               >
+            <Grid  Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid  Grid.Column="0" Grid.Row="0" Margin="40,10,40,0"  >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="4*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label  Grid.Column="0" Grid.Row="0" Content="Fecha de Inicio" HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="0,6"/>
+                    <Label  Grid.Column="0" Grid.Row="1" Content="Fecha de Fin" HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="0,6"/>
+                    <local:DatePickerEx x:Name="datePick_inicio" Grid.Column="1" Grid.Row="0" Margin="0,5,5,5"  IsDropDownOpen="False" IsTodayHighlighted="True" RenderTransformOrigin="0.5,0.5"  />
+                    <local:DatePickerEx x:Name="datePick_fin" Grid.Column="1" Grid.Row="1" Margin="0,5,5,5"  IsDropDownOpen="False" IsTodayHighlighted="True"  />
+                    <StackPanel  Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <Button Width="80" Margin="0,0,5,0" Click="btnConsultar_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Image x:Name="imageButton" Source="/FEICONT;component/images/search-icon.png"  Height="15" Width="15"/>
+                                <Label Content="Filtrar"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+                <DataGrid Grid.Column="0" Grid.Row="1" Margin="40,10,40,0" FrozenColumnCount ="0" x:Name="dgComprobantesFactura" ColumnHeaderStyle="{DynamicResource HeaderStyle}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  SelectionMode="Single"
+                  CanUserDeleteRows="False"
+                  CanUserResizeRows="False"
+                  Background="White"
+                  HeadersVisibility="Column"
+                  VerticalGridLinesBrush="#000000"
+                  GridLinesVisibility="None" SelectionUnit="FullRow"  MaxHeight="285" MinHeight="250"   >
+                    <DataGrid.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#DEDCD9"/>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn MaxWidth="35" CanUserReorder="False" CanUserResize="False">
+                            <DataGridTemplateColumn.Header>
+                                <CheckBox HorizontalAlignment="Center" x:Name="chkAll" Checked="chkAll_Checked" Unchecked="chkAll_Unchecked"/>
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox Name="chkDiscontinue"  IsChecked="{Binding Path=Check,Mode=TwoWay}" Margin="0 2 0 0" Checked="chkDiscontinue_Checked" Unchecked="chkDiscontinue_Unchecked"  />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTemplateColumn.CellStyle>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Binding="{Binding SerieNumero}" IsReadOnly="True" MinWidth="150" CanUserReorder="False" Width="*">
+                            <DataGridTextColumn.Header>
+                                <TextBlock  Text="Comprobante" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                            </DataGridTextColumn.Header>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                    <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding EstadoSCC}" IsReadOnly="True" MinWidth="70"   CanUserReorder="False" SortDirection="Ascending" CanUserSort="True" Width="*"  >
+                            <DataGridTextColumn.Header>
+                                <TextBlock  Text="Estado SCC" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                            </DataGridTextColumn.Header>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                    <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="Text" Value="ENVIADO">
+                                            <Setter Property="Foreground" Value="Green"/>
+                                            <!--<Setter Property="Text" Value="Factura"/>-->
+                                        </Trigger>
+                                        <Trigger Property="Text" Value="PENDIENTE (CORRECTO)">
+                                            <Setter Property="Foreground" Value="RoyalBlue"/>
+                                            <!--<Setter Property="Text" Value="Factura"/>-->
+                                        </Trigger>
+                                        <Trigger Property="Text" Value="PENDIENTE (ERRORES)">
+                                            <Setter Property="Foreground" Value="Red"/>
+                                            <!--<Setter Property="Text" Value="Factura"/>-->
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding EstadoSunat}" IsReadOnly="True" MinWidth="90" CanUserReorder="False"  SortDirection="Ascending" CanUserSort="True" Width="*">
+                            <DataGridTextColumn.Header>
+                                <TextBlock  Text="Estado SUNAT" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                            </DataGridTextColumn.Header>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="Text" Value="ACEPTADO">
+                                            <Setter Property="Foreground" Value="Green"/>
+                                            <!--<Setter Property="Text" Value="Factura"/>-->
+                                        </Trigger>
+                                        <Trigger Property="Text" Value="RECHAZADO">
+                                            <Setter Property="Foreground" Value="Brown"/>
+                                            <!--<Setter Property="Text" Value="Factura"/>-->
+                                        </Trigger>
+                                        <Trigger Property="Text" Value="SIN RESPUESTA">
+                                            <Setter Property="Foreground" Value="Red"/>
+                                            <!--<Setter Property="Text" Value="Factura"/>-->
+                                        </Trigger>
+                                        <Trigger Property="Text" Value="DE BAJA">
+                                            <Setter Property="Foreground" Value="Salmon"/>
+                                            <!--<Setter Property="Text" Value="Factura"/>-->
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding SerieNumeroRelacionado}" IsReadOnly="True" MinWidth="100" CanUserReorder="False" SortDirection="Ascending" CanUserSort="True" Width="*" >
+                            <DataGridTextColumn.Header>
+                                <TextBlock  Text="Serie-Número Relacionado" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" TextBlock.TextAlignment="Center"/>
+                            </DataGridTextColumn.Header>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding FechaEmision}" IsReadOnly="True" MinWidth="100" CanUserReorder="False" SortDirection="Ascending" CanUserSort="True" Width="*">
+                            <DataGridTextColumn.Header>
+                                <TextBlock  Text="Fecha de Emisión" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                            </DataGridTextColumn.Header>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding MontoPago}" IsReadOnly="True" MinWidth="100" CanUserReorder="False" SortDirection="Ascending" CanUserSort="True" Width="*">
+                            <DataGridTextColumn.Header>
+                                <TextBlock  Text="Monto de Pago" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                            </DataGridTextColumn.Header>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding MontoRetencion}" IsReadOnly="True" MinWidth="100" CanUserReorder="False" SortDirection="Ascending" CanUserSort="True" Width="*">
+                            <DataGridTextColumn.Header>
+                                <TextBlock  Text="Importe retenido" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                            </DataGridTextColumn.Header>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding MontoTotal}" IsReadOnly="True" MinWidth="100" CanUserReorder="False" SortDirection="Ascending" CanUserSort="True" Width="*">
+                            <DataGridTextColumn.Header>
+                                <TextBlock  Text="Monto Total" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                            </DataGridTextColumn.Header>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Comentario}"  Width="2*" MinWidth="200" IsReadOnly="True"  CanUserSort="False" CanUserReorder="False" CanUserResize="False"  >
+                            <DataGridTextColumn.Header>
+                                <TextBlock  Text="Comentario" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                            </DataGridTextColumn.Header>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                    <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                    <Setter Property="TextBlock.FontSize" Value="9" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Grid  Grid.Column="0" Grid.Row="2" Margin="40,20,40,20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <DockPanel Grid.Column="0" Grid.Row="0">
+                        <Button Margin="0,0,0,0" x:Name="btnDescartar" HorizontalAlignment="Left" Click="btnDescartar_Click"  VerticalAlignment="Bottom"   >
+                            <StackPanel Orientation="Horizontal">
+                                <Image  Source="/FEICONT;component/images/remove-icon.png" Height="18" Width="26" />
+                                <Label  Content="Descartar"/>
+                            </StackPanel>
+                        </Button>
+                    </DockPanel>
+                    <DockPanel Grid.Column="5" Grid.Row="0">
+                        <Button Margin="0,0,0,0" x:Name="btnEnviar" HorizontalAlignment="Right" Click="btnEnviar_Click"  VerticalAlignment="Bottom"   >
+                            <StackPanel Orientation="Horizontal">
+                                <Image x:Name="image" Source="/FEICONT;component/images/send.png" Height="18" Width="26" />
+                                <Label x:Name="TextBoton" Content="Sunat"/>
+                            </StackPanel>
+                        </Button>
+                       <!-- <Button Margin="0,0,0,0" x:Name="btnEnviari" HorizontalAlignment="Right" Click="btnEnviari_Click"  VerticalAlignment="Bottom"   >
+                            <StackPanel Orientation="Horizontal">
+                                <Label x:Name="TextBotoni" Content="Sunati"/>
+                            </StackPanel>
+                        </Button>-->
+                    </DockPanel>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

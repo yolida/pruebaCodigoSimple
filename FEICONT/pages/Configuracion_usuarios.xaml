@@ -1,0 +1,167 @@
+﻿<Page x:Class="FEICONT.pages.Configuracion_usuarios"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FEICONT.pages"
+      mc:Ignorable="d" 
+      Title="Configuracion usuarios" Loaded="Page_Loaded" KeyDown="Page_KeyDown">
+
+    <Page.Resources>
+       
+        <Style x:Key="BaseButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Background" Value="#1ba1e2"/>
+            <Setter Property="BorderBrush" Value="#1684ba"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="#000000"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="16,3,16,3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Chrome"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter Name="Presenter" Margin="{TemplateBinding Padding}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    RecognizesAccessKey="True"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#333333" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#dddddd" />
+                                <Setter Property="BorderBrush" Value="#cccccc" />
+                                <Setter Property="Foreground" Value="#333333" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#1ba1e2" />
+                                <Setter Property="BorderBrush" Value="#1ba1e2"/>
+                                <Setter Property="Foreground" Value="#ffffff"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter TargetName="Chrome" Property="BorderBrush" Value="#1ba1e2" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" x:Name="label" Content="USUARIOS" HorizontalContentAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Calibri"  Background="#dbeaf9"/>
+        <Grid  Grid.Column="0" Grid.Row="1" Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,20,0,20" BorderBrush="#DBDBDB" CornerRadius="0" BorderThickness="1,1,1,1">
+                <Grid  Margin="10,20,10,20" MaxWidth="650" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Grid.Column="0" Grid.Row="0"  Grid.ColumnSpan="2" Margin="0,20,0,20"  FrozenColumnCount ="0" x:Name="dgUsuarios" ColumnHeaderStyle="{DynamicResource HeaderStyle}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  SelectionMode="Single"
+                  CanUserDeleteRows="False"
+                  CanUserResizeRows="False"
+                  Background="White"
+                  HeadersVisibility="Column"
+                  VerticalGridLinesBrush="#000000"
+                  GridLinesVisibility="None" SelectionUnit="FullRow"  MaxHeight="270" MinHeight="250"  >
+                        <DataGrid.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#DEDCD9"/>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                        </DataGrid.Resources>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Usuario}" IsReadOnly="True" MinWidth="90" CanUserReorder="False" Width="3*">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Usuario" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Rol}" IsReadOnly="True"  MinWidth="90"  CanUserReorder="False" SortDirection="Ascending" CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Tipo" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <DockPanel Margin="0,0,0,0" Grid.Column="0"  Grid.Row="1" VerticalAlignment="Top">
+                        <Button Margin="0,0,10,0" x:Name="btnNuevo" HorizontalAlignment="Right"   Click="btnNuevo_Click"  >
+                            <StackPanel Orientation="Horizontal">
+                                <Image x:Name="imageNuevo" Source="/FEICONT;component/images/add-list.png" Height="18" Width="26" />
+                                <Label x:Name="TextNuevo" Content="Nuevo"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Margin="0,0,10,0" x:Name="btnEliminar" HorizontalAlignment="Right"   VerticalAlignment="Bottom"  Click="btnEliminar_Click"  >
+                            <StackPanel Orientation="Horizontal">
+                                <Image x:Name="imageEliminar" Source="/FEICONT;component/images/remove-icon.png" Height="18" Width="26" />
+                                <Label x:Name="TextEliminar" Content="Eliminar"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Margin="0,0,7,0" x:Name="btnModificar" HorizontalAlignment="Right"    Click="btnModificar_Click"  >
+                            <StackPanel Orientation="Horizontal">
+                                <Image x:Name="imageModificar" Source="/FEICONT;component/images/edit-icon.png" Height="18" Width="26" />
+                                <Label x:Name="TextModificar" Content="Editar"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Margin="0,0,0,0" x:Name="btnEmpresas" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Click="btnEmpresas_Click"  >
+                            <StackPanel Orientation="Horizontal">
+                                <Image x:Name="imageEmpresas" Source="/FEICONT;component/images/build.png" Height="18" Width="26" />
+                                <Label x:Name="TextEmpresas" Content="Empresas"/>
+                            </StackPanel>
+                        </Button>
+                       
+                    </DockPanel>
+                </Grid>
+            </Border>
+            <Grid  Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Margin="0,20,0,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+               
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

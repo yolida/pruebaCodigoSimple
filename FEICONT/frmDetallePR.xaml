@@ -1,0 +1,119 @@
+﻿<Window x:Class="FEICONT.frmDetallePR"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FEICONT"
+        mc:Ignorable="d"
+        Title="Detalle" Height="500" Width="500" Icon="images/fei_cuadro.ico" Loaded="Window_Loaded" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
+    <Grid  Margin="20,20,20,20"  >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Tipo de comprobante:" FontFamily="Calibri" Grid.Column="0" Grid.Row="0" />
+        <TextBox x:Name="txtTipoComprobante" Text="" Margin="0,4,0,0" Grid.Column="1" Grid.Row="0" IsEnabled="False"/>
+
+        <Label Content="Serie-Numero:" FontFamily="Calibri" Grid.Column="2" Grid.Row="0" />
+        <TextBox x:Name="txtSerieNumero" Text="" Margin="0,4,0,0" Grid.Column="3" Grid.Row="0" IsEnabled="False"/>
+
+        <Label Content="RUC:" FontFamily="Calibri" Grid.Column="0" Grid.Row="1" />
+        <TextBox x:Name="txtRuc" Text="" Margin="0,4,0,0" Grid.Column="1" Grid.Row="1" IsEnabled="False"/>
+
+        <Label Content="Fecha de emision:" FontFamily="Calibri" Grid.Column="2" Grid.Row="1" />
+        <TextBox x:Name="txtFechaEmision"  Margin="0,4,0,0" Text="" Grid.Column="3" Grid.Row="1" IsEnabled="False"/>
+
+        <Label Content="Razon Social:" FontFamily="Calibri" Grid.Column="0" Grid.Row="2" />
+        <TextBox x:Name="txtRazonSocial" Text="" Margin="0,4,0,0" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" IsEnabled="False"/>
+
+        <DataGrid Grid.Column="0" Grid.Row="3"  Grid.ColumnSpan="4" Margin="0,20,0,20"  FrozenColumnCount ="0" x:Name="dgEmpresas" 
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  SelectionMode="Single"
+                  CanUserDeleteRows="False"
+                  CanUserResizeRows="False"
+                  Background="White"
+                  HeadersVisibility="Column"
+                  VerticalGridLinesBrush="#000000"
+                  GridLinesVisibility="None" SelectionUnit="FullRow"  MaxHeight="250" MinHeight="100"  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Cs_tag_Id_SchemeId}" IsReadOnly="True" MinWidth="90" CanUserReorder="False" Width="4*">
+                    <DataGridTextColumn.Header>
+                        <TextBlock  Text="Tipo comprobante" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                    </DataGridTextColumn.Header>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Cs_tag_Id}" IsReadOnly="True" MinWidth="90" CanUserReorder="False" Width="4*">
+                    <DataGridTextColumn.Header>
+                        <TextBlock  Text="Serie-Numero" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                    </DataGridTextColumn.Header>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Binding="{Binding Cs_tag_IssueDate}" IsReadOnly="True" MinWidth="90" CanUserReorder="False" Width="*">
+                    <DataGridTextColumn.Header>
+                        <TextBlock  Text="Fecha Emision" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                    </DataGridTextColumn.Header>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Cs_tag_SUNATRetentionInformation_SUNATRetentionAmount}" IsReadOnly="True" MinWidth="90" CanUserReorder="False" Width="*">
+                    <DataGridTextColumn.Header>
+                        <TextBlock  Text="Importe Retenido" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                    </DataGridTextColumn.Header>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Cs_tag_SUNATRetentionInformation_SUNATNetTotalPaid}" IsReadOnly="True" MinWidth="90" CanUserReorder="False" Width="*">
+                    <DataGridTextColumn.Header>
+                        <TextBlock  Text="Importe Total" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                    </DataGridTextColumn.Header>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button  Content="Descargar XML Envio"  Padding="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4"  Margin="0,0,0,10" x:Name="btnXMLEnvio" HorizontalAlignment="Left" Click="btnXMLEnvio_Click"  VerticalAlignment="Bottom">
+        </Button>
+        <Button  Content="Descargar XML Recepcion" Padding="2" Grid.Column="1"  Grid.ColumnSpan="2" Grid.Row="4"  Margin="0,0,0,10" x:Name="btnXMLRecepcion" HorizontalAlignment="Center" Click="btnXMLRecepcion_Click"  VerticalAlignment="Bottom"   >
+
+        </Button>
+        <Button  Content="Representacion Impresa" Padding="2" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4"  Margin="0,0,0,10" x:Name="btnRepresentacionImpresa" HorizontalAlignment="Right" Click="btnRepresentacionImpresa_Click"  VerticalAlignment="Bottom"   >
+
+        </Button>
+        <Button  Content="Salir" Padding="2" Width="100" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="5"  Margin="0,20,0,10" x:Name="btnRemover" HorizontalAlignment="Center" Click="btnRemover_Click"  VerticalAlignment="Bottom"   >
+
+        </Button>
+    </Grid>
+</Window>

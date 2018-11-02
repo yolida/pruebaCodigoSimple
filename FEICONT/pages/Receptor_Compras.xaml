@@ -1,0 +1,1075 @@
+﻿<Page x:Class="FEICONT.pages.Receptor_Compras"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FEICONT.pages"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      mc:Ignorable="d" 
+      Title="Pagina_Compras" Background="White" Loaded="Page_Loaded">
+
+    <ScrollViewer  VerticalScrollBarVisibility="Auto">
+        <Grid Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" x:Name="label" Content="REGISTRO DE COMPRAS" HorizontalContentAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Calibri" Background="#dbeaf9" />
+
+            <Grid Grid.Column="0" Grid.Row="1" Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <GroupBox Margin="10,0,10,10" Grid.Column="0" Grid.Row="0"  BorderBrush="#DBDBDB">
+                    <GroupBox.Header>
+                        <Label>Buscar por fechas</Label>
+                    </GroupBox.Header>
+                    <Grid Margin="10,1,10,1"  >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <!--<local:DatePickerEx x:Name="datePick_inicio" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Margin="0,5,5,5" AlternativeCalendarStyle="{StaticResource calendarWithGotToTodayStyle}" />
+                        <local:DatePickerEx x:Name="datePick_fin" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="0" Margin="0,5,5,5"  AlternativeCalendarStyle="{StaticResource calendarWithGotToTodayStyle}" />-->
+
+                        <Button x:Name="Buscar" HorizontalAlignment="Right" Height="24" Grid.Column="6" Grid.ColumnSpan="2" Margin="0,0,0,0" Grid.Row="0"  Click="ButtonBuscar_Click"   >
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Buscar" Margin="10,0,10,0" Padding="0"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Margin="10,0,10,10" Grid.Column="1" Grid.Row="0"  BorderBrush="#DBDBDB">
+                    <GroupBox.Header>
+                        <Label>Buscar por periodo</Label>
+                    </GroupBox.Header>
+                    <Grid Margin="10,1,10,1"  >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <ComboBox Grid.Column="0" Grid.ColumnSpan="2" x:Name="periodoMesRCompras" Margin="0,5,5,5" Style="{StaticResource ComboBoxFlatStyle}"></ComboBox>
+                        <ComboBox  Grid.Column="2" Grid.ColumnSpan="2" x:Name="periodoAnioRCompras" Margin="0,5,5,5" Style="{StaticResource ComboBoxFlatStyle}"></ComboBox>
+                        <Button x:Name="BuscarRegistroComprasPeriodo" HorizontalAlignment="Right" Height="24" Grid.Column="5" Margin="0,0,0,0" Grid.Row="0"  Click="ButtonBuscarRegistroComprasPeriodo_Click"   >
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Buscar" Padding="0" Margin="10,0,10,0"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </GroupBox>
+                <Grid  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="10,0,10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- <StackPanel  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"  Orientation="Horizontal">-->
+                    <!--<Button HorizontalAlignment="Left" Height="30" Grid.Column="0" Margin="0,0,0,0" Grid.Row="0" Width="40" IsEnabled="True"  >
+                                       
+                                    </Button>-->
+                    <!-- <Rectangle x:Name="btnColor" Fill="Red" Width="30" Height="30" />
+                                            <Label x:Name="Faltantes"  Margin="10,0,0,0" Content=""></Label>
+                                        </StackPanel>-->
+
+                    <DataGrid Margin="0,10,0,10" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6"  FrozenColumnCount ="0" x:Name="dgDocumentos"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  SelectionMode="Single"
+                  CanUserDeleteRows="False"
+                  CanUserResizeRows="False"
+                  Background="White"
+                  HeadersVisibility="Column"
+                  VerticalGridLinesBrush="#000000" TextBlock.FontSize="9"
+                  GridLinesVisibility="None" SelectionUnit="FullRow"  MaxHeight="260" MinHeight="220" CellEditEnding="dgDocumentos_CellEditEnding" RowEditEnding="DataGrid_RowEditEnding"  >
+                        <DataGrid.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#DEDCD9"/>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                        </DataGrid.Resources>
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn MinWidth="30" CanUserReorder="False" CanUserResize="False">
+                                <DataGridTemplateColumn.Header>
+                                    <CheckBox HorizontalAlignment="Center" x:Name="chkAllRC" Checked="chkAll_CheckedRC" Unchecked="chkAll_UncheckedRC"/>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox Name="chkDiscontinue"  IsChecked="{Binding Path=Check,Mode=TwoWay}" Margin="0 2 0 0" Checked="chkDiscontinue_CheckedRC" Unchecked="chkDiscontinue_UncheckedRC"  />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTemplateColumn.CellStyle>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn   Header="Visor" IsReadOnly="True" MinWidth="50"  CanUserReorder="False" CanUserSort="True" Width="*"  >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Name="VisorDocument" Source="/FEICONT;component/images/LupaPDF.png" MaxHeight="20" MouseLeftButtonUp="ClicEnImagen" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Binding="{ Binding FechaEmision, StringFormat={}{0:yyyy-MM-dd}}"  IsReadOnly="True" MinWidth="100"   CanUserReorder="False" CanUserSort="True" Width="2*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Fecha de Emision" TextAlignment="Center"  TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn  MinWidth="100"   CanUserReorder="False"  CanUserSort="True" Width="2*" >
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock  Text="Fecha Vencimiento" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTemplateColumn.CellStyle>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <!--  <Label Content="{Binding FechaVencimiento}"  ContentStringFormat="d"></Label>
+                                                            <TextBlock Text="{Binding FechaVencimiento, StringFormat='{}{}'}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                            -->
+                                        <xctk:DateTimeUpDown Value="{Binding FechaVencimiento  , UpdateSourceTrigger=PropertyChanged, StringFormat=dd/MM/yyyy}" IsReadOnly="True" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"  Grid.Column="1"  Margin="0,1,0,1" Grid.Row="1"  Format="ShortDate" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <xctk:DateTimeUpDown Value="{Binding FechaVencimiento  , UpdateSourceTrigger=PropertyChanged, StringFormat=yyyy-MM-dd}" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Grid.Column="1"  Margin="0,1,0,1" Grid.Row="1"  Format="ShortDate" />
+                                        <!-- <localMain:DatePickerEx SelectedDate="{Binding FechaVencimiento  , UpdateSourceTrigger=PropertyChanged, StringFormat=dd/MM/yyyy}"  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="0,5,5,5" AlternativeCalendarStyle="{StaticResource calendarWithGotToTodayStyle}" />-->
+                                        <!--<DatePicker SelectedDate="{Binding FechaVencimiento, UpdateSourceTrigger=PropertyChanged, StringFormat=dd/MM/yyyy}" Style="{StaticResource pr}" />-->
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                                <!--<DataGridTemplateColumn.CellStyle>
+                                                <Style TargetType="{x:Type DataGridCell}">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ch}"  Value="1">
+                                                            <Setter Property="Background" Value="Yellow"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </DataGridTemplateColumn.CellStyle>-->
+                            </DataGridTemplateColumn>
+                            <!-- <DataGridTextColumn Binding="{Binding FechaVencimiento , StringFormat=dd/MM/yyyy, UpdateSourceTrigger=PropertyChanged}"  MinWidth="100"   CanUserReorder="False"  CanUserSort="True" Width="2*"  >
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock  Text="Fecha Vencimiento" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" />
+                                            </DataGridTextColumn.Header>
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style>
+                                                    <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                                    <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>-->
+                            <DataGridTextColumn Binding="{Binding Tipo}" Width="*" IsReadOnly="True" MinWidth="70" CanUserReorder="False"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Documento" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center" />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Serie}" IsReadOnly="True" MinWidth="50"   CanUserReorder="False" CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Serie" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center"  />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding AnioEmisionDUA, UpdateSourceTrigger=PropertyChanged}"  MinWidth="70"   CanUserReorder="False" CanUserSort="True" Width="2*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Año Emision DUA" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Numero}" IsReadOnly="True" MinWidth="70"   CanUserReorder="False" CanUserSort="True" Width="2*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Numero" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center"  />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding TipoDocProveedor}" IsReadOnly="True" MinWidth="70"   CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Proveedor Doc Tipo" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap"  />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding NumeroDocProveedor}" IsReadOnly="True" MinWidth="70"   CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text=" Proveedor Doc. Numero" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding RazonSocialProveedor}" IsReadOnly="True" MinWidth="150"   CanUserReorder="False"  CanUserSort="True" Width="3*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Proveedor Razon Social" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding AdqGravadasBaseImponible}" IsReadOnly="True" MinWidth="150"   CanUserReorder="False"  CanUserSort="True" Width="3*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Ad. Gravados Destinadas a Operaciones Gravadas y/o Exportacion - Base Imponible" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding AdqGravadasIGV}" IsReadOnly="True" MinWidth="150"   CanUserReorder="False"  CanUserSort="True" Width="3*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Ad. Gravados Destinadas a Operaciones Gravadas y/o Exportacion - IGV" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap"/>
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding AdqGravadasBaseImponibleGravadasNoGravadas, UpdateSourceTrigger=PropertyChanged}"  MinWidth="150"   CanUserReorder="False"  CanUserSort="True" Width="3*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Ad. Gravados Destinadas a Operaciones Gravadas y/o Exportacion y no Gravadas - Base Imponible" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap" />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding AdqGravadasIGVGravadasNoGravados, UpdateSourceTrigger=PropertyChanged}"  MinWidth="150"   CanUserReorder="False"  CanUserSort="True" Width="3*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Ad. Gravados Destinadas a Operaciones Gravadas y/o Exportacion y no Gravadas - IGV" VerticalAlignment="Center" HorizontalAlignment="Center"   TextAlignment="Center"  TextWrapping="Wrap" />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding AdqGravadasBaseImponibleNoGravados, UpdateSourceTrigger=PropertyChanged}" MinWidth="150"   CanUserReorder="False"  CanUserSort="True" Width="3*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Ad. Gravados Destinadas a Operaciones  no Gravadas - Base Imponible" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap" />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding AdqGravadasIGVNoGravados, UpdateSourceTrigger=PropertyChanged}" MinWidth="150"   CanUserReorder="False"  CanUserSort="True" Width="3*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Ad. Gravados Destinadas a Operaciones  y no Gravadas - IGV" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap"  />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding ValorAdquisicionNoGravada}" IsReadOnly="True" MinWidth="100"   CanUserReorder="False"  CanUserSort="True" Width="3*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Valor de las adquisiciones no gravadas" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap"  />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Isc}" IsReadOnly="True" MinWidth="50"   CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="ISC" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap" />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Binding="{Binding OtrosTributosYCargos}" IsReadOnly="True" MinWidth="70"   CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="OtrosTributosyCargos" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap" />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding ImporteTotal}" IsReadOnly="True" MinWidth="70"   CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Importe Total" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap"  />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding NumeroComprobantePagoSujetoNoDomiciliado, UpdateSourceTrigger=PropertyChanged}"  MinWidth="70"   CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Sujeto No Domiciliado" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap" />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding ConstDepDetNumero, UpdateSourceTrigger=PropertyChanged}"  MinWidth="100"   CanUserReorder="False"  CanUserSort="True" Width="2*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Constancia Detraccion Numero" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap"  />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+
+                            <DataGridTemplateColumn  MinWidth="100"   CanUserReorder="False"  CanUserSort="True" Width="2*" >
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock  Text="Constancia Detraccion Fecha" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTemplateColumn.CellStyle>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <!--<TextBlock Text="{Binding ConstDepDetFecha , UpdateSourceTrigger=PropertyChanged, StringFormat=dd/MM/yyyy}" VerticalAlignment="Center" HorizontalAlignment="Center" />-->
+                                        <xctk:DateTimeUpDown Value="{Binding ConstDepDetFecha  , UpdateSourceTrigger=PropertyChanged, StringFormat=dd/MM/yyyy}" VerticalAlignment="Center" HorizontalAlignment="Center" IsReadOnly="True" TextAlignment="Center"  Grid.Column="1"  Margin="0,1,0,1" Grid.Row="1"  Format="ShortDate" />
+
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <xctk:DateTimeUpDown Value="{Binding ConstDepDetFecha  , UpdateSourceTrigger=PropertyChanged, StringFormat=dd/MM/yyyy}" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"  ToolTip="False" Grid.Column="1"  Margin="0,1,0,1" Grid.Row="1"  Format="ShortDate" />
+                                        <!-- <localMain:DatePickerEx SelectedDate="{Binding FechaVencimiento  , UpdateSourceTrigger=PropertyChanged, StringFormat=dd/MM/yyyy}"  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="0,5,5,5" AlternativeCalendarStyle="{StaticResource calendarWithGotToTodayStyle}" />-->
+                                        <!--<DatePicker SelectedDate="{Binding FechaVencimiento, UpdateSourceTrigger=PropertyChanged, StringFormat=dd/MM/yyyy}" Style="{StaticResource pr}" />-->
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+                            <!--<DataGridTextColumn Binding="{Binding ConstDepDetFecha, UpdateSourceTrigger=PropertyChanged}"  MinWidth="100"   CanUserReorder="False"  CanUserSort="True" Width="2*"  >
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock  Text="Constancia Detraccion Fecha" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap"  />
+                                            </DataGridTextColumn.Header>
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style>
+                                                    <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                                    <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>-->
+                            <DataGridTextColumn Binding="{Binding TipoCambio , UpdateSourceTrigger=PropertyChanged}" MinWidth="50"   CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Tipo de Cambio" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap"  />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTemplateColumn   MinWidth="100"   CanUserReorder="False"  CanUserSort="True" Width="2*" >
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock  Text="Fecha Doc. Ref." TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTemplateColumn.CellStyle>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <!-- <TextBlock Text="{Binding DocReferenciaFecha , UpdateSourceTrigger=PropertyChanged, StringFormat=dd/MM/yyyy}" VerticalAlignment="Center" HorizontalAlignment="Center" />-->
+                                        <xctk:DateTimeUpDown Value="{Binding DocReferenciaFecha  , UpdateSourceTrigger=PropertyChanged, StringFormat=dd/MM/yyyy}" TextAlignment="Center" VerticalAlignment="Center" IsReadOnly="True" HorizontalAlignment="Center"  Grid.Column="1"  Margin="0,1,0,1" Grid.Row="1"  Format="ShortDate" />
+
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <xctk:DateTimeUpDown Value="{Binding DocReferenciaFecha  , UpdateSourceTrigger=PropertyChanged, StringFormat=dd/MM/yyyy}" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"  Grid.Column="1"  Margin="0,1,0,1" Grid.Row="1"  Format="ShortDate" />
+                                        <!-- <localMain:DatePickerEx SelectedDate="{Binding FechaVencimiento  , UpdateSourceTrigger=PropertyChanged, StringFormat=dd/MM/yyyy}"  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="0,5,5,5" AlternativeCalendarStyle="{StaticResource calendarWithGotToTodayStyle}" />-->
+                                        <!--<DatePicker SelectedDate="{Binding FechaVencimiento, UpdateSourceTrigger=PropertyChanged, StringFormat=dd/MM/yyyy}" Style="{StaticResource pr}" />-->
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+
+                            <!--<DataGridTextColumn Binding="{Binding DocReferenciaFecha  , UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:dd/MM/yyyy}}"   MinWidth="70"   CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock  Text="Fecha Doc. Ref." VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap"  />
+                                            </DataGridTextColumn.Header>
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style>
+                                                    <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                                    <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>-->
+                            <DataGridTextColumn Binding="{Binding DocReferencia}" MinWidth="100" IsReadOnly="True"  CanUserReorder="False"  CanUserSort="True" Width="2*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Doc. Referencia" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap"  />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding DocReferenciaSerie }" MinWidth="70" IsReadOnly="True"  CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Serie Doc. Ref." VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap"  />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding DocReferenciaNumero}" MinWidth="70"  IsReadOnly="True" CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Numero Doc. Ref." VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap"  />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Moneda}" MinWidth="50"  IsReadOnly="True" CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Moneda" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap"  />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Binding="{Binding EquivalenteDolares , UpdateSourceTrigger=PropertyChanged}"  MinWidth="70"   CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Equivalente en Dólares" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap"  />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn  MinWidth="100"   CanUserReorder="False"  CanUserSort="True" Width="2*" >
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock  Text="Fecha Vencimiento" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTemplateColumn.CellStyle>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <!--<TextBlock Text="{Binding FechaVencimientoDos , UpdateSourceTrigger=PropertyChanged, StringFormat=dd/MM/yyyy}" VerticalAlignment="Center" HorizontalAlignment="Center" />-->
+                                        <xctk:DateTimeUpDown Value="{Binding FechaVencimientoDos  , UpdateSourceTrigger=PropertyChanged, StringFormat=dd/MM/yyyy}" TextAlignment="Center" IsReadOnly="True" VerticalAlignment="Center" HorizontalAlignment="Center"    Grid.Column="1"  Margin="0,1,0,1" Grid.Row="1"    Format="ShortDate" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <xctk:DateTimeUpDown Value="{Binding FechaVencimientoDos  , UpdateSourceTrigger=PropertyChanged, StringFormat=dd/MM/yyyy}" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"   Grid.Column="1"  Margin="0,1,0,1" Grid.Row="1"    Format="ShortDate" />
+                                        <!-- <localMain:DatePickerEx SelectedDate="{Binding FechaVencimiento  , UpdateSourceTrigger=PropertyChanged, StringFormat=dd/MM/yyyy}"  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="0,5,5,5" AlternativeCalendarStyle="{StaticResource calendarWithGotToTodayStyle}" />-->
+                                        <!--<DatePicker SelectedDate="{Binding FechaVencimiento, UpdateSourceTrigger=PropertyChanged, StringFormat=dd/MM/yyyy}" Style="{StaticResource pr}" />-->
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+                            <!--<DataGridTextColumn Binding="{Binding FechaVencimientoDos , UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:dd/MM/yyyy}}"  MinWidth="70"   CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock  Text="Fecha Vencimiento" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" TextBlock.TextAlignment="Center"/>
+                                            </DataGridTextColumn.Header>
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style>
+                                                    <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                                    <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>-->
+
+                            <!--<DataGridTextColumn Binding="{Binding CondicionPago , UpdateSourceTrigger=PropertyChanged}" MinWidth="250"   CanUserReorder="False"  CanUserSort="True" Width="6*"  >
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock  Text="Condicion de Pago" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                                            </DataGridTextColumn.Header>
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style>
+                                                    <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                                    <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>-->
+                            <DataGridComboBoxColumn 
+                                                 SelectedValueBinding="{Binding CondicionCompra, UpdateSourceTrigger=PropertyChanged}" 
+                                                 DisplayMemberPath="_Value" 
+                                                 SelectedValuePath="_Id" Width="2*" MinWidth="100">
+                                <DataGridComboBoxColumn.Header>
+                                    <TextBlock  Text="Condicion" VerticalAlignment="Center" HorizontalAlignment="Center" TextBlock.TextAlignment="Center"  TextWrapping="Wrap" />
+                                </DataGridComboBoxColumn.Header>
+                                <DataGridComboBoxColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridComboBoxColumn.CellStyle>
+                                <DataGridComboBoxColumn.ElementStyle>
+                                    <Style TargetType="{x:Type ComboBox}">
+                                        <Setter Property="ItemsSource" Value="{Binding Path=DataContext.ParesCondicionCompra, RelativeSource={RelativeSource Findancestor, AncestorType={x:Type Page}}}" />
+                                    </Style>
+                                </DataGridComboBoxColumn.ElementStyle>
+                                <DataGridComboBoxColumn.EditingElementStyle>
+                                    <Style TargetType="{x:Type ComboBox}">
+                                        <Setter Property="ItemsSource" Value="{Binding Path=DataContext.ParesCondicionCompra, RelativeSource={RelativeSource Findancestor, AncestorType={x:Type Page}}}" />
+                                    </Style>
+                                </DataGridComboBoxColumn.EditingElementStyle>
+                            </DataGridComboBoxColumn>
+                            <DataGridTextColumn Binding="{Binding CtaContableBaseImponible , UpdateSourceTrigger=PropertyChanged }" MinWidth="80"   CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Cuenta Contable Base Imponible" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap" />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding CtaContableOtrosTributos , UpdateSourceTrigger=PropertyChanged }" MinWidth="80"   CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Cuenta Contable Otros Tributos" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap" />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding CtaContableTotal , UpdateSourceTrigger=PropertyChanged }" MinWidth="80"   CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Cuenta Contable Total" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap" />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding CentroCostosUno , UpdateSourceTrigger=PropertyChanged}" MinWidth="50"   CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="C.Costos1" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap" />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding CentroCostosDos , UpdateSourceTrigger=PropertyChanged}" MinWidth="50"   CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="C.Costos2" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap" />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding RegimenEspecial, UpdateSourceTrigger=PropertyChanged}" MinWidth="70"   CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Regimen Especial" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap" />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding PorcentajeRegimenEspecial, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" MinWidth="60"  CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Procentaje Regimen Especial" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap" />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding ImporteRegimenEspecial , UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True" MinWidth="60"   CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Importe Regimen Especial" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap"  />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding SerieDocumentoRegimenEspecial, UpdateSourceTrigger=PropertyChanged}" MinWidth="60"   CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Serie Doc Regimen Especial" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap"  />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding NumeroDocumentoRegimenEspecial , UpdateSourceTrigger=PropertyChanged}" MinWidth="60"  CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Numero Doc. Regimen Especial" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap"  />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn  MinWidth="100"   CanUserReorder="False"  CanUserSort="True" Width="2*" >
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock  Text="Fecha Doc. Regimen Especial" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTemplateColumn.CellStyle>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <!--<TextBlock Text="{Binding FechaDocumentoRegimenEspecial , UpdateSourceTrigger=PropertyChanged, StringFormat=dd/MM/yyyy}" VerticalAlignment="Center" HorizontalAlignment="Center" />-->
+                                        <xctk:DateTimeUpDown Value="{Binding FechaDocumentoRegimenEspecial  , UpdateSourceTrigger=PropertyChanged, StringFormat=dd/MM/yyyy}" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"  Grid.Column="1"  Margin="0,1,0,1" Grid.Row="1"  Format="ShortDate" IsReadOnly="True" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <xctk:DateTimeUpDown Value="{Binding FechaDocumentoRegimenEspecial  , UpdateSourceTrigger=PropertyChanged, StringFormat=dd/MM/yyyy}" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"  Grid.Column="1"  Margin="0,1,0,1" Grid.Row="1" Format="ShortDate" />
+                                        <!-- <localMain:DatePickerEx SelectedDate="{Binding FechaVencimiento  , UpdateSourceTrigger=PropertyChanged, StringFormat=dd/MM/yyyy}"  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="0,5,5,5" AlternativeCalendarStyle="{StaticResource calendarWithGotToTodayStyle}" />-->
+                                        <!--<DatePicker SelectedDate="{Binding FechaVencimiento, UpdateSourceTrigger=PropertyChanged, StringFormat=dd/MM/yyyy}" Style="{StaticResource pr}" />-->
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+                            <!-- <DataGridTextColumn Binding="{Binding FechaDocumentoRegimenEspecial, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:dd/MM/yyyy}}" MinWidth="70"   CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock  Text="Fecha Doc. Regimen Especial" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap"  />
+                                            </DataGridTextColumn.Header>
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style>
+                                                    <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                                    <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>-->
+                            <DataGridTextColumn Binding="{Binding CodigoPresupuesto, UpdateSourceTrigger=PropertyChanged}" MinWidth="70"  CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Codigo Presupuesto" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap"  />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding PorcentajeIGV, UpdateSourceTrigger=PropertyChanged}" MinWidth="70"   CanUserReorder="False"  CanUserSort="True" Width="*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Porcentaje IGV" VerticalAlignment="Center" HorizontalAlignment="Center"   TextAlignment="Center"  TextWrapping="Wrap" />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Glosa, UpdateSourceTrigger=PropertyChanged}" MinWidth="150"   CanUserReorder="False"  CanUserSort="True" Width="2*"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Glosa" VerticalAlignment="Center" HorizontalAlignment="Center"  TextAlignment="Center"  TextWrapping="Wrap"  />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridComboBoxColumn 
+                                                 SelectedValueBinding="{Binding CondicionPercepcion, UpdateSourceTrigger=PropertyChanged}" 
+                                                 DisplayMemberPath="_Value" 
+                                                 SelectedValuePath="_Id" MinWidth="100" Width="2*">
+                                <DataGridComboBoxColumn.Header>
+                                    <TextBlock  Text="Condicion de Percepcion" VerticalAlignment="Center" HorizontalAlignment="Center" TextBlock.TextAlignment="Center"  TextWrapping="Wrap" />
+                                </DataGridComboBoxColumn.Header>
+                                <DataGridComboBoxColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background"  Value="#f2f2f2" />
+                                    </Style>
+                                </DataGridComboBoxColumn.CellStyle>
+                                <DataGridComboBoxColumn.ElementStyle>
+                                    <Style TargetType="{x:Type ComboBox}">
+                                        <Setter Property="ItemsSource" Value="{Binding Path=DataContext.ParesCondicionPercepcion, RelativeSource={RelativeSource Findancestor, AncestorType={x:Type Page}}}" />
+                                    </Style>
+                                </DataGridComboBoxColumn.ElementStyle>
+                                <DataGridComboBoxColumn.EditingElementStyle>
+                                    <Style TargetType="{x:Type ComboBox}">
+                                        <Setter Property="ItemsSource" Value="{Binding Path=DataContext.ParesCondicionPercepcion, RelativeSource={RelativeSource Findancestor, AncestorType={x:Type Page}}}" />
+                                    </Style>
+                                </DataGridComboBoxColumn.EditingElementStyle>
+                            </DataGridComboBoxColumn>
+
+
+                            <DataGridTextColumn Binding="{Binding ImporteRegimenEspecial, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Width="*"  MinWidth="100" CanUserReorder="False"  >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="Importe de Regimen Especial" VerticalAlignment="Center" HorizontalAlignment="Center" TextBlock.TextAlignment="Center"  TextWrapping="Wrap" />
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <!--<localBase:DataGridComboBoxColumnWithBindingHack
+        Header="Product"
+        SelectedValueBinding="{Binding CondicionPercepcion}" 
+        SelectedValuePath="_Id"
+        DisplayMemberPath="_Value"
+        ItemsSource="{Binding RelativeSource={RelativeSource Findancestor, AncestorType={x:Type Page}}, Path=DataContext.Pares}" />-->
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Height="24" x:Name="btnDescartarRCompras"  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Margin="0,0,0,5" HorizontalAlignment="Left" VerticalAlignment="Center" Click="btnDescartarRCompras_Click"  >
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <!--<Image Source="/ReceptorElectronico;component/img/download-png.png" Margin="10,0,0,0" Width="20" Height="18" Stretch="Fill"  />-->
+                            <Label  FontSize="11" Padding="0" Content="Descartar"/>
+                        </StackPanel>
+                    </Button>
+                    <Label Grid.Column="4" Margin="0,5,0,5" Grid.ColumnSpan="2" Grid.Row="1" x:Name="CantidadCompras" HorizontalAlignment="Right" HorizontalContentAlignment="Right"></Label>
+                    <GroupBox Margin="0,0,10,10" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2"  BorderBrush="#DBDBDB">
+                        <GroupBox.Header>
+                            <Label>Asignación de periodo</Label>
+                        </GroupBox.Header>
+                        <Grid Margin="10,1,10,1"  >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <DockPanel   Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Left">
+                                <ComboBox Grid.Column="0" x:Name="periodoMesRAsignar" Width="100" Margin="0,5,5,5" Style="{StaticResource ComboBoxFlatStyle}"></ComboBox>
+                                <ComboBox Grid.Column="1" x:Name="periodoAnioRAsignar" Width="100" Margin="0,5,5,5" Style="{StaticResource ComboBoxFlatStyle}"></ComboBox>
+                                <Button Grid.Column="2" Margin="0,0,0,0" HorizontalAlignment="Right" Click="btnAsignarRPeriodo_Click" VerticalAlignment="Center">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Label Content="Asignar" Margin="10,0,10,0" Padding="0"/>
+                                    </StackPanel>
+                                </Button>
+
+                            </DockPanel>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Margin="0,0,10,10" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2"  BorderBrush="#DBDBDB">
+                        <GroupBox.Header>
+                            <Label>Exportar</Label>
+                        </GroupBox.Header>
+                        <DockPanel   Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2"  HorizontalAlignment="Left" >
+                            <!--<Label Content="Descargar reporte:"   VerticalAlignment="Center" HorizontalAlignment="Right"/>-->
+                            <Button x:Name="btnExportar" Height="24"  Margin="0,0,0,0" HorizontalAlignment="Left" Click="btnExportarCompras"  >
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Image Source="/FEICONT;component/images/download-png.png" Margin="10,0,5,0" Stretch="Fill"  />
+                                    <Label Content="Exportar excel" Margin="0,0,10,0"  Padding="0" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button>
+                            <!--<Button x:Name="btnImportarExcelCompras"  Margin="10,0,0,0" HorizontalAlignment="Left" Click="btnImportarExcel_Click"  >
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                  -->
+                            <!--<Image Source="/ReceptorElectronico;component/img/download-png.png" Margin="10,0,0,0" Width="20" Height="18" Stretch="Fill"  />-->
+                            <!--     <Label Content="Importar Excel y Comparar"/>
+                                                </StackPanel>
+                                            </Button>
+                                            <TextBlock Margin="15,0,0,0" TextAlignment="Center" VerticalAlignment="Center">
+                                          <Hyperlink  Click="HyperlinkCompras_Click" >
+                                              Descargar estructura
+                                          </Hyperlink>
+                                            </TextBlock>-->
+                        </DockPanel>
+                    </GroupBox>
+                    <GroupBox Margin="0,0,0,10" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="2"  BorderBrush="#DBDBDB">
+                        <GroupBox.Header>
+                            <Label>Edición de registros</Label>
+                        </GroupBox.Header>
+                        <DockPanel   Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2"  HorizontalAlignment="Left" >
+                            <!--<Label Content="Descargar reporte:"   VerticalAlignment="Center" HorizontalAlignment="Right"/>-->
+                            <Button x:Name="btnGrabarCambios" Height="24" Margin="0,0,0,0" HorizontalAlignment="Left" Click="btnGrabarCambiosCompras"  >
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Image Source="/FEICONT;component/images/save-icon.png" Margin="10,0,5,0"  Stretch="Fill"  />
+                                    <Label Content="Guardar cambios realizados" Margin="0,0,10,0" Padding="0" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+                        </DockPanel>
+                    </GroupBox>
+
+                    <!-- <StackPanel  Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                    <Button x:Name="btnGrabar" HorizontalAlignment="Left" Height="30" Grid.Column="0" Margin="0,0,0,0" Grid.Row="0"   Width="250" Click="btnGrabar_Click"  >
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="/ReceptorElectronico;component/img/save-icon.png" Margin="10,0,0,0" Width="20" Height="18" Stretch="Fill"  />
+                                            <Label Content="Enviar datos al CONTASIS"/>
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>-->
+                </Grid>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</Page>

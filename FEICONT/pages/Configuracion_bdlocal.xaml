@@ -1,0 +1,131 @@
+﻿<Page x:Class="FEICONT.pages.Configuracion_bdlocal"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FEICONT.pages"
+      mc:Ignorable="d" 
+      Title="Configuracion Base de Datos Local" KeyDown="Page_KeyDown">
+    <Page.Resources>
+        <Style x:Key="BaseButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Background" Value="#1ba1e2"/>
+            <Setter Property="BorderBrush" Value="#1684ba"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="#000000"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="16,3,16,3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="Chrome"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="Presenter" Margin="{TemplateBinding Padding}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    RecognizesAccessKey="True"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#333333" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#dddddd" />
+                                <Setter Property="BorderBrush" Value="#cccccc" />
+                                <Setter Property="Foreground" Value="#333333" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#1ba1e2" />
+                                <Setter Property="BorderBrush" Value="#1ba1e2"/>
+                                <Setter Property="Foreground" Value="#ffffff"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter TargetName="Chrome" Property="BorderBrush" Value="#1ba1e2" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" Content="BASE DE DATOS LOCAL" HorizontalContentAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Calibri" Background="#dbeaf9"/>
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,20,0,20" BorderBrush="#DBDBDB" CornerRadius="0" BorderThickness="1,1,1,1">
+                <Grid  Margin="10,20,10,20" MaxWidth="450" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" Content="Gestor BD" HorizontalContentAlignment="Left" Margin="0,10,0,10" FontWeight="Bold" />
+                <ComboBox  x:Name="cboGestorBD" Grid.Column="1"  Grid.Row="0" Width="180" Margin="0,10,0,10" HorizontalAlignment="Right" SelectionChanged="cboGestorBD_SelectionChanged" Style="{StaticResource ComboBoxFlatStyle}"/>
+                <Label Grid.Column="0" Grid.Row="1" Content="Driver de Gestor BD (ODBC)"  Margin="0,10,0,10" HorizontalContentAlignment="Left" FontWeight="Bold" />
+                <TextBox   x:Name="txtDriver" Grid.Column="1" Grid.Row="1" Margin="0,10,0,10"   Width="180" HorizontalAlignment="Right" />
+                <Label Grid.Column="0" Grid.Row="2" Content="Servidor BD"  Margin="0,10,0,10" HorizontalContentAlignment="Left" FontWeight="Bold" />
+                <TextBox   x:Name="txtServidor" Grid.Column="1" Grid.Row="2" Margin="0,10,0,10"  Width="180" HorizontalAlignment="Right" />
+                <Label Grid.Column="0" Grid.Row="3" Content="Puerto del servidor BD"  Margin="0,10,0,10" HorizontalContentAlignment="Left" FontWeight="Bold" />
+                <TextBox   x:Name="txtPuerto" Grid.Column="1" Grid.Row="3" Margin="0,10,0,10"  Width="180" HorizontalAlignment="Right" />
+                <Label Grid.Column="0" Grid.Row="4" Content="Nombre de Base Datos"    Margin="0,10,0,10" HorizontalContentAlignment="Left" FontWeight="Bold" />
+                <TextBox   x:Name="txtNombreBD" Grid.Column="1" Grid.Row="4" Margin="0,10,0,10"  Width="180" HorizontalAlignment="Right" />
+                <Label Grid.Column="0" Grid.Row="5" Content="Usuario"  Margin="0,10,0,10" HorizontalContentAlignment="Left" FontWeight="Bold" />
+                <TextBox   x:Name="txtUsuario" Grid.Column="1" Grid.Row="5" Margin="0,10,0,10"  Width="180" HorizontalAlignment="Right" />
+                <Label Grid.Column="0" Grid.Row="6" Content="Contraseña"  Margin="0,10,0,10" HorizontalContentAlignment="Left" FontWeight="Bold" />
+                <PasswordBox   x:Name="txtContrasenia" Grid.Column="1" Grid.Row="6" Margin="0,10,0,10"  Width="180" HorizontalAlignment="Right" />
+                    <DockPanel Margin="0,20,0,0" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                        <!--<Button Margin="0,0,5,0" Width="160" x:Name="btnVerificar" HorizontalAlignment="Left" Click="btnVerificar_Click"  VerticalAlignment="Bottom"  >
+                            <StackPanel Orientation="Horizontal">
+                                <Image x:Name="imageBD" Source="/FEICONT;component/images/refresh.png" Height="18" Width="26" />
+                                <Label x:Name="TextBotonBD" Content="Verificar Base de Datos"/>
+                            </StackPanel>
+                        </Button>-->
+                        <Button Margin="0,0,5,0" Width="145" x:Name="btnCrear" HorizontalAlignment="Right" Click="btnCrear_Click"  VerticalAlignment="Bottom"   >
+                            <StackPanel Orientation="Horizontal">
+                                <Image x:Name="image" Source="/FEICONT;component/images/add-database.png" Height="18" Width="26" />
+                                <Label x:Name="TextBoton" Content="Crear Base de Datos"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Margin="0,0,0,0" Width="100" x:Name="btnGuardar" HorizontalAlignment="Right" Click="btnGuardar_Click"  VerticalAlignment="Bottom"   >
+                            <StackPanel Orientation="Horizontal">
+                                <Image x:Name="imageGuardar" Source="/FEICONT;component/images/save-icon.png" Height="18" Width="26" />
+                                <Label x:Name="TextBotonGuardar" Content="Guardar"/>
+                            </StackPanel>
+                        </Button>
+                    </DockPanel>
+            </Grid>
+            </Border>
+          
+            </Grid>
+     
+    </Grid>
+</Page>

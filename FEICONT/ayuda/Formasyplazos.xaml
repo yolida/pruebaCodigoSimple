@@ -1,0 +1,73 @@
+﻿<Page x:Class="FEICONT.ayuda.Formasyplazos"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FEICONT.ayuda"
+      mc:Ignorable="d" 
+      MinHeight="300" MinWidth="300"
+      Title="Formasyplazos"  Background="White">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center">
+            <TextBlock TextWrapping="Wrap"  TextBlock.TextAlignment="Center"  TextBlock.FontWeight="Bold" TextBlock.FontSize="14">
+                 FORMAS Y PLAZOS PARA GENERACIÓN Y ENVÍO DE COMPROBANTES ELECTRÓNICOS
+            </TextBlock>
+        </Label>
+        <Label Grid.Column="0" Grid.Row="1">
+            <TextBlock TextWrapping="Wrap" TextBlock.FontWeight="Bold" TextAlignment="Left" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">
+                Plazo de envío para Facturas y Notas asociadas
+            </TextBlock>
+        </Label>
+        <Label Grid.Column="0" Grid.Row="2">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+                El plazo es de hasta 7 días calendarios contados a partir del día de emisión para hacer el envío, en la forma establecida en el anexo 6 de la R. de S.  N° 097-2012/SUNAT. Ref: Art. 12° de la R. de S. N° 097-2012/2012, sustituido por el Art. 1° de la R. de S. N° 374-2013.
+            </TextBlock>
+        </Label>
+        <Label Grid.Column="0" Grid.Row="3">
+            <TextBlock TextWrapping="Wrap" TextBlock.FontWeight="Bold" TextAlignment="Left" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">
+                    Envío Sincróno
+            </TextBlock>
+        </Label>
+        <Label Grid.Column="0" Grid.Row="4">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                     
+            Los envío síncronos se realizarán para los comprobantes Facturas Electrónicas, Notas de Crédito Electrónicas, y Notas de Débito Electrónicas. El envío síncrono consiste en realizar un único envío a SUNAT, envío por cada documento obteniendo un CDR por cada uno.
+            <LineBreak />
+              <Bold> <Italic> → Plazo de envío para Facturas y Notas asociadas:</Italic></Bold>  <LineBreak />
+                       El plazo es de hasta 7 días calendarios contados a partir del día de emisión para hacer el envío, en la forma establecida en el anexo 6 de la R. de S.  N° 097-2012/SUNAT. Ref: Art. 12° de la R. de S. N° 097-2012/2012, sustituido por el Art. 1° de la R. de S. N° 374-2013.<LineBreak />
+            </TextBlock>
+        </Label>
+        <Label Grid.Column="0" Grid.Row="5">
+            <TextBlock TextWrapping="Wrap" TextBlock.FontWeight="Bold" TextAlignment="Left" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">
+                    Envío Asincróno
+            </TextBlock>
+        </Label>
+        <Label Grid.Column="0" Grid.Row="6">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                     
+                   El envío Asíncrono se realizará en los envíos de Resumen Diario, y Comunicación de Baja. El envío asíncrono consiste en realizar un primer envío a SUNAT y esperar que SUNAT luego envíe un número de Ticket para poder consultar el estado, obteniendo un CDR. <LineBreak />
+                   <Bold> <Italic> →    Plazo de envío para Resumen Diario:</Italic></Bold>  <LineBreak />
+                   El plazo de envío es de 7 días calendarios, contados desde el día de emisión para hacer el envío. Por trartarse de una Declaración Jurada, entonces las declaraciones enviadas dentro del plazo del 7 días o posterior a ello, se considerarán como declaraciones sustitutorias o rectificatorias según corresponda.<LineBreak />
+                  <Bold> <Italic> →  Plazo de envío de Comunicación de Baja:</Italic></Bold>  <LineBreak />
+                  Para baja de Facturas y Notas asociadas: <LineBreak />
+	El plazo es de hasta 7 días calendarios, contados desde el día siguiente de haber recibido la CDR-Factura y nota con estado aceptada.<LineBreak />
+Para Boletas y Notas asociadas:<LineBreak />
+	Si las boletas de venta no han sido informadas, el plazo para comunicarlas de baja es 7 días calendario contados a partir del día siguiente de su generación.<LineBreak />
+	Si las boletas de venta han sido informadas, el plazo para comunicarlas de baja es de 7 días calendario contados a partir del día siguiente de la fecha de recibida la CDR- Constancia de Recepción – ACEPTADA, del Resumen Diario correspondiente.<LineBreak />
+
+            </TextBlock>
+        </Label>
+    </Grid>
+</Page>

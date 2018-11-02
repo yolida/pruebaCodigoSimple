@@ -1,0 +1,125 @@
+﻿<Page x:Class="FEICONT.ayuda.RutaArchivos"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FEICONT.ayuda"
+      mc:Ignorable="d" 
+      MinHeight="300" MinWidth="300"
+      Title="RutaArchivos" Background="White">
+    <ScrollViewer  VerticalScrollBarVisibility="Visible">
+        <Grid   Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center">
+                <TextBlock TextWrapping="Wrap"  TextBlock.TextAlignment="Center"  TextBlock.FontWeight="Bold" TextBlock.FontSize="14">
+                    RUTA DE ARCHIVOS
+                </TextBlock>
+            </Label>
+
+            <Label Grid.Column="0" Grid.Row="1">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+                 Ésta opción permitirá direccionar la ruta de almacenamiento de los XML’s, documentos electrónicos generados, pudiendo escoger la ruta que deseamos. Para ello ingresará a la opción Utilitarios, opción Ruta de archivos. <LineBreak/>
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_URuta.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="3">
+
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+              Una vez seleccionada la opción, se mostrará la siguiente ventana emergente, misma que indica cual es la ruta actual en la que se están guardando los documentos electrónicos generados. </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_URuta_Ventana.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="5">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">
+                <Bold> MODIFICAR:</Bold>  <LineBreak/>
+ Se podrá modificar la ruta de almacenamiento, para ello deberá de hacer click en la opción “Modificar”.
+
+                </TextBlock>
+            </Label>
+            <Label Grid.Column="0" Grid.Row="6">
+
+            </Label>
+            <Image Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_URuta_VentanaModificar.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="8">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+                   A continuación se mostrará la siguiente ventana, misma que permitirá escoger la ruta de almacenamiento de archivo, luego presionará el botón “Guardar”.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="9" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_URuta_VentanaConfigurar.png" Stretch="None" />
+
+            <Label Grid.Column="0" Grid.Row="10">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+           Una vez que presione el botón “Guardar”, se mostrará el siguiente mensaje “La ruta fue almacenada con éxito”, mensaje aceptaremos presionando “Aceptar”.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="11" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_URuta_VentanaConfigurar_Mensaje.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="12">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+En seguida se mostrará el mensaje que indica que “Se cerrará el programa para aplicar los cambios realizado”. Por lo tanto luego de aceptar el mensaje, se tendrá que volver a ingresar al sistema.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="13" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_URuta_VentanaConfigurar_MensajeReinicio.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="14">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+                <Bold>RESETEAR:</Bold> <LineBreak/>
+                 Podrá reiniciar, y/o borrar toda ruta de almacenamiento ya direccionada, ello presionando el botón “Resetear”.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="15" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_URuta_VentanaResetear.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="16">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+                     Al presionar el botón “Resetear” se mostrará el siguiente mensaje: Se ha eliminado el registro correctamente. La aplicación se cerrará para aplicar los cambios”.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="17" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_URuta_VentanaResetear_Mensaje.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="18">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+                    Se volverá a ingresar al sistema con el login correspondiente.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="19" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_URuta_VentanaIcono.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="20">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+                    Ni bien se ingrese al sistema se mostrará la siguiente venta para configurar almacén de archivos (Ruta de almacenamientos de los XML’s).
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="21" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_URuta_VentanaConfigurar.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="22">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+                   Es así que se volverá a indicar una ruta de almacenamiento de los comprobantes electrónicos y se presionará el botón “Guardar”. Para que luego el sistema muestre el siguiente mensaje: La ruta fue almacenada con éxito”.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="23" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_URuta_VentanaConfigurar_Mensaje.png" Stretch="None" />
+
+        </Grid>
+    </ScrollViewer>
+</Page>

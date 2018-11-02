@@ -1,0 +1,190 @@
+﻿<Page x:Class="FEICONT.ayuda.Declarante"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FEICONT.ayuda"
+      mc:Ignorable="d" 
+      MinHeight="300" MinWidth="300"
+      Title="Declarante" Background="White">
+
+    <ScrollViewer  VerticalScrollBarVisibility="Visible">
+        <Grid   Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center">
+                <TextBlock TextWrapping="Wrap"  TextBlock.TextAlignment="Center"  TextBlock.FontWeight="Bold" TextBlock.FontSize="14">
+                  INFORMACIÓN DEL DECLARANTE (CREACIÓN DE EMPRESAS)
+                </TextBlock>
+            </Label>
+
+            <Label Grid.Column="0" Grid.Row="1">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+                  Ésta opción me permite crear y configurar una o más empresas para el uso del Sistema de Facturación Electrónica. <LineBreak/>
+                  Así también configurar el Certificado Digital para firmar los documentos electrónicos, y registrar al Usuario Secundario con el que enviará los documentos electrónicos a SUNAT.<LineBreak/>
+                  Para ello se ingresará a la opción Configuración del Sistema, opción “Información del declarante”.<LineBreak/>
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_CDeclarante.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="3">
+
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+                 A continuación se mostrará la siguiente ventana:
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_CDeclarante_Ventana.png" Stretch="Fill" />
+            <Label Grid.Column="0" Grid.Row="5">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">
+                    Se tendrán las siguientes opciones. <LineBreak/>
+►	<Bold>Nuevo:</Bold>Ésta opción permite crear nuevas empresa.<LineBreak/>
+►	<Bold>Editar:</Bold> Ésta opción permite modificar datos de una empresa, ya antes creada desde ésta misma opción, o creada desde el sistema comercial Electrónico. 
+En dicha opción registrará el Certificado Digital.<LineBreak/>
+►	<Bold>Eliminar:</Bold> Ésta opción permite eliminar la empresa creada en el Sistema FEICONT.<LineBreak/>
+
+                </TextBlock>
+            </Label>
+            <Label Grid.Column="0" Grid.Row="6">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+               <Bold> NUEVO: </Bold> <LineBreak/>
+              Para crear una nueva empresa se presionará el botón “Nuevo”, a menos que la empresa ya se encuentre creada desde la interfaz del Sistema Comercial Electrónico.
+
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_CDeclarante_VentanaNuevo.png" Stretch="Fill" />
+            <Label Grid.Column="0" Grid.Row="8">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+                  A continuación se mostrará la siguiente ventana emergente:
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="9" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_CDeclarante_VentanaFlotante.png" Stretch="None" />
+
+            <Label Grid.Column="0" Grid.Row="10">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+                Es aquí donde se registrará el “CERTIFICADO DIGITAL” y Clave SOL de Usuario Secundario que enviará los documentos. <LineBreak/>
+                <Bold>RECORDAR:</Bold> Para que los comprobantes electrónicos sean válidos electrónicamente, deberán ser firmados digitalmente con un Certificado Digital válido. El firmado lo realiza de forma automática el Sistema de Facturación Electrónica. <LineBreak/>
+
+Los campos a llenar son los siguientes: <LineBreak/>
+
+►	<Bold>RUC:</Bold> Se ingresará el RUC de la empresa emisora electrónica.<LineBreak/>
+►	<Bold>Razón Social:</Bold> Se ingresará la Razón Social de la empresa emisora electrónica (Según figure en su consulta RUC).<LineBreak/>
+►	<Bold>Usuario SOL:</Bold><LineBreak/>
+-	Para Homologación: Es una clave SOL de usuario secundario que se le solicita al cliente al momento de realizar la compra del certificado digital.<LineBreak/>
+-	Para Beta: MODDATOS (En mayúsculas)<LineBreak/>
+-	Para Producción: Es una clave SOL de usuario secundario que se le solicita al cliente al momento de realizar la compra del certificado digital.<LineBreak/>
+►	<Bold>Clave SOL:</Bold> <LineBreak/> 
+                     
+-	Para Homologación: Es una clave SOL de usuario secundario que se le solicita al cliente al momento de realizar la compra del certificado digital.<LineBreak/>
+-	Para Beta: MODDATOS (En mayúsculas).<LineBreak/>
+-	Para Producción: Es una clave SOL de usuario secundario que se le solicita al cliente al momento de realizar la compra del certificado digital.<LineBreak/>
+
+►	<Bold>Certificado Digital (*.pfx):</Bold> Se ingresará la ruta donde se encuentra almacenado el certificado digital, se considerará que el nombre de la ruta también contenga, el nombre del certificado digital y extensión del certificado digital. <LineBreak/>
+Por ejemplo: C:\CERTIFICADOS\MPS20170101010101.pfx<LineBreak/>
+►	<Bold>Certificado Digital - Clave:</Bold> Se ingresará la clave del certificado digital, generada al momento de realizar la compra y descarga del Certificado Digital.<LineBreak/>
+►	<Bold>Email:</Bold> Recomendable indicar el correo que se registró en el proceso de Homologación, en la Solicitud de Autorización a SUNAT para el uso del Sistema de Emisión Electrónica.<LineBreak/>
+
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="11" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_CDeclarante_VentanaFlotante_Guardar.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="12">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+               Para proceder a crear la Empresa se procederá a presionar el botón “Grabar”, siempre y cuando no existan campos vacíos de grabará la información.<LineBreak/> 
+Luego se visualizará la siguiente ventana de confirmación la cual se ha de “Aceptar”.
+
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="13" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_CLocal_VentanaCorrecto.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="14">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+                  En caso no se haya ingresado algún valor, el sistema mostrará el siguiente mensaje al momento de guardar los cambios. EL mensaje se aceptará y se procederá a continuar con el registro de datos faltantes.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="15" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_CDeclarante_VentanaError.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="16">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+               <Bold>ELIMINAR: </Bold> <LineBreak/>
+                  eliminar una empresa se seleccionará la fila de la empresa, y luego se presionará el botón “Eliminar”.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="17" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_CDeclarante_VentanaEliminar.png" Stretch="Fill" />
+            <Label Grid.Column="0" Grid.Row="18">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+               <Bold>NOTA: </Bold> En caso no se seleccione ninguna empresa y sólo se presione el botón eliminar, entonces se mostrará el siguiente mensaje.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="19" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_CDeclarante_VentanaSeleccionar.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="20">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+                A continuación se mostrará la siguiente ventana, donde se podrán visualizar los datos de la empresa deshabilitados.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="21" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_CDeclarante_VentanaFlotante_Eliminar.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="22">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+               Al presionar el botón “Eliminar” se mostrará un mensaje de alerta, para confirmar si ¿Ésta seguro de eliminar la empresa seleccionada?, teniendo la posibilidad de aceptar haciendo clic en “SI” o verificar nuevamente haciendo clic en “NO”.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="23" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_CDeclarante_VentanaPregunta.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="24">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+              Luego se mostrará el siguiente mensaje de que “La empresa fue eliminada correctamente”.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="25" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_CDeclarante_VentanaCorrectoEliminar.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="26">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+                   <Bold>EDITAR: </Bold> <LineBreak/>
+                   Para poder “Editar” los datos de una empresa, primero seleccionará la fila de la empresa, y luego se presionará el botón “Editar”.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="27" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_CDeclarante_VentanaEditar.png" Stretch="Fill" />
+            <Label Grid.Column="0" Grid.Row="28">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                                          
+                  Se podrá actualizar los datos del cliente, como son, RUC, Razón Social, Usuario y/o clave SOL de usuario secundario, ubicación y/o ruta del Certificado Digital, e-mail. Una vez realizado los cambios necesarios se presionará el botón “Guardar” para mantener todos los cambios.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="29" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_CDeclarante_VentanaFlotante_Editar.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="30">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                                          
+                 Luego de “Grabar”, se mostrará el siguiente mensaje, al cual le daremos “Aceptar”.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="31" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_CDeclarante_VentanaCorrecto.png" Stretch="None" />
+
+        </Grid>
+    </ScrollViewer>
+</Page>

@@ -1,0 +1,112 @@
+﻿<Page x:Class="FEICONT.ayuda.ReporteRA"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FEICONT.ayuda"
+      mc:Ignorable="d" 
+      MinHeight="300" MinWidth="300" 
+      Title="ReporteRA" Background="White">
+
+    <ScrollViewer  VerticalScrollBarVisibility="Visible">
+        <Grid   Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center">
+                <TextBlock TextWrapping="Wrap"  TextBlock.TextAlignment="Center"  TextBlock.FontWeight="Bold" TextBlock.FontSize="14">
+                  REPORTE DE COMUNICACIÓN DE BAJA
+                </TextBlock>
+            </Label>
+
+            <Label Grid.Column="0" Grid.Row="1">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+                   Ésta opción permitirá visualizar un reporte de todas las Comunicaciones de Baja generadas, bajas de facturas electrónicas y sus notas asociadas, baja deboletas de venta electrónicas y sus notas asociadas.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_reporteRA.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="3">
+
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+                   Previo a la generación del reporte deseado, se podrá realizar una búsqueda de las Comunicaciones de baja, a través de los filtros que considere. <LineBreak/>
+                    Tiene la posibilidad de filtrar por: Estado de comprobante en SUNAT, Fecha de Inicio, y Fecha de Fin.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_reporteRA_Ventana.png" Stretch="Fill" />
+            <Label Grid.Column="0" Grid.Row="5">
+
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+            Los “Estados de comprobante en SUNAT” para Comunicación de Baja son los siguientes:<LineBreak/>
+►	<Bold>ACEPTADO</Bold>: La Comunicación de Baja cumple con las validaciones establecidas, por tanto es aceptado por SUNAT.<LineBreak/>
+►	<Bold>RECHAZADO</Bold>: La Comunicación de Baja no cumple con las validaciones establecidas, por tanto se deberá de generar una nueva Comunicación de Baja con correlativo siguiente. 
+En este caso, ninguno de los comprobantes de pago electrónicos que hubieran estado incluidos en la dicha Comunicación de Baja, aún no estarán dados de baja o anulados.
+►	<Bold>SIN ESTADO</Bold>: La Comunicación de Baja aún no es validada por SUNAT, ya sea por error en la red del cliente, o por error en la webservice SUNAT.<LineBreak/>
+
+                </TextBlock>
+            </Label>
+            <Label Grid.Column="0" Grid.Row="6">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+                <Bold>Detalle de Comunicación de Baja</Bold> <LineBreak/>
+                  En el Reporte de Comunicación de Baja, se podrá visualizar cuáles son los documentos que están incluidos en cada Comunicación de Baja. <LineBreak/>
+Para poder saber cuáles son los documentos que están incluidos en cada Comunicación de Baja, deberá de seleccionar la fila de la Comunicación de Baja que desea consultar,  de seleccionar tal cual se muestra en la imagen en el PASO 1.<LineBreak/>
+Luego en la parte inferior en “Detalle de Comunicación de Baja”, se mostrarán el detalle de todos los documentos incluidos, tal cual se muestra en la imagen en el PASO 2.<LineBreak/>
+
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_reporteRA_VentanaOtro.png" Stretch="Fill" />
+            <Label Grid.Column="0" Grid.Row="8">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+                <Bold>Reporte en Excel y/o PDF de COMUNICACIÓN DE BAJA</Bold><LineBreak/>
+Pasos para realizar la generación de una reporte en PDF o en CSV:<LineBreak/>
+►	En la parte inferior derecha, se muestra la opción de “Generación de Reporte”.<LineBreak/>
+►	Se seleccionará el tipo de archivo para reporte que se desee, y luego se presionará el botón “Reporte”.<LineBreak/>
+
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="9" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_reporteFE_VentanaSelect.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="10">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+               A continuación se mostrará la siguiente ventana emergente, la cual se ha de aceptar:
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="11" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_reporteFE_VentanaConfirmacion.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="12">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+               Se ingresará a la ruta de almacenamiento de reportes (Ruta de archivos):
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="13" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_reporteFE_VentanaRuta.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="14">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+                El encabezado de columnas tendrá la siguiente descripción: CÓDIGO DE RESUMEN DIARIO, NÚMERO DE TICKET, ESTADO SCC, ESTADO SUNAT, FECHA DE EMISIÓN, FECHA DE ENVÍO, COMENTARIO SUNAT.
+                </TextBlock>
+            </Label>
+            <Label Grid.Column="0" Grid.Row="15"/>
+
+            <Label Grid.Column="0" Grid.Row="17"/>
+
+        </Grid>
+    </ScrollViewer>
+</Page>

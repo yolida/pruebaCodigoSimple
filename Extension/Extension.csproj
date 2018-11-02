@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8298E881-26AD-493C-BBD4-300131F305CE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Extension</RootNamespace>
+    <AssemblyName>Extension</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>FEICONT_1_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Data.SQLite, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.109.2\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.109.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.109.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.4.5.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Xml, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Xml.4.5.0\lib\net461\System.Security.Cryptography.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Permissions.4.5.0\lib\net461\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.4.5.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\clsBaseAES.cs" />
+    <Compile Include="Base\clsBaseCifrado.cs" />
+    <Compile Include="Base\clsBaseConexion.cs" />
+    <Compile Include="Base\clsBaseConexionSistema.cs" />
+    <Compile Include="Base\clsBaseConfiguracion.cs" />
+    <Compile Include="Base\clsBaseEntidad.cs" />
+    <Compile Include="Base\clsBaseEntidadSistema.cs" />
+    <Compile Include="Base\clsBaseLicencia.cs" />
+    <Compile Include="Base\clsBaseLog.cs" />
+    <Compile Include="Base\clsBaseMensaje.cs" />
+    <Compile Include="Base\clsBaseSunat.cs" />
+    <Compile Include="Base\clsBaseUtil.cs" />
+    <Compile Include="Base\clsBaseXML.cs" />
+    <Compile Include="Base\clsRegistry.cs" />
+    <Compile Include="Connected Services\ServiceReference_Guia\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceReference_Perception\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\www.sunat.gob.pe\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\clsEntidadDocument.cs" />
+    <Compile Include="Datos\clsEntidadDocument_AdditionalComments.cs" />
+    <Compile Include="Datos\clsEntidadDocument_AdditionalDocumentReference.cs" />
+    <Compile Include="Datos\clsEntidadDocument_DespatchDocumentReference.cs" />
+    <Compile Include="Datos\clsEntidadDocument_Line.cs" />
+    <Compile Include="Datos\clsEntidadDocument_Line_Description.cs" />
+    <Compile Include="Datos\clsEntidadDocument_Line_PricingReference.cs" />
+    <Compile Include="Datos\clsEntidadDocument_Line_TaxTotal.cs" />
+    <Compile Include="Datos\clsEntidadDocument_TaxTotal.cs" />
+    <Compile Include="Datos\clsEntidadDocument_UBLExtension_ExtensionContent_AdditionalInformation_AdditionalMonetaryTotal.cs" />
+    <Compile Include="Datos\clsEntidadDocument_UBLExtension_ExtensionContent_AdditionalInformation_AdditionalProperty.cs" />
+    <Compile Include="Datos\clsEntityAccount.cs" />
+    <Compile Include="Datos\clsEntityAlarms.cs" />
+    <Compile Include="Datos\clsEntityDatabaseLocal.cs" />
+    <Compile Include="Datos\clsEntityDatabaseSystem.cs" />
+    <Compile Include="Datos\clsEntityDatabaseWeb.cs" />
+    <Compile Include="Datos\clsEntityDeclarant.cs" />
+    <Compile Include="Datos\clsEntityDespatch.cs" />
+    <Compile Include="Datos\clsEntityDespatch_Line.cs" />
+    <Compile Include="Datos\clsEntityDespatch_OrderReference.cs" />
+    <Compile Include="Datos\clsEntityDespatch_PortLocation.cs" />
+    <Compile Include="Datos\clsEntityDespatch_ShipmentStage.cs" />
+    <Compile Include="Datos\clsEntityDespatch_ShipmentStage_Driver.cs" />
+    <Compile Include="Datos\clsEntityDocument.cs" />
+    <Compile Include="Datos\clsEntityDocument_AdditionalComments.cs" />
+    <Compile Include="Datos\clsEntityDocument_AdditionalDocumentReference.cs" />
+    <Compile Include="Datos\clsEntityDocument_Advance.cs" />
+    <Compile Include="Datos\clsEntityDocument_DespatchDocumentReference.cs" />
+    <Compile Include="Datos\clsEntityDocument_Line.cs" />
+    <Compile Include="Datos\clsEntityDocument_Line_AdditionalComments.cs" />
+    <Compile Include="Datos\clsEntityDocument_Line_Description.cs" />
+    <Compile Include="Datos\clsEntityDocument_Line_PricingReference.cs" />
+    <Compile Include="Datos\clsEntityDocument_Line_TaxTotal.cs" />
+    <Compile Include="Datos\clsEntityDocument_TaxTotal.cs" />
+    <Compile Include="Datos\clsEntityDocument_UBLExtension_ExtensionContent_AdditionalInformation .cs" />
+    <Compile Include="Datos\clsEntityDocument_UBLExtension_ExtensionContent_AdditionalInformation_AdditionalMonetaryTotal.cs" />
+    <Compile Include="Datos\clsEntityDocument_UBLExtension_ExtensionContent_AdditionalInformation_AdditionalProperty.cs" />
+    <Compile Include="Datos\clsEntityModulo.cs" />
+    <Compile Include="Datos\clsEntityPerception.cs" />
+    <Compile Include="Datos\clsEntityPerception_PerceptionLine.cs" />
+    <Compile Include="Datos\clsEntityPermisos.cs" />
+    <Compile Include="Datos\clsEntityRange.cs" />
+    <Compile Include="Datos\clsEntityRetention.cs" />
+    <Compile Include="Datos\clsEntityRetention_RetentionLine.cs" />
+    <Compile Include="Datos\clsEntitySummaryDocuments.cs" />
+    <Compile Include="Datos\clsEntitySummaryDocuments_Notes.cs" />
+    <Compile Include="Datos\clsEntitySummaryDocuments_SummaryDocumentsLine.cs" />
+    <Compile Include="Datos\clsEntitySummaryDocuments_SummaryDocumentsLine_AllowanceCharge.cs" />
+    <Compile Include="Datos\clsEntitySummaryDocuments_SummaryDocumentsLine_BillingPayment.cs" />
+    <Compile Include="Datos\clsEntitySummaryDocuments_SummaryDocumentsLine_TaxTotal.cs" />
+    <Compile Include="Datos\clsEntityUsers.cs" />
+    <Compile Include="Datos\clsEntityVoidedDocuments.cs" />
+    <Compile Include="Datos\clsEntityVoidedDocuments_VoidedDocumentsLine.cs" />
+    <Compile Include="ModVers.cs" />
+    <Compile Include="Negocio\ClassNegocioExtractData.cs" />
+    <Compile Include="Negocio\clsNegocioCE.cs" />
+    <Compile Include="Negocio\clsNegocioCEBoleta.cs" />
+    <Compile Include="Negocio\clsNegocioCEComunicacionBaja.cs" />
+    <Compile Include="Negocio\clsNegocioCEEstadosFEI.cs" />
+    <Compile Include="Negocio\clsNegocioCEFactura.cs" />
+    <Compile Include="Negocio\clsNegocioCEGuiaRemision.cs" />
+    <Compile Include="Negocio\clsNegocioCENotaCredito.cs" />
+    <Compile Include="Negocio\clsNegocioCENotaDebito.cs" />
+    <Compile Include="Negocio\clsNegocioCEPercepcion.cs" />
+    <Compile Include="Negocio\clsNegocioCEResumenDiario.cs" />
+    <Compile Include="Negocio\clsNegocioCERetention.cs" />
+    <Compile Include="Negocio\clsNegocioValidar.cs" />
+    <Compile Include="Negocio\clsNegocioValidar_Campos.cs" />
+    <Compile Include="Negocio\clsNegocioWeb.cs" />
+    <Compile Include="Negocio\clsNegocioXML.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\cls_Consulta.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Connected Services\ServiceReference_Guia\billService.wsdl" />
+    <None Include="Connected Services\ServiceReference_Guia\billService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference_Guia\billService1.wsdl" />
+    <None Include="Connected Services\ServiceReference_Guia\Extension.ServiceReference_Guia.getStatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference_Guia\Extension.ServiceReference_Guia.sendBillResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference_Guia\Extension.ServiceReference_Guia.sendPackResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference_Guia\Extension.ServiceReference_Guia.sendSummaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference_Guia\Extension.ServiceReference_Guia.statusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference_Perception\billService.wsdl" />
+    <None Include="Connected Services\ServiceReference_Perception\billService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference_Perception\billService1.wsdl" />
+    <None Include="Connected Services\ServiceReference_Perception\Extension.ServiceReference_Perception.getStatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference_Perception\Extension.ServiceReference_Perception.sendBillResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference_Perception\Extension.ServiceReference_Perception.sendPackResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference_Perception\Extension.ServiceReference_Perception.sendSummaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference_Perception\Extension.ServiceReference_Perception.statusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\www.sunat.gob.pe\billService.wsdl" />
+    <None Include="Connected Services\www.sunat.gob.pe\billService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\www.sunat.gob.pe\billService1.wsdl" />
+    <None Include="Connected Services\www.sunat.gob.pe\billService2.wsdl" />
+    <None Include="Connected Services\www.sunat.gob.pe\Extension.www.sunat.gob.pe.getStatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\www.sunat.gob.pe\Extension.www.sunat.gob.pe.sendBillResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\www.sunat.gob.pe\Extension.www.sunat.gob.pe.sendPackResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\www.sunat.gob.pe\Extension.www.sunat.gob.pe.sendSummaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\www.sunat.gob.pe\Extension.www.sunat.gob.pe.statusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="FEICONT_1_TemporaryKey.pfx" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ServiceReference_Guia\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceReference_Perception\" />
+    <WCFMetadataStorage Include="Connected Services\www.sunat.gob.pe\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference_Guia\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference_Guia\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference_Guia\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference_Perception\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference_Perception\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference_Perception\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\www.sunat.gob.pe\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\www.sunat.gob.pe\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\www.sunat.gob.pe\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.109.2\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.109.2\build\net46\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.109.2\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.109.2\build\net46\System.Data.SQLite.Core.targets'))" />
+  </Target>
+</Project>

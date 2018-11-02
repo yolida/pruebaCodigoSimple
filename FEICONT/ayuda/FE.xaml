@@ -1,0 +1,107 @@
+﻿<Page x:Class="FEICONT.ayuda.FE"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FEICONT.ayuda"
+      mc:Ignorable="d" 
+      MinHeight="300" MinWidth="300" Background="White"
+      Title="FE">
+
+    <ScrollViewer  VerticalScrollBarVisibility="Visible">
+        <Grid   Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center">
+                <TextBlock TextWrapping="Wrap"  TextBlock.TextAlignment="Center"  TextBlock.FontWeight="Bold" TextBlock.FontSize="14">
+                  ENVÍO A SUNAT DE FE
+                </TextBlock>
+            </Label>
+
+            <Label Grid.Column="0" Grid.Row="1">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+                   Ésta opción permite enviar manualmente las Facturas Electrónicas y sus notas asociadas que aún se encuentren SIN ESTADO. <LineBreak/>
+                   En ésta opción sólo se visualizarán Facturas Electrónicas y notas asociadas que se encuentren SIN ESTADO, es decir sin haber sido enviadas aúna SUNAT. <LineBreak/>
+                   Las Facturas Electrónicas o notas asociadas se encontrarán SIN ESTADO, en caso se haya configurado para que se realice el envío de las mismas de forma manual, o en caso al momento del envío automático haya existido alguna falla de red, ya sea por parte de SUNAT o por parte de red de la propia empresa por tanto estos documentos no fueron enviados. <LineBreak/>
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_FE.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="3">
+
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+                  Se deberán de seleccionar las Facturas Electrónicas y notas asociadas que deseen enviarse a SUNAT y luego presionar el botón “Enviar”.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_FEVentana.png" Stretch="Fill" />
+            <Label Grid.Column="0" Grid.Row="5">
+
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+            <Bold>Nota</Bold>Al realiza un envío masivo, es decir se selecciona todo un grupo de facturas electrónicas y notas asociadas, recordar que el envío de facturas electrónicas y notas asociadas es de uno a uno, comprobante por comprobante será enviado a SUNAT a pesar de haber seleccionado todo un grupo.
+                </TextBlock>
+            </Label>
+            <Label Grid.Column="0" Grid.Row="6">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+               Luego de presionar el botón enviar se mostrará la siguiente ventana, que indica que el documento está siendo procesado para enviar a SUNAT.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_FEVentana_Carga.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="8">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+                     Una vez enviado a SUNAT se mostrará el siguiente mensaje: DOCUMENTOS ENVIADOS.
+
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="9" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_FEVentana_DocsEnviados.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="10">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+               Haciendo clic en “Ver Detalles”, se mostrarán cuáles son los documentos que han sido enviados a SUNAT.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="11" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_FEVentana_DocsEnviadosDetalle.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="12">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+               Se ingresará a la ruta de almacenamiento de reportes (Ruta de archivos):
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="13" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_reporteFE_VentanaRuta.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="14">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+                  A continuación ya NO se mostrarán las Facturas Electrónicas y notas asociadas en la ventana de “Envío de Facturas Electrónicas”.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="15" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_FEVentana_Blanco.png" Stretch="Fill" />
+
+
+            <Label Grid.Column="0" Grid.Row="16">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">
+                    Para poder visualizar la Factura electrónica enviada, se deberá de ingresar al “Reporte de Facturas Electrónicas”, ahí es donde se visualizará si el comprobante ha sido “ACEPTADO” o “RECHAZADO por SUNAT.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="17" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_FEVentana_Reporte.png" Stretch="Fill" />
+
+        </Grid>
+    </ScrollViewer>
+</Page>

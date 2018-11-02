@@ -1,0 +1,120 @@
+﻿<Page x:Class="FEICONT.ayuda.ReporteRD"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FEICONT.ayuda"
+      mc:Ignorable="d" 
+      MinHeight="300" MinWidth="300"
+      Title="ReporteRD" Background="White" >
+
+    <ScrollViewer  VerticalScrollBarVisibility="Visible">
+        <Grid   Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center">
+                <TextBlock TextWrapping="Wrap"  TextBlock.TextAlignment="Center"  TextBlock.FontWeight="Bold" TextBlock.FontSize="14">
+                   REPORTE DE RESUMEN DIARIO
+                </TextBlock>
+            </Label>
+
+            <Label Grid.Column="0" Grid.Row="1">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+              Ésta opción me permitirá visualizar un reporte de todos los Resúmenes Diarios generados (Resumen que contiene boletas electrónicas, notas de crédito electrónicas y notas de débito electrónicas asociadas).
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_reporteRD.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="3">
+
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+                    Previo a la generación del reporte deseado, se podrá realizar una búsqueda de los Resúmenes Diarios,a través de los filtros que considere. <LineBreak/>
+                    Se tiene la posibilidad de filtrar por: Estado de comprobante en SUNAT, Fecha de Inicio, y Fecha de Fin.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_reporteRD_Ventana.png" Stretch="Fill" />
+            <Label Grid.Column="0" Grid.Row="5">
+
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+             Los “Estados de comprobante en SUNAT” para Resumen Diario son los siguientes:<LineBreak/>
+►	<Bold>ACEPTADO</Bold>: El Resumen Diario cumple con las validaciones establecidas, por tanto es aceptado por SUNAT.<LineBreak/>
+►	<Bold>RECHAZADO</Bold>:El Resumen Diario no cumple con las validaciones establecidas, por tanto se deberá de generar un nuevo Resumen Diario con correlativo siguiente. En este caso, ninguno de los comprobantes de pago electrónicos que hubieran estado incluidos en el Resumen Diario Rechazado, no tendrían validez tributaria.<LineBreak/>
+►	<Bold>SIN ESTADO</Bold>: El Resumen Diario aún no es validado por SUNAT, ya sea por error en la red del cliente, o por error en la webservice SUNAT.<LineBreak/>
+
+                </TextBlock>
+            </Label>
+            <Label Grid.Column="0" Grid.Row="6">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+                <Bold>Detalle de Resumen Diario</Bold> <LineBreak/>
+                  En el Reporte de Resumen Diario, se podrá visualizar cuáles son los documentos que están incluidos en cada Resumen Diario.<LineBreak/>
+Para poder saber cuáles son los documentos que están incluidos en cada Resumen Diario, deberá de seleccionar la fila del Resumen Diario que desea consultar, tal cual se muestra en la imagen en el PASO 1.<LineBreak/>
+Luego en la parte inferior en “Detalle de Comunicación de Baja”, se mostrará el detalle de todos los documentos incluidos, tal cual se muestra en la imagen en el PASO 2.<LineBreak/>
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_reporteRD_VentanaOtro.png" Stretch="Fill" />
+            <Label Grid.Column="0" Grid.Row="8">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+                <Bold>Reporte en Excel y/o PDF de RESUMEN DIARIO</Bold><LineBreak/>
+Pasos para realizar la generación de una reporte en PDF o en CSV:<LineBreak/>
+►	En la parte inferior derecha, se muestra la opción de “Generación de Reporte”.<LineBreak/>
+►	Se seleccionará el tipo de archivo para reporte que se desee, y luego se presionará el botón “Reporte”.<LineBreak/>
+                
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="9" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_reporteFE_VentanaSelect.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="10">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+               A continuación se mostrará la siguiente ventana emergente, la cual se ha de aceptar:
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="11" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_reporteFE_VentanaConfirmacion.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="12">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+               Se ingresará a la ruta de almacenamiento de reportes (Ruta de archivos):
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="13" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_reporteFE_VentanaRuta.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="14">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+                 El encabezado de columnas tendrá la siguiente descripción: CÓDIGO DE RESUMEN DIARIO, NÚMERO DE TICKET, ESTADO SCC, ESTADO SUNAT, FECHA DE EMISIÓN, FECHA DE ENVÍO, COMENTARIO SUNAT.
+                </TextBlock>
+            </Label>
+            <Label Grid.Column="0" Grid.Row="15">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+            <Bold>REPORTE PDF</Bold> , se mostrará de la siguiente forma:
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="16" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_reporteRD_VentanaPDF.png" Stretch="Fill" />
+
+            <Label Grid.Column="0" Grid.Row="17">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+            <Bold>REPORTE CSV</Bold> , se mostrará de la siguiente forma:
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="18" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_reporteRD_VentanaCSV.png" Stretch="Fill" />
+
+        </Grid>
+    </ScrollViewer>
+</Page>

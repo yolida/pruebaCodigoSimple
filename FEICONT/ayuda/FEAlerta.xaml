@@ -1,0 +1,61 @@
+﻿<Page x:Class="FEICONT.ayuda.FEAlerta"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FEICONT.ayuda"
+      mc:Ignorable="d" 
+      MinHeight="300" MinWidth="300"
+      Title="FEAlerta" Background="White">
+
+    <ScrollViewer  VerticalScrollBarVisibility="Auto">
+        <Grid   Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center">
+                <TextBlock TextWrapping="Wrap"  TextBlock.TextAlignment="Center"  TextBlock.FontWeight="Bold" TextBlock.FontSize="14">
+                   FORMAS DE ALERTA Y ENVÍO DE FE
+                </TextBlock>
+            </Label>
+
+            <Label Grid.Column="0" Grid.Row="1">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+                  Ésta opción permite configurar las alertas y envíos programados de Facturas Electrónicas y sus notas asociadas.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_FEAlerta.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="3">
+
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+                  <Bold>Activar Envío Programado</Bold>: Se podrá programar el envío en intervalos de tiempo (Cantidad de veces durante el día), iniciando a una determinada hora. <LineBreak/>
+                  <Bold>Activar Alerta</Bold>:Se podrá programar las Alertas en intervalos de tiempo (Cantidad de veces por hora), iniciando a una determinada hora.<LineBreak/>
+
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_FEAlerta_Ventana.png" Stretch="Fill" />
+            <Label Grid.Column="0" Grid.Row="5">
+
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+                   <Bold>NOTIFICACIÓN DE ALERTAS</Bold>:Es así que en la parte inferior de la barra de tareas, se mostrará un programa en ejecución en segundo plano, que según el tiempo programado se mostrará el “Alerta”que indica si existen comprobantes electrónicos pendientes de envío.
+                </TextBlock>
+            </Label>
+            
+            <Image Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_FEAlerta_VentanaAlertaPopUp.png" Stretch="None" />
+          
+        </Grid>
+    </ScrollViewer>
+</Page>

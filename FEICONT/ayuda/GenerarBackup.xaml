@@ -1,0 +1,118 @@
+﻿<Page x:Class="FEICONT.ayuda.GenerarBackup"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FEICONT.ayuda"
+      mc:Ignorable="d" 
+      MinHeight="300" MinWidth="300"
+      Title="GenerarBackup" Background="White">
+    <ScrollViewer  VerticalScrollBarVisibility="Visible">
+        <Grid   Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center">
+                <TextBlock TextWrapping="Wrap"  TextBlock.TextAlignment="Center"  TextBlock.FontWeight="Bold" TextBlock.FontSize="14">
+                   GENERACIÓN DE BACKUP
+                </TextBlock>
+            </Label>
+
+            <Label Grid.Column="0" Grid.Row="1">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+                 Ésta opción permitirá realizar una copia de seguridad por una o todas las empresas registradas. Para ello ingresará a la opción Utilitarios y por último la opción generación de backup. <LineBreak/>
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_UGeneracion.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="3">
+
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+                Se mostrará la siguiente ventana, misma que tendrá dos opciones para generar backup, por usuario actual y por todas las empresas.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_UGeneracion_Ventana.png" Stretch="Fill" />
+            <Label Grid.Column="0" Grid.Row="5">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">
+                <Bold> BACKUP DE USUARIO ACTUAL</Bold>  <LineBreak/>
+Éste rubro me permite generar un backup de la empresa actual en la que se está trabajando.  <LineBreak/>
+Para ello nos dirigimos al botón “Examinar”, para seleccionar la ruta donde deseamos guardar la copia de seguridad. <LineBreak/>
+
+                </TextBlock>
+            </Label>
+            <Label Grid.Column="0" Grid.Row="6">
+
+            </Label>
+            <Image Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_UGeneracion_UsuarioUnico.png" Stretch="Fill" />
+            <Label Grid.Column="0" Grid.Row="8">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+               Una vez seleccionada la ruta, y antes de presionar el botón “Generar”, de forma opcional se podrá colocar una contraseña se acceso al backup, en caso no se desee ello, sólo dará click en el botón “Generar”. </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="9" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_UGeneracion_UsuarioUnicoDos.png" Stretch="Fill" />
+
+            <Label Grid.Column="0" Grid.Row="10">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+             Luego de presionar el botón “Generar”, se mostrará la siguiente ventana, que indica que se está procesando la solicitud.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="11" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_FEVentana_Carga.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="12">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+            Una vez generada la copia de seguridad se mostrará el siguiente mensaje: “SE HA GENERADO CORRECTAMENTE EL BACKUP”.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="13" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_UGeneracion_Mensaje.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="14">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+          <Bold>BACKUP DE TODA LA INFORMACIÓN DE LAS EMPRESAS</Bold>  <LineBreak/>
+Éste rubro me permite generar un backup de todas las empresas que hayan sido antes creadas en el Sistema de Facturación Electrónica Integrado. <LineBreak/>
+Para ello primero seleccionamos todas o algunas empresas a las cuales les deseamos generar una copia de seguridad, luego presionamos el botón “Examinar”, para seleccionar la ruta donde deseamos guardar la copia de seguridad.<LineBreak/>
+
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="15" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_UGeneracion_Todos.png" Stretch="Fill" />
+            <Label Grid.Column="0" Grid.Row="16">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+       Una vez seleccionada la ruta, y antes de presionar el botón “Generar”, de forma opcional se podrá colocar una contraseña se acceso al backup, en caso no se desee ello, sólo dará click en el botón “Generar”.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="17" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_UGeneracion_TodosDos.png" Stretch="Fill" />
+            <Label Grid.Column="0" Grid.Row="18">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+      Luego de presionar el botón “Generar”, se mostrará la siguiente ventana, que indica que se está procesando la solicitud.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="19" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_FEVentana_Carga.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="20">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+Una vez generada la copia de seguridad se mostrará el siguiente mensaje: “SE HA GENERADO CORRECTAMENTE EL BACKUP”.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="21" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_UGeneracion_Mensaje.png" Stretch="None" />
+
+        </Grid>
+    </ScrollViewer>
+</Page>

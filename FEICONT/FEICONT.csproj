@@ -1,0 +1,1057 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{156BF8BF-B1C7-48A4-AC76-6AFC7F6BC71F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>FEICONT</RootNamespace>
+    <AssemblyName>FEICONT</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>ftp://70.38.70.172/FEICONT/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://licenciacontasis.net/ReportWeb/FEICONT/</InstallUrl>
+    <UpdateUrl>http://licenciacontasis.net/ReportWeb/FEICONT/</UpdateUrl>
+    <ProductName>FEICONT</ProductName>
+    <PublisherName>Contasis</PublisherName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>23</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>fei_cuadro.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>7AFEE19E257594059D4CAA54182B2D89933E7DBA</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>FEICONT_1_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>FEICONT_1_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DotNetZip, Version=1.11.0.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.11.0\lib\net20\DotNetZip.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ookii.Dialogs.Wpf, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ookii.Dialogs.Wpf.1.0.0\lib\net45\Ookii.Dialogs.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Channels" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Tesseract, Version=3.0.2.0, Culture=neutral, PublicKeyToken=ebeb3d86bef60cbe, processorArchitecture=MSIL">
+      <HintPath>..\packages\Tesseract.3.0.2.0\lib\net451\Tesseract.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=1.4.17.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.1.4.17\lib\net\WpfAnimatedGif.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2013, Version=2.9.0.1, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.AvalonDock.Themes.VS2013.2.9.0.1\lib\net40-client\Xceed.Wpf.AvalonDock.Themes.VS2013.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Acceso.xaml.cs">
+      <DependentUpon>Acceso.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AcercaDe.xaml.cs">
+      <DependentUpon>AcercaDe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Activacion.xaml.cs">
+      <DependentUpon>Activacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ActivacionManual.xaml.cs">
+      <DependentUpon>ActivacionManual.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\Activacion.xaml.cs">
+      <DependentUpon>Activacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\Actualizacion.xaml.cs">
+      <DependentUpon>Actualizacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\AyudaPrincipal.xaml.cs">
+      <DependentUpon>AyudaPrincipal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\Declarante.xaml.cs">
+      <DependentUpon>Declarante.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\Dirigido.xaml.cs">
+      <DependentUpon>Dirigido.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\FE.xaml.cs">
+      <DependentUpon>FE.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\FEAlerta.xaml.cs">
+      <DependentUpon>FEAlerta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\Formasyplazos.xaml.cs">
+      <DependentUpon>Formasyplazos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\GenerarBackup.xaml.cs">
+      <DependentUpon>GenerarBackup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\InicioSesionAyuda.xaml.cs">
+      <DependentUpon>InicioSesionAyuda.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\MotivoRechazo.xaml.cs">
+      <DependentUpon>MotivoRechazo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\OpcionesPrograma.xaml.cs">
+      <DependentUpon>OpcionesPrograma.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\Page1.xaml.cs">
+      <DependentUpon>Page1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\Page2.xaml.cs">
+      <DependentUpon>Page2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\PermisosUsuario.xaml.cs">
+      <DependentUpon>PermisosUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\RA.xaml.cs">
+      <DependentUpon>RA.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\RASunat.xaml.cs">
+      <DependentUpon>RASunat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\RD.xaml.cs">
+      <DependentUpon>RD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\RDAlerta.xaml.cs">
+      <DependentUpon>RDAlerta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\RDSunat.xaml.cs">
+      <DependentUpon>RDSunat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\RegistroLocal.xaml.cs">
+      <DependentUpon>RegistroLocal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\RegistroWeb.xaml.cs">
+      <DependentUpon>RegistroWeb.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\ReporteBV.xaml.cs">
+      <DependentUpon>ReporteBV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\ReporteFE.xaml.cs">
+      <DependentUpon>ReporteFE.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\ReporteGeneral.xaml.cs">
+      <DependentUpon>ReporteGeneral.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\ReporteRA.xaml.cs">
+      <DependentUpon>ReporteRA.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\ReporteRD.xaml.cs">
+      <DependentUpon>ReporteRD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\Reportes.xaml.cs">
+      <DependentUpon>Reportes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\RestaurarBackup.xaml.cs">
+      <DependentUpon>RestaurarBackup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\RutaArchivos.xaml.cs">
+      <DependentUpon>RutaArchivos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\Usuarios.xaml.cs">
+      <DependentUpon>Usuarios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BajaMotivo.xaml.cs">
+      <DependentUpon>BajaMotivo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Base\clsBaseReporte.cs" />
+    <Compile Include="classes\ApplicationState.cs" />
+    <Compile Include="classes\CargarTxt.cs" />
+    <Compile Include="classes\Certificado.cs" />
+    <Compile Include="classes\ComboBoxPares.cs" />
+    <Compile Include="classes\DocumentoCompra.cs" />
+    <Compile Include="classes\DocumentoValidar.cs" />
+    <Compile Include="classes\NumLetra.cs" />
+    <Compile Include="classes\ReporteDocumento.cs" />
+    <Compile Include="classes\ReporteEmpresa.cs" />
+    <Compile Include="classes\ReporteGeneral.cs" />
+    <Compile Include="classes\ReportePermiso.cs" />
+    <Compile Include="classes\ReporteResumen.cs" />
+    <Compile Include="classes\ReporteRetention.cs" />
+    <Compile Include="classes\ReporteUsuario.cs" />
+    <Compile Include="classes\RepresentacionImpresa.cs" />
+    <Compile Include="classes\VisualTreeHelpers.cs" />
+    <Compile Include="ConfigurarConexionSQL.xaml.cs">
+      <DependentUpon>ConfigurarConexionSQL.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converter\CalendarConveter.cs" />
+    <Compile Include="CustomDialog\CustomDialog.xaml.cs">
+      <DependentUpon>CustomDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomDialog\CustomDialogWindow.cs" />
+    <Compile Include="Declarante.xaml.cs">
+      <DependentUpon>Declarante.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frmDetalleComprobante.xaml.cs">
+      <DependentUpon>frmDetalleComprobante.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frmDetallePR.xaml.cs">
+      <DependentUpon>frmDetallePR.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Licencia.xaml.cs">
+      <DependentUpon>Licencia.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Loading.xaml.cs">
+      <DependentUpon>Loading.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\CalendarProps.cs" />
+    <Compile Include="pages\CertificadoDigital.xaml.cs">
+      <DependentUpon>CertificadoDigital.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\ComunicacionBaja_Generar.xaml.cs">
+      <DependentUpon>ComunicacionBaja_Generar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\ComunicacionBaja_Sunat.xaml.cs">
+      <DependentUpon>ComunicacionBaja_Sunat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Configuracion_bdlocal.xaml.cs">
+      <DependentUpon>Configuracion_bdlocal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Configuracion_declarante.xaml.cs">
+      <DependentUpon>Configuracion_declarante.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Configuracion_permisos.xaml.cs">
+      <DependentUpon>Configuracion_permisos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Configuracion_usuarios.xaml.cs">
+      <DependentUpon>Configuracion_usuarios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\DatePickerEx.cs" />
+    <Compile Include="pages\DateTimeExtensions.cs" />
+    <Compile Include="pages\DateTimeHelper.cs" />
+    <Compile Include="pages\Emisor.xaml.cs">
+      <DependentUpon>Emisor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Factura_Alerta.xaml.cs">
+      <DependentUpon>Factura_Alerta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Factura_Sunat.xaml.cs">
+      <DependentUpon>Factura_Sunat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\HighlightDateConverter.cs" />
+    <Compile Include="pages\Listado.xaml.cs">
+      <DependentUpon>Listado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\prueba.xaml.cs">
+      <DependentUpon>prueba.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Receptor_Compras.xaml.cs">
+      <DependentUpon>Receptor_Compras.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Receptor_Validar.xaml.cs">
+      <DependentUpon>Receptor_Validar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Reporte_Boleta.xaml.cs">
+      <DependentUpon>Reporte_Boleta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Reporte_ComunicacionBaja.xaml.cs">
+      <DependentUpon>Reporte_ComunicacionBaja.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Reporte_Factura.xaml.cs">
+      <DependentUpon>Reporte_Factura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Reporte_General.xaml.cs">
+      <DependentUpon>Reporte_General.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Reporte_Resumen.xaml.cs">
+      <DependentUpon>Reporte_Resumen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Reporte_Retencion.xaml.cs">
+      <DependentUpon>Reporte_Retencion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\ResumenDiario_Alerta.xaml.cs">
+      <DependentUpon>ResumenDiario_Alerta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\ResumenDiario_Generar.xaml.cs">
+      <DependentUpon>ResumenDiario_Generar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\ResumenDiario_Sunat.xaml.cs">
+      <DependentUpon>ResumenDiario_Sunat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Retencion_Alerta.xaml.cs">
+      <DependentUpon>Retencion_Alerta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Retencion_Sunat.xaml.cs">
+      <DependentUpon>Retencion_Sunat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\ReversionGenerar_Retencion.xaml.cs">
+      <DependentUpon>ReversionGenerar_Retencion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\ReversionSunat_Retencion.xaml.cs">
+      <DependentUpon>ReversionSunat_Retencion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\RevisionLogs.xaml.cs">
+      <DependentUpon>RevisionLogs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\SimpleCommand.cs" />
+    <Compile Include="pages\Utilitario_GeneracionBackup.xaml.cs">
+      <DependentUpon>Utilitario_GeneracionBackup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Utilitario_RestauracionBackup.xaml.cs">
+      <DependentUpon>Utilitario_RestauracionBackup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\ViewModel.cs" />
+    <Compile Include="presentacion.xaml.cs">
+      <DependentUpon>presentacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="print_cliente\Beltran_print.cs" />
+    <Compile Include="print_cliente\Gaitex_print.cs" />
+    <Compile Include="print_cliente\Semisac_print.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="ProgressDialog\ProgressDialogCancellationExcpetion.cs" />
+    <Compile Include="ProgressDialog\ProgressDialogContext.cs" />
+    <Compile Include="ProgressDialog\ProgressDialogResult.cs" />
+    <Compile Include="ProgressDialog\ProgressDialogSettings.cs" />
+    <Compile Include="ProgressDialog\ProgressWindow.xaml.cs">
+      <DependentUpon>ProgressWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Registro_Empresa_Declarante.xaml.cs">
+      <DependentUpon>Registro_Empresa_Declarante.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RutaArchivo.xaml.cs">
+      <DependentUpon>RutaArchivo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="test.xaml.cs">
+      <DependentUpon>test.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios.xaml.cs">
+      <DependentUpon>Usuarios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsuariosCuentas.xaml.cs">
+      <DependentUpon>UsuariosCuentas.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Acceso.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AcercaDe.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Activacion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ActivacionManual.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\Activacion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\Actualizacion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\AyudaPrincipal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\Declarante.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\Dirigido.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\FE.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\FEAlerta.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\Formasyplazos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\GenerarBackup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\InicioSesionAyuda.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\MotivoRechazo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\OpcionesPrograma.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\Page1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\Page2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\PermisosUsuario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\RA.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\RASunat.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\RD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\RDAlerta.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\RDSunat.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\RegistroLocal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\RegistroWeb.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\ReporteBV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\ReporteFE.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\ReporteGeneral.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\ReporteRA.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\ReporteRD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\Reportes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\RestaurarBackup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\RutaArchivos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ayuda\Usuarios.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BajaMotivo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ConfigurarConexionSQL.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomDialog\CustomDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Declarante.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="frmDetalleComprobante.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="frmDetallePR.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Licencia.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Loading.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\CertificadoDigital.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\ComunicacionBaja_Generar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\ComunicacionBaja_Sunat.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\Configuracion_bdlocal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\Configuracion_declarante.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\Configuracion_permisos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\Configuracion_usuarios.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\Emisor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\Factura_Alerta.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\Factura_Sunat.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\Listado.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\prueba.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\Receptor_Compras.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\Receptor_Validar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\Reporte_Boleta.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\Reporte_ComunicacionBaja.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\Reporte_Factura.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\Reporte_General.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\Reporte_Resumen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\Reporte_Retencion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\ResumenDiario_Alerta.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\ResumenDiario_Generar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\ResumenDiario_Sunat.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\Retencion_Alerta.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\Retencion_Sunat.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\ReversionGenerar_Retencion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\ReversionSunat_Retencion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\RevisionLogs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\Utilitario_GeneracionBackup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\Utilitario_RestauracionBackup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="presentacion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ProgressDialog\ProgressWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Registro_Empresa_Declarante.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RutaArchivo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\DatePicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\TabControlStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="test.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Usuarios.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UsuariosCuentas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="FEICONT_1_TemporaryKey.pfx" />
+    <None Include="FEICONT_TemporaryKey.pfx" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\add-database.png" />
+    <Resource Include="images\add-list.png" />
+    <Resource Include="images\add_declarante.png" />
+    <Resource Include="images\Animation.gif" />
+    <Resource Include="images\arrow.png" />
+    <Resource Include="images\ayuda_CDeclarante.png" />
+    <Resource Include="images\ayuda_CDeclarante_Ventana.png" />
+    <Resource Include="images\ayuda_CDeclarante_VentanaCorrecto.png" />
+    <Resource Include="images\ayuda_CDeclarante_VentanaCorrectoEliminar.png" />
+    <Resource Include="images\ayuda_CDeclarante_VentanaEditar.png" />
+    <Resource Include="images\ayuda_CDeclarante_VentanaEliminar.png" />
+    <Resource Include="images\ayuda_CDeclarante_VentanaError.png" />
+    <Resource Include="images\ayuda_CDeclarante_VentanaFlotante.png" />
+    <Resource Include="images\ayuda_CDeclarante_VentanaFlotante_Editar.png" />
+    <Resource Include="images\ayuda_CDeclarante_VentanaFlotante_Eliminar.png" />
+    <Resource Include="images\ayuda_CDeclarante_VentanaFlotante_Guardar.png" />
+    <Resource Include="images\ayuda_CDeclarante_VentanaNuevo.png" />
+    <Resource Include="images\ayuda_CDeclarante_VentanaPregunta.png" />
+    <Resource Include="images\ayuda_CDeclarante_VentanaSeleccionar.png" />
+    <Resource Include="images\ayuda_CLocal.png" />
+    <Resource Include="images\ayuda_CLocal_Ventana.png" />
+    <Resource Include="images\ayuda_CLocal_VentanaCorrecto.png" />
+    <Resource Include="images\ayuda_CLocal_VentanaDos.png" />
+    <Resource Include="images\ayuda_CLocal_VentanaError.png" />
+    <Resource Include="images\ayuda_CLocal_VentanaTres.png" />
+    <Resource Include="images\ayuda_CPermiso.png" />
+    <Resource Include="images\ayuda_CPermiso_Ventana.png" />
+    <Resource Include="images\ayuda_CPermiso_VentanaGuardar.png" />
+    <Resource Include="images\ayuda_CPermiso_VentanaMensaje.png" />
+    <Resource Include="images\ayuda_CUsuario.png" />
+    <Resource Include="images\ayuda_CUsuario_Ventana.png" />
+    <Resource Include="images\ayuda_CUsuario_VentanaEditar.png" />
+    <Resource Include="images\ayuda_CUsuario_VentanaEditar_Usuario.png" />
+    <Resource Include="images\ayuda_CUsuario_VentanaEliminar.png" />
+    <Resource Include="images\ayuda_CUsuario_VentanaEliminar_Usuario.png" />
+    <Resource Include="images\ayuda_CUsuario_VentanaEmpresas.png" />
+    <Resource Include="images\ayuda_CUsuario_VentanaEmpresas_Cuentas.png" />
+    <Resource Include="images\ayuda_CUsuario_VentanaEmpresas_CuentasDos.png" />
+    <Resource Include="images\ayuda_CUsuario_VentanaEmpresas_CuentasRemover.png" />
+    <Resource Include="images\ayuda_CUsuario_VentanaNuevo.png" />
+    <Resource Include="images\ayuda_CUsuario_VentanaNuevo_Usuario.png" />
+    <Resource Include="images\ayuda_CWeb.png" />
+    <Resource Include="images\ayuda_CWeb_Ventana.png" />
+    <Resource Include="images\ayuda_CWeb_VentanaDos.png" />
+    <Resource Include="images\ayuda_CWeb_VentanaError.png" />
+    <Resource Include="images\ayuda_CWeb_VentanaUno.png" />
+    <Resource Include="images\ayuda_FE.png" />
+    <Resource Include="images\ayuda_FEAlerta.png" />
+    <Resource Include="images\ayuda_FEAlerta_Ventana.png" />
+    <Resource Include="images\ayuda_FEAlerta_VentanaAlertaPopUp.png" />
+    <Resource Include="images\ayuda_FEVentana.png" />
+    <Resource Include="images\ayuda_FEVentana_Blanco.png" />
+    <Resource Include="images\ayuda_FEVentana_Carga.png" />
+    <Resource Include="images\ayuda_FEVentana_DocsEnviados.png" />
+    <Resource Include="images\ayuda_FEVentana_DocsEnviadosDetalle.png" />
+    <Resource Include="images\ayuda_FEVentana_Reporte.png" />
+    <Resource Include="images\ayuda_inicio.png" />
+    <Resource Include="images\ayuda_logo.png" />
+    <Resource Include="images\ayuda_RA.png" />
+    <Resource Include="images\ayuda_RASunat.png" />
+    <Resource Include="images\ayuda_RASunat_Ventana.png" />
+    <Resource Include="images\ayuda_RASunat_VentanaCorrecto.png" />
+    <Resource Include="images\ayuda_RASunat_VentanaDos.png" />
+    <Resource Include="images\ayuda_RASunat_VentanaMensaje.png" />
+    <Resource Include="images\ayuda_RASunat_VentanaMensajeDetalle.png" />
+    <Resource Include="images\ayuda_RASunat_VentanaMotivo.png" />
+    <Resource Include="images\ayuda_RASunat_VentanaReporte.png" />
+    <Resource Include="images\ayuda_RASunat_VentanaTicket.png" />
+    <Resource Include="images\ayuda_RASunat_VentanaTres.png" />
+    <Resource Include="images\ayuda_RA_Ventana.png" />
+    <Resource Include="images\ayuda_RA_VentanaConfirmacion.png" />
+    <Resource Include="images\ayuda_RA_VentanaMensaje.png" />
+    <Resource Include="images\ayuda_RA_VentanaMensajeDetalle.png" />
+    <Resource Include="images\ayuda_RDAlerta.png" />
+    <Resource Include="images\ayuda_RDAlerta_Ventana.png" />
+    <Resource Include="images\ayuda_RDAlerta_VentanaToolTip.png" />
+    <Resource Include="images\ayuda_RDGenerar.png" />
+    <Resource Include="images\ayuda_RDGenerar_Ventana.png" />
+    <Resource Include="images\ayuda_RDGenerar_VentanaBlanco.png" />
+    <Resource Include="images\ayuda_RDGenerar_VentanaConfirmacion.png" />
+    <Resource Include="images\ayuda_RDGenerar_VentanaMensaje.png" />
+    <Resource Include="images\ayuda_RDSunat.png" />
+    <Resource Include="images\ayuda_RDSunat_Ventana.png" />
+    <Resource Include="images\ayuda_RDSunat_Ventana_Confirmacion.png" />
+    <Resource Include="images\ayuda_RDSunat_Ventana_ConfirmacionDetalles.png" />
+    <Resource Include="images\ayuda_RDSunat_Ventana_Dos.png" />
+    <Resource Include="images\ayuda_RDSunat_Ventana_Ticket.png" />
+    <Resource Include="images\ayuda_reporte.png" />
+    <Resource Include="images\ayuda_reporteBV.png" />
+    <Resource Include="images\ayuda_reporteBV_Ventana.png" />
+    <Resource Include="images\ayuda_reporteBV_VentanaCSV.png" />
+    <Resource Include="images\ayuda_reporteBV_VentanaPDF.png" />
+    <Resource Include="images\ayuda_reporteCRE.png" />
+    <Resource Include="images\ayuda_reporteFE.png" />
+    <Resource Include="images\ayuda_reporteFE_Ventana.png" />
+    <Resource Include="images\ayuda_reporteFE_VentanaConfirmacion.png" />
+    <Resource Include="images\ayuda_reporteFE_VentanaCSV.png" />
+    <Resource Include="images\ayuda_reporteFE_VentanaPDF.png" />
+    <Resource Include="images\ayuda_reporteFE_VentanaRuta.png" />
+    <Resource Include="images\ayuda_reporteFE_VentanaSelect.png" />
+    <Resource Include="images\ayuda_reporteGeneral.png" />
+    <Resource Include="images\ayuda_reporteGeneral_Ventana.png" />
+    <Resource Include="images\ayuda_reporteGeneral_VentanaCSV.png" />
+    <Resource Include="images\ayuda_reporteGeneral_VentanaPDF.png" />
+    <Resource Include="images\ayuda_reporteRA.png" />
+    <Resource Include="images\ayuda_reporteRA_Ventana.png" />
+    <Resource Include="images\ayuda_reporteRA_VentanaCSV.png" />
+    <Resource Include="images\ayuda_reporteRA_VentanaOtro.png" />
+    <Resource Include="images\ayuda_reporteRA_VentanaPDF.png" />
+    <Resource Include="images\ayuda_reporteRD.png" />
+    <Resource Include="images\ayuda_reporteRD_Ventana.png" />
+    <Resource Include="images\ayuda_reporteRD_VentanaCSV.png" />
+    <Resource Include="images\ayuda_reporteRD_VentanaOtro.png" />
+    <Resource Include="images\ayuda_reporteRD_VentanaPDF.png" />
+    <Resource Include="images\ayuda_UActivacion.png" />
+    <Resource Include="images\ayuda_UActivacionArchivo.png" />
+    <Resource Include="images\ayuda_UActivacionArchivo_Correo.png" />
+    <Resource Include="images\ayuda_UActivacionArchivo_Generar.png" />
+    <Resource Include="images\ayuda_UActivacionArchivo_Lic.png" />
+    <Resource Include="images\ayuda_UActivacionArchivo_Mensaje.png" />
+    <Resource Include="images\ayuda_UActivacionManual.png" />
+    <Resource Include="images\ayuda_UActivacionManual_Activar.png" />
+    <Resource Include="images\ayuda_UActivacionManual_Correo.png" />
+    <Resource Include="images\ayuda_UActivacionManual_CorreoDos.png" />
+    <Resource Include="images\ayuda_UActivacionManual_Ventana.png" />
+    <Resource Include="images\ayuda_UActivacionManual_VentanaDos.png" />
+    <Resource Include="images\ayuda_UActivacion_Correo.png" />
+    <Resource Include="images\ayuda_UActivacion_Informacion.png" />
+    <Resource Include="images\ayuda_UActivacion_Mensaje.png" />
+    <Resource Include="images\ayuda_UActivacion_Ventana.png" />
+    <Resource Include="images\ayuda_UActualizacion.png" />
+    <Resource Include="images\ayuda_UActualizacion_Mensaje.png" />
+    <Resource Include="images\ayuda_UActualizacion_Pregunta.png" />
+    <Resource Include="images\ayuda_UGeneracion.png" />
+    <Resource Include="images\ayuda_UGeneracion_Mensaje.png" />
+    <Resource Include="images\ayuda_UGeneracion_Todos.png" />
+    <Resource Include="images\ayuda_UGeneracion_TodosDos.png" />
+    <Resource Include="images\ayuda_UGeneracion_UsuarioUnico.png" />
+    <Resource Include="images\ayuda_UGeneracion_UsuarioUnicoDos.png" />
+    <Resource Include="images\ayuda_UGeneracion_Ventana.png" />
+    <Resource Include="images\ayuda_URestauracion.png" />
+    <Resource Include="images\ayuda_URestauracionMensaje.png" />
+    <Resource Include="images\ayuda_URestauracion_Unico.png" />
+    <Resource Include="images\ayuda_URestauracion_UnicoDos.png" />
+    <Resource Include="images\ayuda_URestauracion_Ventana.png" />
+    <Resource Include="images\ayuda_URuta.png" />
+    <Resource Include="images\ayuda_URuta_Ventana.png" />
+    <Resource Include="images\ayuda_URuta_VentanaConfigurar.png" />
+    <Resource Include="images\ayuda_URuta_VentanaConfigurar_Mensaje.png" />
+    <Resource Include="images\ayuda_URuta_VentanaConfigurar_MensajeReinicio.png" />
+    <Resource Include="images\ayuda_URuta_VentanaIcono.png" />
+    <Resource Include="images\ayuda_URuta_VentanaModificar.png" />
+    <Resource Include="images\ayuda_URuta_VentanaResetear.png" />
+    <Resource Include="images\ayuda_URuta_VentanaResetear_Mensaje.png" />
+    <Resource Include="images\ayuda_ventanaprincipal.png" />
+    <Resource Include="images\boxes.png" />
+    <Resource Include="images\build.png" />
+    <Resource Include="images\clipboard.png" />
+    <Resource Include="images\close.png" />
+    <Resource Include="images\configuration.png" />
+    <Resource Include="images\CustomDialogInformation.png" />
+    <Resource Include="images\CustomDialogQuestion.png" />
+    <Resource Include="images\CustomDialogShield.png" />
+    <Resource Include="images\CustomDialogStop.png" />
+    <Resource Include="images\CustomDialogWarning.png" />
+    <Resource Include="images\download-png.png" />
+    <Resource Include="images\download_24.png" />
+    <Resource Include="images\download_48.png" />
+    <Resource Include="images\edit-icon.png" />
+    <Resource Include="images\Error.png" />
+    <Resource Include="images\fei_cuadro.ico" />
+    <Resource Include="images\fei_cuadro_logo.png" />
+    <Resource Include="images\ico_database.png" />
+    <Resource Include="images\ico_folder.png" />
+    <Resource Include="images\Information.png" />
+    <Resource Include="images\loader.gif" />
+    <Resource Include="images\login-exit.png" />
+    <Resource Include="images\login-in.png" />
+    <Resource Include="images\login-incio.png" />
+    <Resource Include="images\logout.PNG" />
+    <Resource Include="images\logo_fei.png" />
+    <Resource Include="images\LupaPDF.png" />
+    <Resource Include="images\marca_agua_fei.png" />
+    <Resource Include="images\menu_compras.png" />
+    <Resource Include="images\menu_comunicacion_baja.png" />
+    <Resource Include="images\menu_configuracion.png" />
+    <Resource Include="images\menu_facturas.png" />
+    <Resource Include="images\menu_help.png" />
+    <Resource Include="images\menu_reporte.png" />
+    <Resource Include="images\menu_resumendiario.png" />
+    <Resource Include="images\menu_retention.png" />
+    <Resource Include="images\menu_utilities.png" />
+    <Resource Include="images\notebook.png" />
+    <Resource Include="images\notify.png" />
+    <Resource Include="images\presentacionFEI.png" />
+    <Resource Include="images\projects.png" />
+    <Resource Include="images\receipt.png" />
+    <Resource Include="images\refresh.png" />
+    <Resource Include="images\remove-icon.png" />
+    <Resource Include="images\salir-sesion.png" />
+    <Resource Include="images\save-icon.png" />
+    <Resource Include="images\search-icon.png" />
+    <Resource Include="images\send.png" />
+    <Resource Include="images\settings.png" />
+    <Resource Include="images\success-icon.png" />
+    <Resource Include="images\Warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
+      <Project>{aa05dc3e-e088-4512-aaca-411dc3184e10}</Project>
+      <Name>BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataLayer\DataLayer.csproj">
+      <Project>{c0eb19f0-91b7-4b4a-a4d2-e62d98b89282}</Project>
+      <Name>DataLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Extension\Extension.csproj">
+      <Project>{8298e881-26ad-493c-bbd4-300131f305ce}</Project>
+      <Name>Extension</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{6ddc510b-794c-43b7-86e2-0b1ef96042ff}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServicesSunat\ServicesSunat.csproj">
+      <Project>{0615bed5-732f-45a7-839a-4a6220e341f0}</Project>
+      <Name>ServicesSunat</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="fei_cuadro.ico" />
+    <Content Include="x64\liblept172.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\libtesseract304.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\liblept172.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\libtesseract304.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

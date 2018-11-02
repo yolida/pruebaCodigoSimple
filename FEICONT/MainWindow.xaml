@@ -1,0 +1,595 @@
+﻿<Window x:Name="main_Form" x:Class="FEICONT.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FEICONT"
+        mc:Ignorable="d"
+        Title="Facturación Electrónica Integrada"  WindowState="Maximized"  WindowStartupLocation="CenterScreen"  MinWidth="1000" MinHeight="650" Closed="Window_Closed" Loaded="mainForm_Loaded" Icon="images/fei_cuadro.ico" KeyDown="main_Form_KeyDown">
+    <Window.Resources>
+        <Style x:Key="BaseButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Background" Value="#1ba1e2"/>
+            <Setter Property="BorderBrush" Value="#1684ba"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="#000000"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="16,3,16,3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Chrome"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter Name="Presenter" Margin="{TemplateBinding Padding}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    RecognizesAccessKey="True"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#333333" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#dddddd" />
+                                <Setter Property="BorderBrush" Value="#cccccc" />
+                                <Setter Property="Foreground" Value="#333333" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#1ba1e2" />
+                                <Setter Property="BorderBrush" Value="#1ba1e2"/>
+                                <Setter Property="Foreground" Value="#ffffff"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter TargetName="Chrome" Property="BorderBrush" Value="#1ba1e2" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <ControlTemplate x:Key="ExpanderControlTemplateCustom" TargetType="{x:Type Expander}">
+            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="3" SnapsToDevicePixels="True">
+                <DockPanel>
+                    <ToggleButton x:Name="HeaderSite" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" DockPanel.Dock="Top" Foreground="{TemplateBinding Foreground}" FontWeight="{TemplateBinding FontWeight}" FontStyle="{TemplateBinding FontStyle}" FontStretch="{TemplateBinding FontStretch}" FontSize="{TemplateBinding FontSize}" FontFamily="{TemplateBinding FontFamily}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" MinWidth="0" MinHeight="0" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Style="{DynamicResource ToggleButtonStyle1}">
+                        <ToggleButton.FocusVisualStyle>
+                            <Style>
+                                <Setter Property="Control.Template">
+                                    <Setter.Value>
+                                        <ControlTemplate>
+                                            <Border>
+                                                <Rectangle Margin="0" SnapsToDevicePixels="True" Stroke="Black" StrokeThickness="1" StrokeDashArray="1 2"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ToggleButton.FocusVisualStyle>
+                    </ToggleButton>
+                    <ContentPresenter x:Name="ExpandSite" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" DockPanel.Dock="Bottom" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" Visibility="Collapsed" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                </DockPanel>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsExpanded" Value="True">
+                    <Setter Property="Visibility" TargetName="ExpandSite" Value="Visible"/>
+                </Trigger>
+                <Trigger Property="ExpandDirection" Value="Right">
+                    <Setter Property="DockPanel.Dock" TargetName="ExpandSite" Value="Right"/>
+                    <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Left"/>
+                    <Setter Property="Style" TargetName="HeaderSite">
+                        <Setter.Value>
+                            <Style TargetType="{x:Type ToggleButton}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                            <Border Padding="{TemplateBinding Padding}">
+                                                <Grid Background="Transparent" SnapsToDevicePixels="False">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="19"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid>
+                                                        <Grid.LayoutTransform>
+                                                            <TransformGroup>
+                                                                <RotateTransform Angle="-90"/>
+                                                            </TransformGroup>
+                                                        </Grid.LayoutTransform>
+                                                        <Ellipse x:Name="circle" Fill="White" HorizontalAlignment="Center" Height="19" Stroke="#FF333333" VerticalAlignment="Center" Width="19"/>
+                                                        <Path x:Name="arrow" Data="M1,1.5L4.5,5 8,1.5" HorizontalAlignment="Center" SnapsToDevicePixels="False" Stroke="#FF333333" StrokeThickness="2" VerticalAlignment="Center"/>
+                                                    </Grid>
+                                                    <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="Center" Margin="0,4,0,0" Grid.Row="1" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Top"/>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <Setter Property="Data" TargetName="arrow" Value="M1,4.5L4.5,1 8,4.5"/>
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Stroke" TargetName="circle" Value="#FF5593FF"/>
+                                                    <Setter Property="Fill" TargetName="circle" Value="#FFF3F9FF"/>
+                                                    <Setter Property="Stroke" TargetName="arrow" Value="Black"/>
+                                                </Trigger>
+                                                <Trigger Property="IsPressed" Value="True">
+                                                    <Setter Property="Stroke" TargetName="circle" Value="#FF3C77DD"/>
+                                                    <Setter Property="StrokeThickness" TargetName="circle" Value="1.5"/>
+                                                    <Setter Property="Fill" TargetName="circle" Value="#FFD9ECFF"/>
+                                                    <Setter Property="Stroke" TargetName="arrow" Value="Black"/>
+                                                </Trigger>
+                                                <Trigger Property="IsEnabled" Value="False">
+                                                    <Setter Property="Stroke" TargetName="circle" Value="#FFBCBCBC"/>
+                                                    <Setter Property="Fill" TargetName="circle" Value="#FFE6E6E6"/>
+                                                    <Setter Property="Stroke" TargetName="arrow" Value="#FF707070"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="ExpandDirection" Value="Up">
+                    <Setter Property="DockPanel.Dock" TargetName="ExpandSite" Value="Top"/>
+                    <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Bottom"/>
+                    <Setter Property="Style" TargetName="HeaderSite">
+                        <Setter.Value>
+                            <Style TargetType="{x:Type ToggleButton}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                            <Border Padding="{TemplateBinding Padding}">
+                                                <Grid Background="Transparent" SnapsToDevicePixels="False">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="19"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid>
+                                                        <Grid.LayoutTransform>
+                                                            <TransformGroup>
+                                                                <RotateTransform Angle="180"/>
+                                                            </TransformGroup>
+                                                        </Grid.LayoutTransform>
+                                                        <Ellipse x:Name="circle" Fill="White" HorizontalAlignment="Center" Height="19" Stroke="#FF333333" VerticalAlignment="Center" Width="19"/>
+                                                        <Path x:Name="arrow" Data="M1,1.5L4.5,5 8,1.5" HorizontalAlignment="Center" SnapsToDevicePixels="False" Stroke="#FF333333" StrokeThickness="2" VerticalAlignment="Center"/>
+                                                    </Grid>
+                                                    <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Column="1" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="Left" Margin="4,0,0,0" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Center"/>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <Setter Property="Data" TargetName="arrow" Value="M1,4.5L4.5,1 8,4.5"/>
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Stroke" TargetName="circle" Value="#FF5593FF"/>
+                                                    <Setter Property="Fill" TargetName="circle" Value="#FFF3F9FF"/>
+                                                    <Setter Property="Stroke" TargetName="arrow" Value="Black"/>
+                                                </Trigger>
+                                                <Trigger Property="IsPressed" Value="True">
+                                                    <Setter Property="Stroke" TargetName="circle" Value="#FF3C77DD"/>
+                                                    <Setter Property="StrokeThickness" TargetName="circle" Value="1.5"/>
+                                                    <Setter Property="Fill" TargetName="circle" Value="#FFD9ECFF"/>
+                                                    <Setter Property="Stroke" TargetName="arrow" Value="Black"/>
+                                                </Trigger>
+                                                <Trigger Property="IsEnabled" Value="False">
+                                                    <Setter Property="Stroke" TargetName="circle" Value="#FFBCBCBC"/>
+                                                    <Setter Property="Fill" TargetName="circle" Value="#FFE6E6E6"/>
+                                                    <Setter Property="Stroke" TargetName="arrow" Value="#FF707070"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="ExpandDirection" Value="Left">
+                    <Setter Property="DockPanel.Dock" TargetName="ExpandSite" Value="Left"/>
+                    <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Right"/>
+                    <Setter Property="Style" TargetName="HeaderSite">
+                        <Setter.Value>
+                            <Style TargetType="{x:Type ToggleButton}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                            <Border Padding="{TemplateBinding Padding}">
+                                                <Grid Background="Transparent" SnapsToDevicePixels="False">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="19"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid>
+                                                        <Grid.LayoutTransform>
+                                                            <TransformGroup>
+                                                                <RotateTransform Angle="90"/>
+                                                            </TransformGroup>
+                                                        </Grid.LayoutTransform>
+                                                        <Ellipse x:Name="circle" Fill="White" HorizontalAlignment="Center" Height="19" Stroke="#FF333333" VerticalAlignment="Center" Width="19"/>
+                                                        <Path x:Name="arrow" Data="M1,1.5L4.5,5 8,1.5" HorizontalAlignment="Center" SnapsToDevicePixels="False" Stroke="#FF333333" StrokeThickness="2" VerticalAlignment="Center"/>
+                                                    </Grid>
+                                                    <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="Center" Margin="0,4,0,0" Grid.Row="1" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Top"/>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <Setter Property="Data" TargetName="arrow" Value="M1,4.5L4.5,1 8,4.5"/>
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Stroke" TargetName="circle" Value="#FF5593FF"/>
+                                                    <Setter Property="Fill" TargetName="circle" Value="#FFF3F9FF"/>
+                                                    <Setter Property="Stroke" TargetName="arrow" Value="Black"/>
+                                                </Trigger>
+                                                <Trigger Property="IsPressed" Value="True">
+                                                    <Setter Property="Stroke" TargetName="circle" Value="#FF3C77DD"/>
+                                                    <Setter Property="StrokeThickness" TargetName="circle" Value="1.5"/>
+                                                    <Setter Property="Fill" TargetName="circle" Value="#FFD9ECFF"/>
+                                                    <Setter Property="Stroke" TargetName="arrow" Value="Black"/>
+                                                </Trigger>
+                                                <Trigger Property="IsEnabled" Value="False">
+                                                    <Setter Property="Stroke" TargetName="circle" Value="#FFBCBCBC"/>
+                                                    <Setter Property="Fill" TargetName="circle" Value="#FFE6E6E6"/>
+                                                    <Setter Property="Stroke" TargetName="arrow" Value="#FF707070"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <Style x:Key="ToggleButtonStyle1" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border Padding="{TemplateBinding Padding}">
+                            <Grid Background="Transparent" SnapsToDevicePixels="False">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="19"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Column="0" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="Left" Margin="10,0,0,0" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True"/>
+                            <Trigger Property="IsMouseOver" Value="True"/>
+                            <Trigger Property="IsPressed" Value="True"/>
+                            <Trigger Property="IsEnabled" Value="False"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type Button}" x:Key="ImageButtonStyle">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <ContentPresenter/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#D3DBDD" Margin="0,0,0,0">
+        <Grid x:Name="gridForm" Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"  />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250" x:Name="gridFormLeft"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Grid.Row="0" Source="images/fei_cuadro_logo.png" Stretch="Fill" Margin="10,5,10,5" />
+            <Label FontFamily="Calibri" FontWeight="Bold" Content="Facturación electrónica integrada - FEICONT" Grid.Column="1" Grid.Row="0" Margin="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextBlock.FontSize="22"/>
+            <Grid  Grid.Column="0" Grid.Row="1" Background="#D3DBDD">
+                <ListBox  Background="Red" Foreground="AntiqueWhite" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="0,0,0,0">
+                    <ListBox.Resources>
+                        <Style TargetType="{x:Type Expander}">
+                            <Setter Property="IsExpanded" Value="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}"/>
+                        </Style>
+                    </ListBox.Resources>
+                    <ListBox.Template>
+                        <ControlTemplate TargetType="{x:Type ListBox}">
+                            <ItemsPresenter/>
+                        </ControlTemplate>
+                    </ListBox.Template>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListBoxItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                        <ContentPresenter Content="{TemplateBinding Content}"/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+
+                    <Expander Background="#FF698B24" Template="{DynamicResource ExpanderControlTemplateCustom}" HorizontalContentAlignment="Left">
+                        <Expander.Header >
+
+                            <BulletDecorator>
+                                <BulletDecorator.Bullet >
+                                    <Image Source="images/menu_reporte.png" Width="24" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </BulletDecorator.Bullet>
+                                <TextBlock Padding="10,10,0,0"  Text="Reportes" VerticalAlignment="Center" HorizontalAlignment="Stretch" Foreground="White" Height="36" Width="200"/>
+                            </BulletDecorator>
+                        </Expander.Header>
+                        <WrapPanel Width="250" Background="#a1c46d">
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem1" Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkReporteFactura" >Reporte de Factura Electrónica</Hyperlink>
+                            </Label>
+                            <Label Width="250" Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem2" Foreground="white">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkReporteResumen" >Reporte de Resumen Diario</Hyperlink>
+                            </Label>
+                            <Label  Width="250" Padding="20,5,0,5" Margin="0,0,0,0"  Name="lblItem3" Foreground="white">
+                                <Hyperlink  TextDecorations="{x:Null}"  Foreground="white" Click="clkReporteBoleta" >Reporte de Boletas de Venta</Hyperlink>
+                            </Label>
+                            <Label  Width="250" Padding="20,5,0,5" Margin="0,0,0,0"  Name="lblItem4" Foreground="white">
+                                <Hyperlink  TextDecorations="{x:Null}"  Foreground="white" Click="clkReporteBaja" >Reporte de Comunicación de Baja</Hyperlink>
+                            </Label>
+                            <Label  Width="250" Padding="20,5,0,5" Margin="0,0,0,0"  Name="lblItem5" Foreground="white">
+                                <Hyperlink  TextDecorations="{x:Null}"  Foreground="white" Click="clkReporteRetencion">Reporte de Comprobantes de Retención</Hyperlink>
+                            </Label>
+                            <Label  Width="250" Padding="20,5,0,5" Margin="0,0,0,0"  Name="lblItem6" Foreground="white">
+                                <Hyperlink  TextDecorations="{x:Null}"  Foreground="white" Click="clkReportGeneral" >Reporte General</Hyperlink>
+                            </Label>
+                        </WrapPanel>
+                    </Expander>
+                    <Expander Background="#FF698B24" Template="{DynamicResource ExpanderControlTemplateCustom}">
+                        <Expander.Header>
+                            <BulletDecorator Height="36" Width="149">
+                                <BulletDecorator.Bullet >
+                                    <Image Source="images/menu_facturas.png" Width="24" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </BulletDecorator.Bullet>
+                                <TextBlock Padding="10,10,0,0" Text="Documento electrónico" VerticalAlignment="Center" HorizontalAlignment="Stretch" Foreground="White" Height="36" Margin="0,0,-24,0" />
+                            </BulletDecorator>
+                        </Expander.Header>
+                        <WrapPanel Background="#a1c46d">
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem7"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkFacturaSunat" >Envío a Sunat</Hyperlink>
+                            </Label>
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem8"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkFacturaAlerta" >Formas de alerta y envío de FE</Hyperlink>
+                            </Label>
+                        </WrapPanel>
+                    </Expander>
+                    <Expander Background="#FF698B24" Template="{DynamicResource ExpanderControlTemplateCustom}">
+                        <Expander.Header>
+                            <BulletDecorator>
+                                <BulletDecorator.Bullet >
+                                    <Image Source="images/menu_resumendiario.png" Width="24" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </BulletDecorator.Bullet>
+                                <TextBlock Padding="10,10,0,0" Text="Resumen diario" VerticalAlignment="Center" HorizontalAlignment="Stretch" Foreground="White" Height="36" Width="150" />
+                            </BulletDecorator>
+                        </Expander.Header>
+                        <WrapPanel Background="#a1c46d">
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem9"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkResumenDiarioGenerar" >Generar resumen diario</Hyperlink>
+                            </Label>
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem10"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkResumenDiarioSunat" >Envío a Sunat y consulta Ticket de RC</Hyperlink>
+                            </Label>
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem11"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkResumenDiarioAlerta" >Formas de alerta y envío de RC</Hyperlink>
+                            </Label>
+                        </WrapPanel>
+                    </Expander>
+                    <Expander Background="#FF698B24" Template="{DynamicResource ExpanderControlTemplateCustom}">
+                        <Expander.Header>
+                            <BulletDecorator>
+                                <BulletDecorator.Bullet >
+                                    <Image Source="images/menu_comunicacion_baja.png" Width="24" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </BulletDecorator.Bullet>
+                                <TextBlock Padding="10,10,0,0" Text="Comunicación de baja" VerticalAlignment="Center" HorizontalAlignment="Stretch" Foreground="White" Height="36" Width="150" />
+                            </BulletDecorator>
+                        </Expander.Header>
+                        <WrapPanel Background="#a1c46d">
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem12"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkComunicacionGenerar" >Generar comunicación de baja</Hyperlink>
+                            </Label>
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem13"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkComunicacionSunat" >Envío a Sunat y consulta Ticket de RA</Hyperlink>
+                            </Label>
+
+                        </WrapPanel>
+                    </Expander>
+                    <Expander Background="#FF698B24" Template="{DynamicResource ExpanderControlTemplateCustom}">
+                        <Expander.Header>
+                            <BulletDecorator>
+                                <BulletDecorator.Bullet >
+                                    <Image Source="images/menu_retention.png" Width="24" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </BulletDecorator.Bullet>
+                                <TextBlock Padding="10,10,0,0" Text="Comprobante de retención" VerticalAlignment="Center" HorizontalAlignment="Stretch" Foreground="White" Height="36" Width="170" />
+                            </BulletDecorator>
+                        </Expander.Header>
+                        <WrapPanel Background="#a1c46d">
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem14"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkRetencionEnvio" >Envío a Sunat de CRE</Hyperlink>
+                            </Label>
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem15"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkRetencionAlertas" >Formas de alerta y envío de CRE</Hyperlink>
+                            </Label>
+                           
+                        </WrapPanel>
+                    </Expander>
+                    <Expander Background="#FF698B24" Template="{DynamicResource ExpanderControlTemplateCustom}">
+                        <Expander.Header>
+                            <BulletDecorator>
+                                <BulletDecorator.Bullet >
+                                    <Image Source="images/menu_comunicacion_baja.png" Width="24" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </BulletDecorator.Bullet>
+                                <TextBlock Padding="10,10,0,0" Text="Resumen Diario de Reversión CRE" VerticalAlignment="Center" HorizontalAlignment="Stretch" Foreground="White" Height="36" Width="200" />
+                            </BulletDecorator>
+                        </Expander.Header>
+                        <WrapPanel Background="#a1c46d">
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem28"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkReversionGenerar" >Generar reversión de CRE</Hyperlink>
+                            </Label>
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem29"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkReversionSunat" >Envío Sunat y Consulta Ticket CRE </Hyperlink>
+                            </Label>
+                        </WrapPanel>
+                    </Expander>
+                    <!--Receptor Compras Inicio-->
+                    <Expander Background="#FF698B24" Template="{DynamicResource ExpanderControlTemplateCustom}">
+                        <Expander.Header>
+                            <BulletDecorator>
+                                <BulletDecorator.Bullet >
+                                    <Image Source="images/menu_compras.png" Width="24" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </BulletDecorator.Bullet>
+                                <TextBlock Padding="10,10,0,0" Text="Receptor de Compras" VerticalAlignment="Center" HorizontalAlignment="Stretch" Foreground="White" Height="36" Width="200" />
+                            </BulletDecorator>
+                        </Expander.Header>
+                        <WrapPanel Background="#a1c46d">
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem30"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkReceptorValidar">Validar XML</Hyperlink>
+                            </Label>
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem31"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkReceptorCompras" >Registro de compras</Hyperlink>
+                            </Label>
+                        </WrapPanel>
+                    </Expander>
+                    <!--Receptor Compras Fin-->
+                    <Expander Background="#FF698B24" Template="{DynamicResource ExpanderControlTemplateCustom}">
+                        <Expander.Header>
+                            <BulletDecorator>
+                                <BulletDecorator.Bullet >
+                                    <Image Source="images/menu_configuracion.png" Width="24" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </BulletDecorator.Bullet>
+                                <TextBlock Padding="10,10,0,0" Text="Configuración del sistema" VerticalAlignment="Center" HorizontalAlignment="Stretch" Foreground="White" Height="36" Width="150" />
+                            </BulletDecorator>
+                        </Expander.Header>
+                        <WrapPanel Background="#a1c46d">
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem16"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink x:Name="btnConfigurarDB"  TextDecorations="{x:Null}" Foreground="white" Click="btnConfigurarDB_Click" >Configuración de base de datos</Hyperlink>
+                            </Label>
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem18"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkConfiguracionEmpresa" >Información del declarante</Hyperlink>
+                            </Label>
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem19"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkConfiguracionUsuario" >Usuarios</Hyperlink>
+                            </Label>
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem20"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkConfiguracionPermisos" >Permisos de usuario</Hyperlink>
+                            </Label>
+
+
+                        </WrapPanel>
+                    </Expander>
+                    <Expander Background="#FF698B24" Template="{DynamicResource ExpanderControlTemplateCustom}">
+                        <Expander.Header>
+                            <BulletDecorator>
+                                <BulletDecorator.Bullet >
+                                    <Image Source="images/menu_utilities.png" Width="24" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </BulletDecorator.Bullet>
+                                <TextBlock Padding="10,10,0,0" Text="Utilitarios" VerticalAlignment="Center" HorizontalAlignment="Stretch" Foreground="White" Height="36" Width="150" />
+                            </BulletDecorator>
+                        </Expander.Header>
+                        <WrapPanel Background="#a1c46d">
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblRevisionLogs"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" x:Name="linkRevisionLogs" Foreground="white" Click="linkRevisionLogs_Click" >Revisión de logs</Hyperlink>
+                            </Label>
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem21"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkConfiguracionGenbackup" >Generación de backup</Hyperlink>
+                            </Label>
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem22"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkConfiguracionRestbackup" >Restauración de backup</Hyperlink>
+                            </Label>
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem23"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkConfiguracionRuta" >Ruta de archivos</Hyperlink>
+                            </Label>
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem24"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkConfiguracionEstructura" >Actualización de estructuras</Hyperlink>
+                            </Label>
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem32"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkTransferenciaDatos" >Transferencia de datos</Hyperlink>
+                            </Label>
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem25"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkConfiguracionLicencia" >Activación de Licencia</Hyperlink>
+                            </Label>
+
+                        </WrapPanel>
+                    </Expander>
+                    <Expander Background="#FF698B24" Template="{DynamicResource ExpanderControlTemplateCustom}">
+                        <Expander.Header>
+                            <BulletDecorator>
+                                <BulletDecorator.Bullet >
+                                    <Image Source="images/menu_help.png" Width="24" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </BulletDecorator.Bullet>
+                                <TextBlock Padding="10,10,0,0" Text="Ayuda" VerticalAlignment="Center" HorizontalAlignment="Stretch" Foreground="White" Height="36" Width="150" />
+                            </BulletDecorator>
+                        </Expander.Header>
+                        <WrapPanel Background="#a1c46d">
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem26"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkAyuda" >Ayuda </Hyperlink>
+                            </Label>
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem27"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkAcercaDe" >Acerca de FEI</Hyperlink>
+                            </Label>
+                            <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem33"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkCertificadoDigital" >Certificado Digital</Hyperlink>
+                            </Label>
+                            <!--<Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem34"  Foreground="white" VerticalAlignment="Top">
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkAyudaSunat" >Ayuda SUNAT</Hyperlink>
+                            </Label>-->
+                        </WrapPanel>
+                    </Expander>
+                    <!--35 - NUmero de Items, cambiar por el nuemro mas alto cada vez que se graga uno nuevo-->
+                </ListBox>
+            </Grid>
+            <Grid  Background="White" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"  Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--<Border x:Name="spliter" Height="64" Margin="-17" Cursor="Hand" MouseLeftButtonDown="spliter_MouseLeftButtonDown" Panel.ZIndex="2" HorizontalAlignment="Left" Width="32">
+                    <Border.Background>
+                        <ImageBrush ImageSource="images/panelexpand.png" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>-->
+                <Image Grid.Column="0" Grid.Row="0" x:Name="image" Margin="160,58,160,68" Source="images/marca_agua_fei.png" Stretch="Uniform" Panel.ZIndex="-10" />
+                <Frame   Grid.Column="0" Grid.Row="0"  x:Name="pageContainer"  Background="Transparent" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" LoadCompleted="pageContainer_LoadCompleted" NavigationUIVisibility="Hidden"  />
+                <Grid   Grid.Column="0" Grid.Row="1" Background="#d3dbdd">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Content="Empresa: " HorizontalContentAlignment="Left" VerticalContentAlignment="Center" TextBlock.FontWeight="Bold"/>
+                    <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" x:Name="lblEmpresa" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                    <Label Grid.Column="2" Grid.Row="0" Content="Usuario: " HorizontalContentAlignment="Left" VerticalContentAlignment="Center" TextBlock.FontWeight="Bold"/>
+                    <Label Grid.Column="3" Grid.Row="0" x:Name="lblUsuario" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                    <Button x:Name="btnCerrarSesion"  Padding="20 5"  HorizontalAlignment="Right" Grid.Column="4" Grid.Row="0"  TextBlock.FontWeight="Bold" Click="btnCerrarSesion_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image x:Name="imageButton" Source="images/logout.png" Height="15" Width="15"/>
+                            <Label x:Name="TextBoton" Content="Cerrar sesión"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+
+            </Grid>
+
+        </Grid>
+    </Grid>
+
+</Window>

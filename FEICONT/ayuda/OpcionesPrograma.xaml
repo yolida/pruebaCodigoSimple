@@ -1,0 +1,45 @@
+﻿<Page x:Class="FEICONT.ayuda.OpcionesPrograma"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FEICONT.ayuda"
+      mc:Ignorable="d" 
+      MinHeight="300" MinWidth="300"
+      Title="OpcionesPrograma" Background="White">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center">
+            <TextBlock TextWrapping="Wrap"  TextBlock.TextAlignment="Center"  TextBlock.FontWeight="Bold" TextBlock.FontSize="14">
+               OPCIONES DEL PROGRAMA
+            </TextBlock>
+        </Label>
+
+        <Label Grid.Column="0" Grid.Row="1">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+             Una vez que se ingresa al Sistema se mostrará la siguiente ventana, la cual tendrá las siguientes opciones: <LineBreak/>
+►	Reportes<LineBreak/>
+►	Factura Electrónica<LineBreak/>
+►	Resumen Diario<LineBreak/>
+►	Comunicación de Baja<LineBreak/>
+►	Comprobante de Retención<LineBreak/>
+►	Resumen Diario de Reversión CRE<LineBreak/>
+►	Configuración del Sistema<LineBreak/>
+►	Utilitarios<LineBreak/>
+►	Ayuda<LineBreak/>
+
+            </TextBlock>
+        </Label>
+        <Image Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_ventanaprincipal.png" Stretch="None" />
+
+    </Grid>
+</Page>

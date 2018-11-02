@@ -1,0 +1,146 @@
+﻿<Page x:Class="FEICONT.ayuda.RASunat"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FEICONT.ayuda"
+      mc:Ignorable="d" 
+      MinHeight="300" MinWidth="300"
+      Title="RASunat" Background="White">
+
+    <ScrollViewer  VerticalScrollBarVisibility="Visible">
+        <Grid   Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center">
+                <TextBlock TextWrapping="Wrap"  TextBlock.TextAlignment="Center"  TextBlock.FontWeight="Bold" TextBlock.FontSize="14">
+                  ENVÍO A SUNAT Y CONSULTA DE TICKET DE RA
+                </TextBlock>
+            </Label>
+
+            <Label Grid.Column="0" Grid.Row="1">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+                 Ésta opción permite enviar la Comunicación de Baja a SUNAT; con lo cual se obtendrá un número de Ticket; y posterior a ello se ha de consultar el estado del Ticket ante SUNAT.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_RASunat.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="3">
+
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+                 Antes de enviar una Comunicación de Baja a SUNAT, se podrá verificar cuáles son los documentos que están incluidos en cada Comunicación de Baja. <LineBreak/>
+Para ello, deberá de seleccionar la fila de la Comunicación de Baja que desea consultar, tal cual se muestra en la imagen en el PASO 1.<LineBreak/>
+Luego en la parte inferior en “Detalle de Comunicación de Baja”, se mostrará el detalle de todos los documentos incluidos, tal cual se muestra en la imagen en el PASO 2.<LineBreak/>
+
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_RASunat_Ventana.png" Stretch="Fill" />
+            <Label Grid.Column="0" Grid.Row="5">
+
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">               
+                <Bold>OPCIÓN LIBERAR (PASO OPCIONAL)</Bold><LineBreak/>
+La opción “LIBERAR” permite liberar, sacar, extraer todos los documentos ingresado en la Comunicación de Baja seleccionada, con el fin de que sean agregados a una NUEVA Comunicación de Baja.<LineBreak/>
+En caso exista algún error (No se consideró algún documento, o se está ingresando uno que no corresponde ser dado de baja, u otra incidencia), entonces para éste tipo de situaciones se ha previsto utilizar la opción “LIBERAR”. <LineBreak/>
+ <Bold>AGREGAR MOTIVO DE BAJA (PASO 3 - OBLIGATORIO) </Bold><LineBreak/>
+Se tendrá que agregar un Motivo de Baja por cada documento contenido en la Comunicación de Baja.<LineBreak/>
+Para agregar el motivo de baja, se tendrá que ubicar el documento electrónico y hacer clic derecho en el campo “Motivo de Baja”, luego se mostrará un botón emergente que se llama “Motivo de Baja”, se hará click sobre él.<LineBreak/>
+
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_RASunat_VentanaDos.png" Stretch="Fill" />
+            <Label Grid.Column="0" Grid.Row="8">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+                    A continuación se mostrará la siguiente ventana emergente, en la cual se tendrá que ingresar el “Motivo” de baja; y guardarán cambios haciendo click en el botón “Guardar”.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="9" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_RASunat_VentanaMotivo.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="10">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+               Luego se mostrará el siguiente mensaje, mismo que confirma que “LOS CAMBIOS SE HAN GUARDADO CORRECTAMENTE”.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="11" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_RASunat_VentanaCorrecto.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="12">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+            <Bold>ENVIAR A SUNAT (PASO 4)</Bold><LineBreak/>	
+La opción “ENVIAR A SUNAT” permite enviar la Comunicación de Baja generada a SUNAT.
+
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="13" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_RASunat_VentanaTres.png" Stretch="Fill" />
+            <Label Grid.Column="0" Grid.Row="14">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">                         
+         Luego de presionar el botón “Enviar a SUNAT”, se mostrará la siguiente ventana, que indica que el documento está siendo procesado para enviar a SUNAT.
+
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="15" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_FEVentana_Carga.png" Stretch="None" />
+
+
+            <Label Grid.Column="0" Grid.Row="16">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">
+                    Una vez enviado a SUNAT se mostrará el siguiente mensaje: DOCUMENTOS ENVIADOS. 
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="17" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_RASunat_VentanaMensaje.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="18">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">
+                   Haciendo click en “Ver Detalles”, se mostrarán cuáles son las Comunicaciones de Baja que han sido enviados a SUNAT.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="19" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_RASunat_VentanaMensajeDetalle.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="18">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">
+                   Haciendo click en “Ver Detalles”, se mostrarán cuáles son las Comunicaciones de Baja que han sido enviados a SUNAT.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="19" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_RASunat_VentanaMensajeDetalle.png" Stretch="None" />
+            <Label Grid.Column="0" Grid.Row="20">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">
+                  <Bold>RECORDAR</Bold> : Una vez realizado el envío de una Comunicación de Baja, SUNAT devolverá un número de Ticket con el fin que la Comunicación de Baja sea consultada ante SUNAT para ver el estado del mismo.<LineBreak/>
+Por lo tanto continuación se seguirá con el siguiente paso; se tendrá que consultar el número de TICKET que devolvió SUNAT.<LineBreak/>
+
+<Bold>CONSULTAR TICKET (PASO 5)</Bold><LineBreak/>
+La opción “CONSULTAR TICKET”, es el último paso que se deberá realizar para completar el envío de una “Comunicación de Baja”.<LineBreak/>
+Se deberá de seleccionar la Comunicación de Baja que se desea consultar por número de Ticket, y luego se presionará el botón “Consulta Ticket”.<LineBreak/>
+
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="21" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_RASunat_VentanaTicket.png" Stretch="Fill" />
+            <Label Grid.Column="0" Grid.Row="22">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Justify" TextBlock.FontSize="11" TextBlock.FontFamily="Calibri">
+                  Para poder visualizar la Comunicación de Baja enviada, se deberá de ingresar al “Reporte de Comunicación de Baja SUNAT”, ahí es donde se visualizará si la Comunicación de Baja ha sido “ACEPTADA” o “RECHAZADA por SUNAT.
+                </TextBlock>
+            </Label>
+            <Image Grid.Column="0" Grid.Row="23" HorizontalAlignment="Center" Source="/FEICONT;component/images/ayuda_RASunat_VentanaReporte.png" Stretch="Fill" />
+
+        </Grid>
+    </ScrollViewer>
+</Page>
