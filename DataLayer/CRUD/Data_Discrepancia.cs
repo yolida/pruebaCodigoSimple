@@ -27,7 +27,6 @@ namespace DataLayer.CRUD
                 row =   dataTable.Rows[i];
                 discrepancia    =   new Discrepancia() {
                     IdDiscrepanciaDocumento =   Convert.ToInt32(row["IdDiscrepanciaDocumento"].ToString()),
-                    NroReferencia           =   row["NroReferencia"].ToString(),
                     Tipo                    =   row["TDCodigo"].ToString(),
                     Descripcion             =   row["TDDescripcion"].ToString()
                 };

@@ -117,19 +117,27 @@ namespace GenerateXML
 
                 },
                 BillingReferences       =   new List<BillingReference>(),
-                TaxTotals               =   new List<TaxTotal>()
+                TaxTotals               =   new List<TaxTotal>(),
+                RequestedMonetaryTotal      =   new LegalMonetaryTotal() {
+                    LineExtensionAmount     = new PayableAmount() { Value   =   documento.TotalValorVenta,      CurrencyId = documento.Moneda },
+                    TaxInclusiveAmount      = new PayableAmount() { Value   =   documento.TotalPrecioVenta,     CurrencyId = documento.Moneda },
+                    AllowanceTotalAmount    = new PayableAmount() { Value   =   documento.TotalDescuento,       CurrencyId = documento.Moneda },
+                    ChargeTotalAmount       = new PayableAmount() { Value   =   documento.TotalOtrosCargos,     CurrencyId = documento.Moneda },
+                    PrepaidAmount           = new PayableAmount() { Value   =   documento.TotalAnticipos,       CurrencyId = documento.Moneda },
+                    PayableAmount           = new PayableAmount() { Value   =   documento.ImporteTotalVenta,    CurrencyId = documento.Moneda },
+                    PayableRoundingAmount   = new PayableAmount() { Value   =   documento.MontoRedondeo,        CurrencyId = documento.Moneda },
+                }
             };
 
             foreach (var discrepancia in documento.Discrepancias)
             {
                 debitNote.DiscrepancyResponses.Add(new DiscrepancyResponse
                 {
-                    ReferenceID     =   discrepancia.NroReferencia, //  Tal vez desaparezca
-                    ResponseCode    =   new ResponseCode() { Value  = discrepancia.Tipo },
+                    ResponseCode    =   new ResponseCode() { Value  = discrepancia.Tipo, ListName   =   "Tipo de nota de debito" },
                     Description     =   discrepancia.Descripcion
                 });
             }
-
+                
             foreach (var relacionado in documento.Relacionados)
             {
                 debitNote.BillingReferences.Add(new BillingReference
@@ -203,20 +211,6 @@ namespace GenerateXML
                     },
                     Price = new Price() { PriceAmount = new PayableAmount() { CurrencyId = detalleDocumento.Moneda, Value = detalleDocumento.ValorVenta } }, // Valor unitario por ítem
                 };
-
-                #region AlternativeConditionPrice
-                if (detalleDocumento.PreciosAlternativos.Count > 0)
-                {
-                    foreach (var precioAlternativo in detalleDocumento.PreciosAlternativos)
-                    {
-                        linea.PricingReference.AlternativeConditionPrices.Add(new AlternativeConditionPrice()
-                        {
-                            PriceAmount     = new PayableAmount() { CurrencyId = precioAlternativo.TipoMoneda, Value = precioAlternativo.Monto },
-                            PriceTypeCode   = new PriceTypeCode() { Value = precioAlternativo.TipoPrecio }  // Código de precio | Catálogo No. 16
-                        });
-                    }
-                }
-                #endregion AlternativeConditionPrice
 
                 #region TaxTotal
                 if (detalleDocumento.TotalImpuestos.Count > 0)
@@ -305,7 +299,7 @@ namespace GenerateXML
                 }
                 #endregion AlternativeConditionPrice
 
-                debitNote.CreditNoteLines.Add(linea);
+                debitNote.DebitNoteLines.Add(linea);
             }
 
             return debitNote;

@@ -118,24 +118,32 @@ namespace DataLayer.CRUD
             connection.Disconnect();
         }
 
-        async Task<List<Data_Documentos>> IGetDataAsync.GetListFiltered(Int16 IdDatosFox, DateTime Start_FechaRegistro, DateTime End_FechaRegistro, int idTipoDocumento)
+        async Task<List<Data_Documentos>> IGetDataAsync.GetListFiltered(Int16 IdDatosFox, DateTime Start_FechaRegistro, DateTime End_FechaRegistro, int? idTipoDocumento)
         {
             var task    =   Task.Factory.StartNew(()   =>
             { 
                 List<Data_Documentos> data_Documentos   =   new List<Data_Documentos>();
                 string procedure    =   string.Empty;
-                if (idTipoDocumento != 0)
-                    procedure   =   "[dbo].[Read_List_Documento_By_TipoDocumento]";
-                else
-                    procedure   =   "[dbo].[Read_List_Documento_By_Filters]";
+                //if (idTipoDocumento != 0)
+                //    procedure   =   "[dbo].[Read_List_Documento_By_TipoDocumento]";
+                //else
+                //{
+                //    idTipoDocumento =   null;
+                //    procedure       =   "[dbo].[Read_List_Documento_By_Filters]";
+                //}
+
+                if (idTipoDocumento == 0)
+                    idTipoDocumento =   null;
+                
+                procedure       =   "[dbo].[Read_List_Documento_By_Filters]";
 
                 DataTable dataTable             = new DataTable();
                 Connection connection           = new Connection();
                 SqlCommand sqlCommand = new SqlCommand
                 {
-                    CommandText = procedure,
-                    CommandType = CommandType.StoredProcedure,
-                    Connection  = connection.connectionString
+                    CommandText =   procedure,
+                    CommandType =   CommandType.StoredProcedure,
+                    Connection  =   connection.connectionString
                 };
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter()
                 {
@@ -158,7 +166,7 @@ namespace DataLayer.CRUD
                 };
                 sqlCommand.Parameters.Add(parameterStart_FechaRegistro);
 
-                SqlParameter parameterEnd_FechaRegistro = new SqlParameter
+                SqlParameter parameterEnd_FechaRegistro =   new SqlParameter
                 {
                     SqlDbType       = SqlDbType.DateTime,
                     ParameterName   = "@End_FechaRegistro",
@@ -166,13 +174,26 @@ namespace DataLayer.CRUD
                 };
                 sqlCommand.Parameters.Add(parameterEnd_FechaRegistro);
 
-                SqlParameter parameteridTipoDocumento = new SqlParameter
+                SqlParameter parameteridTipoDocumento   =   new SqlParameter
                 {
-                    SqlDbType       = SqlDbType.Int,
-                    ParameterName   = "@idTipoDocumento",
-                    Value           = idTipoDocumento
+                    SqlDbType       =   SqlDbType.Int,
+                    ParameterName   =   "@idTipoDocumento",
+                    IsNullable      =   true,
                 };
+                if (idTipoDocumento == null)
+                    parameteridTipoDocumento.Value  = DBNull.Value;
+                else
+                    parameteridTipoDocumento.Value  = idTipoDocumento;
                 sqlCommand.Parameters.Add(parameteridTipoDocumento);
+
+                SqlParameter parameterComunicacionBaja  =   new SqlParameter
+                {
+                    SqlDbType       =   SqlDbType.Bit,
+                    ParameterName   =   "@ComunicacionBaja",
+                    IsNullable      =   true,
+                    Value           =   null ?? DBNull.Value
+                };
+                sqlCommand.Parameters.Add(parameterComunicacionBaja);
 
                 connection.Connect();
                 sqlDataAdapter.Fill(dataTable);

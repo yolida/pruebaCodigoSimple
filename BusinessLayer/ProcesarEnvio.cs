@@ -35,9 +35,10 @@ namespace BusinessLayer
 
                 DocumentoElectronico documento;
                 DocumentoResponse response;
+
                 switch (data_Documento.TipoDocumento)
                 {
-                    case "01":  //  Factura
+                    case "01":  //  Factura y boletas
                         documento   =   generarFactura.data(data_Documento);
                         response    =   generarFactura.Post(documento, true);
                         break;

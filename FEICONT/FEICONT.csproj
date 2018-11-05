@@ -31,7 +31,7 @@
     <PublisherName>Contasis</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>23</ApplicationRevision>
+    <ApplicationRevision>24</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -334,6 +334,9 @@
     </Compile>
     <Compile Include="pages\Factura_Sunat.xaml.cs">
       <DependentUpon>Factura_Sunat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\GenerarComunicacionBaja.xaml.cs">
+      <DependentUpon>GenerarComunicacionBaja.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\HighlightDateConverter.cs" />
     <Compile Include="pages\Listado.xaml.cs">
@@ -646,6 +649,10 @@
     <Page Include="pages\Factura_Sunat.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\GenerarComunicacionBaja.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\Listado.xaml">
       <Generator>MSBuild:Compile</Generator>

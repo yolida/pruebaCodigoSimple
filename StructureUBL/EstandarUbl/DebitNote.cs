@@ -199,7 +199,6 @@ namespace StructureUBL.EstandarUbl
             {
                 writer.WriteStartElement("cac:DiscrepancyResponse");
                 {
-                    writer.WriteElementString("cbc:ReferenceID",    discrepancy.ReferenceID);
                     writer.WriteElementString("cbc:ResponseCode",   discrepancy.ResponseCode.Value);
                     writer.WriteStartElement("cbc:Description");
                     writer.WriteCData(discrepancy.Description);

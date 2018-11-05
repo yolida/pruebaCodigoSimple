@@ -21,20 +21,23 @@ using CheckBox = System.Windows.Controls.CheckBox;
 
 namespace FEICONT.pages
 {
-    public partial class Factura_Sunat : Page
+    /// <summary>
+    /// Interaction logic for GenerarComunicacionBaja.xaml
+    /// </summary>
+    public partial class GenerarComunicacionBaja : Page
     {
+
         List<ComboBoxPares> tipos_comprobante = new List<ComboBoxPares>();
 
-        ReadGeneralData readGeneralData =   new ReadGeneralData();
+        ReadGeneralData readGeneralData = new ReadGeneralData();
         private readonly IGetDataAsync _Documentos;
         Data_DatosFox data_DatosFox;
         Data_Usuario data_Usuario;
         Data_Contribuyente data_Contribuyente;
-        List<Data_Documentos> data_Documentos   =   new List<Data_Documentos>();
+        List<Data_Documentos> data_Documentos = new List<Data_Documentos>();
         Data_Log data_Log;
         private Window padre;
-
-        public Factura_Sunat(Window parent, Data_Usuario usuario)
+        public GenerarComunicacionBaja(Window parent, Data_Usuario usuario)
         {
             InitializeComponent();
             padre = parent;
@@ -82,6 +85,7 @@ namespace FEICONT.pages
                 Mouse.OverrideCursor = null;
             }
         }
+
         public async void LoadGrid()
         {
             dgDocumentos.ItemsSource    =   null;
@@ -102,6 +106,10 @@ namespace FEICONT.pages
                 Mouse.OverrideCursor = null;
             }
         }
+        private void btnBuscar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         public async Task<List<Data_Documentos>> GetDocumentos()
         {
@@ -118,6 +126,7 @@ namespace FEICONT.pages
 
             return listDocumentos;
         }
+
         private void chkCell_Checked(object sender, RoutedEventArgs e)
         {
             CheckBox checkBox               =   (CheckBox)e.OriginalSource;
@@ -421,62 +430,5 @@ namespace FEICONT.pages
                 data_Log.Create_Log();
             }
         }
-
-        private void btnValidar_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                string mensajeFinal     =   string.Empty;
-                string directorioActual =   Directory.GetCurrentDirectory();
-
-                XmlSchemaSet xmlSchemaSet   =   new XmlSchemaSet();
-                //xmlSchemaSet.Add(null, "..\\..\\..\\Common\\Validation\\UBL-Invoice-2.1.xsd");
-                xmlSchemaSet.Add(null, "..\\..\\..\\Common\\Validation\\UBL-CreditNote-2.1.xsd");
-
-                Microsoft.Win32.OpenFileDialog openFileDialog   =   new Microsoft.Win32.OpenFileDialog();
-                openFileDialog.Multiselect      =   false;
-                openFileDialog.Filter           =   "XML de documentos|*.xml|Todos los archivos|*.*";
-                openFileDialog.DefaultExt       =   "*.xml";
-                openFileDialog.Title            =   "Selección de XML de documentos electrónicos";
-
-                Nullable<bool> dialogOk   =   openFileDialog.ShowDialog();
-                string ruta =   string.Empty;
-
-                if (dialogOk  == true)
-                    ruta    =   openFileDialog.FileName;
-                
-                XDocument document      =   XDocument.Load(@ruta);
-                bool validationErrors   =   false;
-                document.Validate(xmlSchemaSet, (s, ev) => { mensajeFinal = ev.Message; validationErrors = true; });
-
-                if (validationErrors)
-                    mensajeFinal    +=  mensajeFinal + "errores";
-                else
-                    mensajeFinal    +=  mensajeFinal + "sin errores";
-
-                CustomDialogWindow customDialogWindow       =   new CustomDialogWindow();
-                customDialogWindow.Buttons                  =   CustomDialogButtons.OK;
-                customDialogWindow.Caption                  =   "Detalle";
-                customDialogWindow.DefaultButton            =   CustomDialogResults.OK;
-                customDialogWindow.InstructionHeading       =   "Resultados de la descarga del documento(s)";
-                customDialogWindow.InstructionIcon          =   CustomDialogIcons.Information;
-                customDialogWindow.InstructionText          =   mensajeFinal;
-                CustomDialogResults customDialogResults     =   customDialogWindow.Show();
-            }
-            catch (Exception ex)
-            {
-                System.Windows.MessageBox.Show($"No se ha podido realizar la inspección del documento mediante XSD, detalle del error{ex}",
-                    "Error inesperado", MessageBoxButton.OK, MessageBoxImage.Error );
-                var msg     =   string.Concat(ex.InnerException?.Message,   ex.Message);
-                data_Log    =   new Data_Log()
-                {
-                    DetalleError    =   $"Detalle del error: {msg}",
-                    Comentario      =   "Error al enviar el documento a sunat desde la interfaz",
-                    IdUser_Empresa  =   data_Usuario.IdUser_Empresa
-                };
-                data_Log.Create_Log();
-            }
-        }
     }
-
 }

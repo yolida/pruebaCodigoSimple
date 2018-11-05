@@ -13,36 +13,27 @@ namespace StructureUBL.EstandarUbl
 {
     public class VoidedDocuments : IXmlSerializable, IEstructuraXml
     {
-        public UBLExtensions UBLExtensions { get; set; }
-
-        public string UblVersionId { get; set; }
-
-        public string CustomizationId { get; set; }
-
-        public string IdInvoice { get; set; }
-
-        public DateTime IssueDate { get; set; }
-
-        public DateTime ReferenceDate { get; set; }
-
-        public Signature Signature { get; set; }
-
-        public AccountingContributorParty AccountingSupplierParty { get; set; }
-
-        public List<VoidedDocumentsLine> VoidedDocumentsLines { get; set; }
-
-        public IFormatProvider Formato { get; set; }
-        public string Id { get; set; }
+        public UBLExtensions    UBLExtensions   { get; set; }
+        public string           UblVersionId    { get; set; }
+        public string           CustomizationId { get; set; }
+        public string           IdInvoice       { get; set; }
+        public DateTime         IssueDate       { get; set; }
+        public DateTime         ReferenceDate   { get; set; }
+        public Signature        Signature       { get; set; }
+        public AccountingContributorParty   AccountingSupplierParty { get; set; }
+        public List<VoidedDocumentsLine>    VoidedDocumentsLines { get; set; }
+        public IFormatProvider  Formato     { get; set; }
+        public string Id    { get; set; }
 
         public VoidedDocuments()
         {
-            UBLExtensions = new UBLExtensions();
-            Signature = new Signature();
-            AccountingSupplierParty = new AccountingContributorParty();
-            VoidedDocumentsLines = new List<VoidedDocumentsLine>();
-            UblVersionId = "2.0";
-            CustomizationId = "1.0";
-            Formato = new System.Globalization.CultureInfo(Formatos.Cultura);
+            UBLExtensions           =   new UBLExtensions();
+            Signature               =   new Signature();
+            AccountingSupplierParty =   new AccountingContributorParty();
+            VoidedDocumentsLines    =   new List<VoidedDocumentsLine>();
+            UblVersionId            =   "2.0";
+            CustomizationId         =   "1.0";
+            Formato =   new System.Globalization.CultureInfo(Formatos.Cultura);
         }
 
         public XmlSchema GetSchema()
@@ -56,8 +47,6 @@ namespace StructureUBL.EstandarUbl
         }
 
         public void WriteXml(XmlWriter writer)
-        { }
-        /*public void WriteXml(XmlWriter writer)
         {
             writer.WriteAttributeString("xmlns",        EspacioNombres.xmlnsVoidedDocuments);
             writer.WriteAttributeString("xmlns:cac",    EspacioNombres.cac);
@@ -68,35 +57,64 @@ namespace StructureUBL.EstandarUbl
             writer.WriteAttributeString("xmlns:xsi",    EspacioNombres.xsi);
 
             #region UBLExtensions
-
+            writer.WriteStartElement("ext:UBLExtensions");
             {
-                writer.WriteStartElement("ext:UBLExtensions");
-
-                #region UBLExtension
-
+                writer.WriteStartElement("ext:UBLExtension");
                 {
-                    writer.WriteStartElement("ext:UBLExtension");
-
-                    #region ExtensionContent
-
+                    writer.WriteStartElement("ext:ExtensionContent");
                     {
-                        writer.WriteStartElement("ext:ExtensionContent");
+                        #region Signature
 
-                        // En esta zona va el certificado digital.
+                        writer.WriteStartElement("cac:Signature");
+                        {
+                            writer.WriteElementString("cbc:ID", Signature.Id);
 
+                            #region SignatoryParty
+
+                            writer.WriteStartElement("cac:SignatoryParty");
+
+                            writer.WriteStartElement("cac:PartyIdentification");
+                            writer.WriteElementString("cbc:ID", Signature.SignatoryParty.PartyIdentification.Id.Value);
+                            writer.WriteEndElement();
+
+                            #region PartyName
+
+                            writer.WriteStartElement("cac:PartyName");
+
+                            //writer.WriteStartElement("cbc:Name");
+                            //writer.WriteCData(Signature.SignatoryParty.PartyName.Name);
+                            //writer.WriteEndElement();
+                            writer.WriteElementString("cbc:Name", Signature.SignatoryParty.PartyName.Name);
+
+                            writer.WriteEndElement();
+
+                            #endregion PartyName
+
+                            writer.WriteEndElement();
+
+                            #endregion SignatoryParty
+
+                            #region DigitalSignatureAttachment
+
+                            writer.WriteStartElement("cac:DigitalSignatureAttachment");
+
+                            writer.WriteStartElement("cac:ExternalReference");
+                            writer.WriteElementString("cbc:URI", Signature.DigitalSignatureAttachment.ExternalReference.Uri.Trim());
+                            writer.WriteEndElement();
+
+                            writer.WriteEndElement();
+
+                            #endregion DigitalSignatureAttachment
+                        }
                         writer.WriteEndElement();
+
+                        #endregion Signature
                     }
-
-                    #endregion ExtensionContent
-
                     writer.WriteEndElement();
                 }
-
-                #endregion UBLExtension
-
                 writer.WriteEndElement();
             }
-
+            writer.WriteEndElement();
             #endregion UBLExtensions
 
             writer.WriteElementString("cbc:UBLVersionID",       UblVersionId);
@@ -106,87 +124,71 @@ namespace StructureUBL.EstandarUbl
             writer.WriteElementString("cbc:IssueDate",          IssueDate.ToString("yyyy-MM-dd"));
 
             #region Signature
-
             writer.WriteStartElement("cac:Signature");
-            writer.WriteElementString("cbc:ID", Signature.Id);
+            {
+                writer.WriteElementString("cbc:ID", Signature.Id);
 
-            #region SignatoryParty
+                #region SignatoryParty
+                writer.WriteStartElement("cac:SignatoryParty");
+                {
+                    writer.WriteStartElement("cac:PartyIdentification");
+                    writer.WriteElementString("cbc:ID", Signature.SignatoryParty.PartyIdentification.Id.Value);
+                    writer.WriteEndElement();
 
-            writer.WriteStartElement("cac:SignatoryParty");
+                    #region PartyName
+                    writer.WriteStartElement("cac:PartyName");
+                    {
+                        writer.WriteStartElement("cbc:Name");
+                        writer.WriteCData(Signature.SignatoryParty.PartyName.Name);
+                        writer.WriteEndElement();
 
-            writer.WriteStartElement("cac:PartyIdentification");
-            writer.WriteElementString("cbc:ID", Signature.SignatoryParty.PartyIdentification.Id.Value);
+                        writer.WriteElementString("cbc:Name", Signature.SignatoryParty.PartyName.Name);
+                    }
+                    writer.WriteEndElement();
+                    #endregion PartyName
+                }
+                writer.WriteEndElement();
+                #endregion SignatoryParty
+
+                #region DigitalSignatureAttachment
+                writer.WriteStartElement("cac:DigitalSignatureAttachment");
+                {
+                    writer.WriteStartElement("cac:ExternalReference");
+                    writer.WriteElementString("cbc:URI", Signature.DigitalSignatureAttachment.ExternalReference.Uri.Trim());
+                    writer.WriteEndElement();
+                }
+                writer.WriteEndElement();
+                #endregion DigitalSignatureAttachment
+            }
             writer.WriteEndElement();
-
-            #region PartyName
-
-            writer.WriteStartElement("cac:PartyName");
-
-            //writer.WriteStartElement("cbc:Name");
-            //writer.WriteCData(Signature.SignatoryParty.PartyName.Name);
-            //writer.WriteEndElement();
-            writer.WriteElementString("cbc:Name", Signature.SignatoryParty.PartyName.Name);
-
-            writer.WriteEndElement();
-
-            #endregion PartyName
-
-            writer.WriteEndElement();
-
-            #endregion SignatoryParty
-
-            #region DigitalSignatureAttachment
-
-            writer.WriteStartElement("cac:DigitalSignatureAttachment");
-
-            writer.WriteStartElement("cac:ExternalReference");
-            writer.WriteElementString("cbc:URI", Signature.DigitalSignatureAttachment.ExternalReference.Uri.Trim());
-            writer.WriteEndElement();
-
-            writer.WriteEndElement();
-
-            #endregion DigitalSignatureAttachment
-
-            writer.WriteEndElement();
-
             #endregion Signature
 
             #region AccountingSupplierParty
-
             writer.WriteStartElement("cac:AccountingSupplierParty");
-
-            writer.WriteElementString("cbc:CustomerAssignedAccountID", AccountingSupplierParty.CustomerAssignedAccountId);
-            writer.WriteElementString("cbc:AdditionalAccountID",
-                AccountingSupplierParty.AdditionalAccountId);
-
-            #region Party
-
-            writer.WriteStartElement("cac:Party");
-
-            #region PartyLegalEntity
-
-            writer.WriteStartElement("cac:PartyLegalEntity");
-
             {
-                writer.WriteStartElement("cbc:RegistrationName");
-                writer.WriteString(AccountingSupplierParty.Party.PartyLegalEntity.RegistrationName);
+                writer.WriteElementString("cbc:CustomerAssignedAccountID",  AccountingSupplierParty.CustomerAssignedAccountId);
+                writer.WriteElementString("cbc:AdditionalAccountID",        AccountingSupplierParty.AdditionalAccountId);
+
+                #region Party
+                writer.WriteStartElement("cac:Party");
+                {
+                    #region PartyLegalEntity
+                    writer.WriteStartElement("cac:PartyLegalEntity");
+                    {
+                        writer.WriteStartElement("cbc:RegistrationName");
+                        writer.WriteCData(AccountingSupplierParty.Party.PartyLegalEntity.RegistrationName);
+                        writer.WriteEndElement();
+                    }
+                    writer.WriteEndElement();
+                    #endregion PartyLegalEntity
+                }
                 writer.WriteEndElement();
+                #endregion Party
             }
-
             writer.WriteEndElement();
-
-            #endregion PartyLegalEntity
-
-            writer.WriteEndElement();
-
-            #endregion Party
-
-            writer.WriteEndElement();
-
             #endregion AccountingSupplierParty
-
+            
             #region VoidedDocumentsLines
-
             foreach (var item in VoidedDocumentsLines)
             {
                 writer.WriteStartElement("sac:VoidedDocumentsLine");
@@ -195,12 +197,14 @@ namespace StructureUBL.EstandarUbl
                     writer.WriteElementString("cbc:DocumentTypeCode",       item.DocumentTypeCode);
                     writer.WriteElementString("sac:DocumentSerialID",       item.DocumentSerialId);
                     writer.WriteElementString("sac:DocumentNumberID",       item.DocumentNumberId.ToString());
-                    writer.WriteElementString("sac:VoidReasonDescription",  item.VoidReasonDescription);
+
+                    writer.WriteStartElement("sac:VoidReasonDescription");
+                    writer.WriteCData(item.VoidReasonDescription);
+                    writer.WriteEndElement();
                 }
                 writer.WriteEndElement();
             }
-
             #endregion VoidedDocumentsLines
-        }*/
+        }
     }
 }

@@ -10,12 +10,6 @@ namespace Models.Modelos
         /// 
         /// </summary>
         [JsonProperty(Required = Required.Always)]
-        public string NroReferencia { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonProperty(Required = Required.Always)]
         public string Tipo { get; set; }
 
         /// <summary>

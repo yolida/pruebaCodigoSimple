@@ -133,8 +133,7 @@ namespace GenerateXML
             {
                 creditNote.DiscrepancyResponses.Add(new DiscrepancyResponse
                 {
-                    ReferenceID     =   discrepancia.NroReferencia, //  Tal vez desaparezca
-                    ResponseCode    =   new ResponseCode() { Value  = discrepancia.Tipo },
+                    ResponseCode    =   new ResponseCode() { Value  = discrepancia.Tipo, ListName   =   "Tipo de nota de credito" },
                     Description     =   discrepancia.Descripcion
                 });
             }
