@@ -6,7 +6,8 @@ namespace DataLayer.CRUD
 {
     public interface IGetDataAsync
     {
-        Task<List<Data_Documentos>> GetListFiltered(Int16 IdDatosFox, DateTime Start_FechaRegistro, DateTime End_FechaRegistro, int? idTipoDocumento);
+        Task<List<Data_Documentos>> GetListFiltered(Int16 IdDatosFox, DateTime Start_FechaRegistro,
+            DateTime End_FechaRegistro, int? idTipoDocumento, bool? deBaja);
         Task<GetDataAsync> Read_List_Log(Data_Log data_Log);
     }
 }

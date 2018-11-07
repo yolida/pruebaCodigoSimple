@@ -106,20 +106,36 @@ namespace FEICONT.pages
                 Mouse.OverrideCursor = null;
             }
         }
-        private void btnBuscar_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
+        private void btnBuscar_Click(object sender, RoutedEventArgs e)  => LoadGrid();
 
         public async Task<List<Data_Documentos>> GetDocumentos()
         {
             var listDocumentos  =   new List<Data_Documentos>();
             try
             {
+                string estadoDocumento  =   lstEstadoDocumento.SelectionBoxItem.ToString();
+                bool? deBaja            =   null;
+                switch (estadoDocumento)
+                {
+                    case "Todos los documentos":
+                        deBaja  =   null;
+                        break;
+                    case "Dados de baja":
+                        deBaja  =   true;
+                        break;
+                    case "Sin dar de baja":
+                        deBaja  =   false;
+                        break;
+                    default:
+                        deBaja  =   null;
+                        break;
+                }
+
                 listDocumentos  =   await _Documentos.GetListFiltered(data_DatosFox.IdDatosFox, DateTime.Parse(datePick_inicio.SelectedDate.ToString()),
-                                    DateTime.Parse(datePick_fin.SelectedDate.ToString()), int.Parse(lstTipoDocumento.SelectedValue.ToString()));
+                                    DateTime.Parse(datePick_fin.SelectedDate.ToString()), int.Parse(lstTipoDocumento.SelectedValue.ToString()), deBaja);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 listDocumentos  =   new List<Data_Documentos>();
             }
@@ -142,110 +158,7 @@ namespace FEICONT.pages
             Data_Documentos data_Documentos =   (Data_Documentos)dataGridRow.DataContext;
             data_Documentos.Selectable      =   false;
         }
-
-        private async void btnEnviar_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                int cantidadAceptados = 0;
-                List<Data_Documentos> selected_data_Documentos = new List<Data_Documentos>();
-                foreach (var data_Documento in data_Documentos)
-                {
-                    if (data_Documento.Selectable == true)
-                        selected_data_Documentos.Add(data_Documento);
-                }
-
-                foreach (var selected_data_Documento in selected_data_Documentos)
-                {
-                    if (selected_data_Documento.EnviadoSunat == true)
-                        cantidadAceptados++;
-                }
-
-                if (selected_data_Documentos.Count() > 0)
-                {
-                    string enviados     =   string.Empty;
-                    string noEnviados   =   string.Empty;
-                    string mensajeFinal =   string.Empty;
-
-                    if (cantidadAceptados == 0)
-                    {
-                        ProgressDialogResult result     =   ProgressWindow.Execute(padre, "Procesando...", () =>
-                        {
-                            ProcesarEnvio procesarEnvio =   new ProcesarEnvio(data_Usuario);
-                            IEnumerable<Data_Documentos> documentosProcesar         =   selected_data_Documentos.AsEnumerable();
-                            Parallel.ForEach(documentosProcesar, (data_Documento)   =>  procesarEnvio.Post(data_Documento));
-                        });
-
-                        List<Data_Documentos> selected_data_Documentos_updated = new List<Data_Documentos>();
-                        Data_Documentos documentoUpdated;
-
-                        foreach (var data_Documento in data_Documentos)
-                        {
-                            if (data_Documento.Selectable == true)
-                            {
-                                documentoUpdated    =   new Data_Documentos(data_Documento.IdDocumento);
-                                documentoUpdated.Read_Documento();
-                                selected_data_Documentos_updated.Add(documentoUpdated);
-                            }
-                        }
-
-                        foreach (var selected_data_Documento in selected_data_Documentos_updated)
-                        {
-                            if (selected_data_Documento.EnviadoSunat == true)
-                            {
-                                enviados    +=  $", {selected_data_Documento.SerieCorrelativo}";
-                            }
-                            else
-                            {
-                                noEnviados  +=  $", {selected_data_Documento.SerieCorrelativo}";
-                            }
-                        }
-
-                        if (string.IsNullOrEmpty(enviados)) //  Ningún enviado, puros rechazados como voz
-                            mensajeFinal    =   $"No se pudo enviar ningún documento, los documentos rechazados son:\n {noEnviados}";
-
-                        if (!string.IsNullOrEmpty(enviados) && string.IsNullOrEmpty(noEnviados))    //  Sin ningún documento rechazado
-                            mensajeFinal    =   $"Se ha enviado a Sunat el(los) documento(s):\n {enviados}";
-
-                        if (!string.IsNullOrEmpty(enviados) && !string.IsNullOrEmpty(noEnviados))   //  Con al menos un documento rechazado
-                            mensajeFinal    =   $"Se ha enviado a Sunat el(los) documento(s):\n {enviados} y se han rechazado los siguientes documentos:\n {noEnviados}";
-
-                        LoadGrid();
-
-                        CustomDialogWindow customDialogWindow       =   new CustomDialogWindow();
-                        customDialogWindow.Buttons                  =   CustomDialogButtons.OK;
-                        customDialogWindow.Caption                  =   "Mensaje";
-                        customDialogWindow.DefaultButton            =   CustomDialogResults.OK;
-                        customDialogWindow.InstructionHeading       =   "Resultados del envío a Sunat";
-                        customDialogWindow.InstructionIcon          =   CustomDialogIcons.Information;
-                        customDialogWindow.InstructionText          =   mensajeFinal;
-                        CustomDialogResults customDialogResults     =   customDialogWindow.Show();
-                    }
-                    else
-                    {
-                        System.Windows.Forms.MessageBox.Show("Estimado usuario, está intentando enviar a Sunat uno o varios documentos que ya fueron aceptados, " +
-                            "sí desea revisar estos documento(s) selecciónelo y pulse descargar.", "Acción no permitida", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                }
-                else
-                    System.Windows.Forms.MessageBox.Show("Debe seleccionar al menos un documento", "Ninguna selección detectada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            catch (Exception ex)
-            {
-                var msg =   string.Concat(ex.InnerException?.Message,   ex.Message);
-                System.Windows.MessageBox.Show(msg, "Error al enviar el documento a sunat", MessageBoxButton.OK, MessageBoxImage.Error);
-                data_Log = new Data_Log()
-                {
-                    DetalleError    =   $"Detalle del error: {msg}",
-                    Comentario      =   "Error al enviar el documento a sunat desde la interfaz",
-                    IdUser_Empresa  =   data_Usuario.IdUser_Empresa
-                };
-                data_Log.Create_Log();
-            }
-        }
-
-        private void btnConsultar_Click(object sender, RoutedEventArgs e)   =>  LoadGrid();
-
+        
         private void chkAll_Checked(object sender, RoutedEventArgs e)
         {
             try
@@ -425,6 +338,147 @@ namespace FEICONT.pages
                 {
                     DetalleError    =   $"Detalle del error: {msg}",
                     Comentario      =   "Error al descargar los archivos del documento",
+                    IdUser_Empresa  =   data_Usuario.IdUser_Empresa
+                };
+                data_Log.Create_Log();
+            }
+        }
+
+        private void btnMotivoBaja_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                List<Data_Documentos> selected_data_Documentos = new List<Data_Documentos>();
+                foreach (var data_Documento in data_Documentos)
+                {
+                    if (data_Documento.Selectable   ==  true)
+                        selected_data_Documentos.Add(data_Documento);
+                }
+
+                switch (selected_data_Documentos.Count())
+                {
+                    case 0:
+                        System.Windows.Forms.MessageBox.Show("Debe seleccionar un documento", "Error de elección", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
+                    case 1:
+                        PromtMotivoBaja promtMotivoBaja =   new PromtMotivoBaja(data_Usuario, selected_data_Documentos[0].IdDocumento);
+                        promtMotivoBaja.ShowDialog();
+                        LoadGrid();
+                        break;
+                    default:
+                        System.Windows.Forms.MessageBox.Show("Debe seleccionar sólo un documento", "Error de elección", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                var msg     =   string.Concat(ex.InnerException?.Message,   ex.Message);
+                System.Windows.MessageBox.Show(msg, "Error inesperado al elegir el documento", MessageBoxButton.OK, MessageBoxImage.Error);
+                data_Log    =   new Data_Log()
+                {
+                    DetalleError    =   $"Detalle del error: {msg}",
+                    Comentario      =   "Error inesperado al elegir el documento",
+                    IdUser_Empresa  =   data_Usuario.IdUser_Empresa
+                };
+                data_Log.Create_Log();
+            }
+        }
+
+        private void btnGenerarBaja_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int cantidadAceptados = 0;
+                List<Data_Documentos> selected_data_Documentos = new List<Data_Documentos>();
+                foreach (var data_Documento in data_Documentos)
+                {
+                    if (data_Documento.Selectable == true)
+                        selected_data_Documentos.Add(data_Documento);
+                }
+
+                foreach (var selected_data_Documento in selected_data_Documentos)
+                {
+                    if (selected_data_Documento.EnviadoSunat == true)
+                        cantidadAceptados++;
+                }
+
+                if (selected_data_Documentos.Count() > 0)
+                {
+                    string enviados     =   string.Empty;
+                    string noEnviados   =   string.Empty;
+                    string mensajeFinal =   string.Empty;
+
+                    if (cantidadAceptados == 0)
+                    {
+                        ProgressDialogResult result     =   ProgressWindow.Execute(padre, "Procesando...", () =>
+                        {
+                            ProcesarEnvio procesarEnvio =   new ProcesarEnvio(data_Usuario);
+                            IEnumerable<Data_Documentos> documentosProcesar         =   selected_data_Documentos.AsEnumerable();
+                            Parallel.ForEach(documentosProcesar, (data_Documento)   =>  procesarEnvio.Post(data_Documento));
+                        });
+
+                        List<Data_Documentos> selected_data_Documentos_updated = new List<Data_Documentos>();
+                        Data_Documentos documentoUpdated;
+
+                        foreach (var data_Documento in data_Documentos)
+                        {
+                            if (data_Documento.Selectable == true)
+                            {
+                                documentoUpdated    =   new Data_Documentos(data_Documento.IdDocumento);
+                                documentoUpdated.Read_Documento();
+                                selected_data_Documentos_updated.Add(documentoUpdated);
+                            }
+                        }
+
+                        foreach (var selected_data_Documento in selected_data_Documentos_updated)
+                        {
+                            if (selected_data_Documento.EnviadoSunat == true)
+                            {
+                                enviados    +=  $", {selected_data_Documento.SerieCorrelativo}";
+                            }
+                            else
+                            {
+                                noEnviados  +=  $", {selected_data_Documento.SerieCorrelativo}";
+                            }
+                        }
+
+                        if (string.IsNullOrEmpty(enviados)) //  Ningún enviado, puros rechazados como voz
+                            mensajeFinal    =   $"No se pudo enviar ningún documento, los documentos rechazados son:\n {noEnviados}";
+
+                        if (!string.IsNullOrEmpty(enviados) && string.IsNullOrEmpty(noEnviados))    //  Sin ningún documento rechazado
+                            mensajeFinal    =   $"Se ha enviado a Sunat el(los) documento(s):\n {enviados}";
+
+                        if (!string.IsNullOrEmpty(enviados) && !string.IsNullOrEmpty(noEnviados))   //  Con al menos un documento rechazado
+                            mensajeFinal    =   $"Se ha enviado a Sunat el(los) documento(s):\n {enviados} y se han rechazado los siguientes documentos:\n {noEnviados}";
+
+                        LoadGrid();
+
+                        CustomDialogWindow customDialogWindow       =   new CustomDialogWindow();
+                        customDialogWindow.Buttons                  =   CustomDialogButtons.OK;
+                        customDialogWindow.Caption                  =   "Mensaje";
+                        customDialogWindow.DefaultButton            =   CustomDialogResults.OK;
+                        customDialogWindow.InstructionHeading       =   "Resultados del envío a Sunat";
+                        customDialogWindow.InstructionIcon          =   CustomDialogIcons.Information;
+                        customDialogWindow.InstructionText          =   mensajeFinal;
+                        CustomDialogResults customDialogResults     =   customDialogWindow.Show();
+                    }
+                    else
+                    {
+                        System.Windows.Forms.MessageBox.Show("Estimado usuario, está intentando enviar a Sunat uno o varios documentos que ya fueron aceptados, " +
+                            "sí desea revisar estos documento(s) selecciónelo y pulse descargar.", "Acción no permitida", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
+                else
+                    System.Windows.Forms.MessageBox.Show("Debe seleccionar al menos un documento", "Ninguna selección detectada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            catch (Exception ex)
+            {
+                var msg =   string.Concat(ex.InnerException?.Message,   ex.Message);
+                System.Windows.MessageBox.Show(msg, "Error al enviar el documento a sunat", MessageBoxButton.OK, MessageBoxImage.Error);
+                data_Log = new Data_Log()
+                {
+                    DetalleError    =   $"Detalle del error: {msg}",
+                    Comentario      =   "Error al enviar el documento a sunat desde la interfaz",
                     IdUser_Empresa  =   data_Usuario.IdUser_Empresa
                 };
                 data_Log.Create_Log();

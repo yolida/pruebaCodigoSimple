@@ -38,6 +38,7 @@ namespace Models.Modelos
 
         [JsonProperty(Required = Required.Always)]
         public string Moneda            { get; set; }
+        public string DescripcionMoneda { get; set; }
 
         [JsonProperty(Required = Required.AllowNull)]
         public string TipoOperacion     { get; set; }

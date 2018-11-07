@@ -1082,20 +1082,9 @@ namespace FEICONT
         {
             if (disponible)
             {
-                //bool permitido = clsEntityPermisos.accesoPermitido("12", Perfil.Cs_pr_Account_Id, Perfil.Cs_pr_Users_Id);
-                //if (permitido)
-                //{
-                //    ComunicacionBaja_Generar comBajaGen = new ComunicacionBaja_Generar(this, DatabaseLocal);
-                //    this.pageContainer.Navigate(comBajaGen);
-                //    //this.pageContainer.Source = new Uri("pages/ComunicacionBaja_Generar.xaml", UriKind.RelativeOrAbsolute);
-                //    seleccionarItem(12, "15");
-                //}
-                //else
-                //{
-                //    //MessageBox.Show("No tiene permiso para acceder a este módulo.", "Mensaje", MessageBoxButton.OK, MessageBoxImage.Stop);
-                //    seleccionarItem(12, "15");
-                //}
-                //  selectItem(11, 16);
+                GenerarComunicacionBaja generarComunicacionBaja =   new GenerarComunicacionBaja(this, data_Usuario);
+                this.pageContainer.Navigate(generarComunicacionBaja);
+                seleccionarItem(12, "15");
             }
             else
                 MessageBox.Show(mensaje, mensajeCabecera, MessageBoxButton.OK, MessageBoxImage.Exclamation);

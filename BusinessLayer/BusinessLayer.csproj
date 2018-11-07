@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Firmar.cs" />
+    <Compile Include="GenerarComunicacionBaja.cs" />
     <Compile Include="GenerarFactura.cs" />
     <Compile Include="GenerarNotaCredito.cs" />
     <Compile Include="GenerarNotaDebito.cs" />

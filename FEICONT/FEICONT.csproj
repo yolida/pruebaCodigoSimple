@@ -335,12 +335,15 @@
     <Compile Include="pages\Factura_Sunat.xaml.cs">
       <DependentUpon>Factura_Sunat.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\GenerarComunicacionBaja.xaml.cs">
-      <DependentUpon>GenerarComunicacionBaja.xaml</DependentUpon>
+    <Compile Include="pages\ComunicacionBaja.xaml.cs">
+      <DependentUpon>ComunicacionBaja.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\HighlightDateConverter.cs" />
     <Compile Include="pages\Listado.xaml.cs">
       <DependentUpon>Listado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\PromtMotivoBaja.xaml.cs">
+      <DependentUpon>PromtMotivoBaja.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\prueba.xaml.cs">
       <DependentUpon>prueba.xaml</DependentUpon>
@@ -650,13 +653,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="pages\GenerarComunicacionBaja.xaml">
+    <Page Include="pages\ComunicacionBaja.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\Listado.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\PromtMotivoBaja.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\prueba.xaml">
       <SubType>Designer</SubType>

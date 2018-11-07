@@ -28,7 +28,7 @@ namespace GenerateXML
                     {
                         PartyIdentification = new PartyIdentification
                         {
-                            Id  =   new PartyIdentificationId { Value   =   documento.Emisor.NroDocumento }
+                            Id      =   new PartyIdentificationId { Value   =   documento.Emisor.NroDocumento }
                         },
                         PartyName   =   new PartyName { Name    =   documento.Emisor.NombreLegal }
                     },
@@ -40,7 +40,7 @@ namespace GenerateXML
                         }
                     }
                 },
-                AccountingSupplierParty = new AccountingContributorParty
+                AccountingSupplierParty =   new AccountingContributorParty
                 {
                     CustomerAssignedAccountId   =   documento.Emisor.NroDocumento,
                     AdditionalAccountId         =   documento.Emisor.TipoDocumento,
@@ -57,8 +57,8 @@ namespace GenerateXML
                 {
                     LineId                  =   baja.Id,
                     DocumentTypeCode        =   baja.TipoDocumento,
-                    DocumentSerialId        =   baja.Serie,
-                    DocumentNumberId        =   Convert.ToInt32(baja.Correlativo),
+                    DocumentSerialID        =   baja.Serie,
+                    DocumentNumberID        =   baja.Correlativo,
                     VoidReasonDescription   =   baja.MotivoBaja
                 });
             }

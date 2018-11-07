@@ -288,7 +288,7 @@
 
                     <Label  Grid.Column="2" Grid.Row="1" Content="Estado de documento" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="0,6"/>
                     <ComboBox  x:Name="lstEstadoDocumento" Grid.Column="3" Grid.Row="1" Margin="0,5,5,5" Style="{StaticResource ComboBoxFlatStyle}" >
-                        <ComboBoxItem IsSelected="True">Todos los documentos</ComboBoxItem>
+                        <ComboBoxItem IsSelected="True"  >Todos los documentos</ComboBoxItem>
                         <ComboBoxItem>Dados de baja</ComboBoxItem>
                         <ComboBoxItem>Sin dar de baja</ComboBoxItem>
                     </ComboBox>
@@ -374,7 +374,7 @@
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
 
-                        <DataGridTextColumn Binding="{Binding FechaEmision}" IsReadOnly="True" CanUserReorder="False" SortDirection="Ascending" CanUserSort="True" Width="1*">
+                        <DataGridTextColumn Binding="{Binding FechaEmision}" IsReadOnly="True" CanUserReorder="False" SortDirection="Ascending" CanUserSort="True" Width="1*" >
                             <DataGridTextColumn.Header>
                                 <TextBlock  Text="Fecha de emisión" VerticalAlignment="Center" HorizontalAlignment="Center"  />
                             </DataGridTextColumn.Header>
@@ -431,9 +431,9 @@
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
 
-                        <DataGridTextColumn Binding="{Binding ComentarioDocumento}"  Width="2*" IsReadOnly="True"  CanUserSort="False" CanUserReorder="False" CanUserResize="False"  >
+                        <DataGridTextColumn Binding="{Binding MotivoBaja}"  Width="2*" IsReadOnly="True"  CanUserSort="False" CanUserReorder="False" CanUserResize="False"  >
                             <DataGridTextColumn.Header>
-                                <TextBlock  Text="Comentario" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                                <TextBlock  Text="Motivo de baja" VerticalAlignment="Center" HorizontalAlignment="Center"  />
                             </DataGridTextColumn.Header>
                             <DataGridTextColumn.ElementStyle>
                                 <Style>
@@ -458,7 +458,7 @@
                         <ColumnDefinition Width="3*"/>
                         <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
-                    <DockPanel Grid.Column="3" Grid.Row="0">
+                    <DockPanel Grid.Column="2" Grid.Row="0">
                         <Button Margin="0,0,0,0" x:Name="btnDescargarXML" HorizontalAlignment="Right" Click="btnDescargarXML_Click"  VerticalAlignment="Bottom" MinWidth="150"  >
                             <StackPanel Orientation="Horizontal">
                                 <Image x:Name="imgBtnDescargarXML" Source="/FEICONT;component/images/download_24.png" Height="18" Width="26" RenderTransformOrigin="0.654,0.5" />
@@ -466,11 +466,19 @@
                             </StackPanel>
                         </Button>
                     </DockPanel>
-                    <DockPanel Grid.Column="4" Grid.Row="0">
-                        <Button Margin="0,0,0,0" x:Name="btnEnviar" HorizontalAlignment="Right" Click="btnEnviar_Click"  VerticalAlignment="Bottom" MinWidth="150"  >
+                    <DockPanel Grid.Column="3" Grid.Row="0">
+                        <Button Margin="0,0,0,0" x:Name="btnMotivoBaja" HorizontalAlignment="Right" Click="btnMotivoBaja_Click"  VerticalAlignment="Bottom" MinWidth="150"  >
                             <StackPanel Orientation="Horizontal">
-                                <Image x:Name="image" Source="/FEICONT;component/images/send.png" Height="18" Width="26" RenderTransformOrigin="0.654,0.5" />
-                                <Label x:Name="TextBoton" Content="Enviar a Sunat"/>
+                                <Image x:Name="imgBtnMotivoBaja" Source="/FEICONT;component/images/edit-icon.png" Height="18" Width="26" RenderTransformOrigin="0.654,0.5" />
+                                <Label x:Name="txtBtnMotivoBaja" Content="Motivo de baja"/>
+                            </StackPanel>
+                        </Button>
+                    </DockPanel>
+                    <DockPanel Grid.Column="4" Grid.Row="0">
+                        <Button Margin="0,0,0,0" x:Name="btnGenerarBaja" HorizontalAlignment="Right" Click="btnGenerarBaja_Click"  VerticalAlignment="Bottom" MinWidth="150"  >
+                            <StackPanel Orientation="Horizontal">
+                                <Image x:Name="image" Source="/FEICONT;component/images/remove-icon.png" Height="18" Width="26" RenderTransformOrigin="0.654,0.5" />
+                                <Label x:Name="TextBoton" Content="Dar de baja"/>
                             </StackPanel>
                         </Button>
                     </DockPanel>

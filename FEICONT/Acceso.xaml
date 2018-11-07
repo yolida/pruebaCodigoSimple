@@ -6,72 +6,6 @@
         xmlns:local="clr-namespace:FEICONT"
         mc:Ignorable="d"
         Title="Inicio de Sesión" Width="420" Height="400" Background="{x:Null}" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen" Icon="images/fei_cuadro.ico" Loaded="Window_Loaded"  Visibility="Visible">
-    <Border  CornerRadius="10,10,10,10" BorderBrush="#FF000000" BorderThickness="0,0,0,0">
-        <Border.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#d3dbdd" Offset="0"/>
-                <GradientStop Color="#d3dbdd" Offset="1"/>
-            </LinearGradientBrush>
-
-        </Border.Background>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="2*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="2*"/>
-            </Grid.ColumnDefinitions>
-            <Image  x:Name="imageIngresar"  Margin="10,20,10,20" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Source="images/fei_cuadro_logo.png" Stretch="Fill"/>
-            <Label Padding="4,0,0,0" FontWeight="Bold"  Margin="16,0,0,0" Grid.Column="0" Grid.Row="1" Content="Empresa:" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
-            <ComboBox x:Name="lstEmpresas" Grid.Column="1" Grid.Row="1" MinHeight="30" Margin="10" TextBlock.TextAlignment="Center" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center" VerticalAlignment="Center">
-                <ComboBoxItem IsSelected="True">Sin empresa</ComboBoxItem>
-            </ComboBox>
-            <Label Padding="4,0,0,0" FontWeight="Bold"  Margin="16,0,0,0" Grid.Column="0" Grid.Row="2" Content="Usuario:" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
-            <TextBox  x:Name="txtUsuario" KeyUp="txtUsuario_KeyUp" Grid.Column="1" Grid.Row="2" Padding="2" Margin="10"  TextAlignment="Center"  VerticalContentAlignment="Center"  TextBlock.FontWeight="Bold" />
-            <Label Padding="4,0,0,0" FontWeight="Bold"  Margin="16,0,0,0" Grid.Column="0" Grid.Row="3" Content="Contraseña:"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
-            <PasswordBox   Grid.Column="1" Grid.Row="3" x:Name="txtPassword" Background="WhiteSmoke" Padding="2" Margin="10"   TextBlock.TextAlignment="Center" VerticalContentAlignment="Center" KeyUp="txtPassword_KeyUp"/>
-            <Grid Grid.ColumnSpan="2" Grid.Row="4">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <DockPanel Grid.Column="0" Grid.Row="0">
-                    <Button Grid.Column="0" x:Name="btnCerrar" MinWidth="120" Padding="5" HorizontalAlignment="Center"   VerticalAlignment="top" Click="btnCerrar_Click" >
-                        <StackPanel Orientation="Horizontal">
-                            <Image x:Name="imsage" Source="images/login-exit.png" Height="15" Width="20" />
-                            <Label x:Name="TexstBoton" Content="Salir"/>
-                        </StackPanel>
-                    </Button>
-                </DockPanel>
-                <DockPanel Grid.Column="1" Grid.Row="0">
-                    <Button Grid.Column="2" Padding="5" x:Name="btnNuevo" MinWidth="120" HorizontalAlignment="Center"   VerticalAlignment="Top" Click="btnNuevo_Click" >
-                        <StackPanel Orientation="Horizontal">
-                            <Image x:Name="imgBtnNuevo" Source="images/login-incio.png" Stretch="Fill" Height="15" Width="20"/>
-                            <Label x:Name="lblBtnNuevo" Content="Nuevo usuario"/>
-                        </StackPanel>
-                    </Button>
-                </DockPanel>
-                <DockPanel Grid.Column="2" Grid.Row="0">
-                    <Button Grid.Column="1" Padding="5" x:Name="btnIngresar" MinWidth="120" HorizontalAlignment="Center"  VerticalAlignment="Top" Click="btnIngresar_Click" >
-                        <StackPanel Orientation="Horizontal">
-                            <Image x:Name="imageButton" Source="images/login-incio.png" Stretch="Fill" Height="15" Width="20"/>
-                            <Label x:Name="TextBoton" Content="Ingresar"/>
-                        </StackPanel>
-                    </Button>
-                </DockPanel>
-            </Grid>
-            <Label x:Name="Informacion"  Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Content="Iniciando sesión..." HorizontalContentAlignment="Center" Visibility="Hidden" />
-        </Grid>
-    </Border>
     <Window.Resources>
         <Style TargetType="{x:Type ComboBoxItem}">
             <Setter Property="SnapsToDevicePixels" Value="true" />
@@ -330,5 +264,71 @@
             </Setter>
         </Style>
     </Window.Resources>
+    <Border  CornerRadius="10,10,10,10" BorderBrush="#FF000000" BorderThickness="0,0,0,0">
+        <Border.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#d3dbdd" Offset="0"/>
+                <GradientStop Color="#d3dbdd" Offset="1"/>
+            </LinearGradientBrush>
+
+        </Border.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Image  x:Name="imageIngresar"  Margin="10,20,10,20" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Source="images/fei_cuadro_logo.png" Stretch="Fill"/>
+            <Label Padding="4,0,0,0" FontWeight="Bold"  Margin="16,0,0,0" Grid.Column="0" Grid.Row="1" Content="Empresa:" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+            <ComboBox x:Name="lstEmpresas" Grid.Column="1" Grid.Row="1" MinHeight="30" Margin="10" TextBlock.TextAlignment="Center" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center" VerticalAlignment="Center">
+                <ComboBoxItem IsSelected="True">Sin empresa</ComboBoxItem>
+            </ComboBox>
+            <Label Padding="4,0,0,0" FontWeight="Bold"  Margin="16,0,0,0" Grid.Column="0" Grid.Row="2" Content="Usuario:" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+            <TextBox  x:Name="txtUsuario" KeyUp="txtUsuario_KeyUp" Grid.Column="1" Grid.Row="2" Padding="2" Margin="10"  TextAlignment="Center"  VerticalContentAlignment="Center"  TextBlock.FontWeight="Bold" />
+            <Label Padding="4,0,0,0" FontWeight="Bold"  Margin="16,0,0,0" Grid.Column="0" Grid.Row="3" Content="Contraseña:"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+            <PasswordBox   Grid.Column="1" Grid.Row="3" x:Name="txtPassword" Background="WhiteSmoke" Padding="2" Margin="10"   TextBlock.TextAlignment="Center" VerticalContentAlignment="Center" KeyUp="txtPassword_KeyUp"/>
+            <Grid Grid.ColumnSpan="2" Grid.Row="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <DockPanel Grid.Column="0" Grid.Row="0">
+                    <Button Grid.Column="0" x:Name="btnCerrar" MinWidth="120" Padding="5" HorizontalAlignment="Center"   VerticalAlignment="top" Click="btnCerrar_Click" >
+                        <StackPanel Orientation="Horizontal">
+                            <Image x:Name="imsage" Source="images/login-exit.png" Height="15" Width="20" />
+                            <Label x:Name="TexstBoton" Content="Salir"/>
+                        </StackPanel>
+                    </Button>
+                </DockPanel>
+                <DockPanel Grid.Column="1" Grid.Row="0">
+                    <Button Grid.Column="2" Padding="5" x:Name="btnNuevo" MinWidth="120" HorizontalAlignment="Center"   VerticalAlignment="Top" Click="btnNuevo_Click" >
+                        <StackPanel Orientation="Horizontal">
+                            <Image x:Name="imgBtnNuevo" Source="images/login-incio.png" Stretch="Fill" Height="15" Width="20"/>
+                            <Label x:Name="lblBtnNuevo" Content="Nuevo usuario"/>
+                        </StackPanel>
+                    </Button>
+                </DockPanel>
+                <DockPanel Grid.Column="2" Grid.Row="0">
+                    <Button Grid.Column="1" Padding="5" x:Name="btnIngresar" MinWidth="120" HorizontalAlignment="Center"  VerticalAlignment="Top" Click="btnIngresar_Click" >
+                        <StackPanel Orientation="Horizontal">
+                            <Image x:Name="imageButton" Source="images/login-incio.png" Stretch="Fill" Height="15" Width="20"/>
+                            <Label x:Name="TextBoton" Content="Ingresar"/>
+                        </StackPanel>
+                    </Button>
+                </DockPanel>
+            </Grid>
+            <Label x:Name="Informacion"  Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Content="Iniciando sesión..." HorizontalContentAlignment="Center" Visibility="Hidden" />
+        </Grid>
+    </Border>
 
 </Window>

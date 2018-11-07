@@ -8,12 +8,30 @@ namespace StructureUBL.SunatAggregateComponents
     [Serializable]
     public class VoidedDocumentsLine
     {
+        /// <summary>
+        /// Número de ítem
+        /// </summary>
         public int      LineId              { get; set; }
+        /// <summary>
+        /// Tipo de documento - Catálogo 1
+        /// </summary>
         public string   DocumentTypeCode    { get; set; }
-        public string   DocumentSerialId    { get; set; }
-        public int      DocumentNumberId    { get; set; }
+        /// <summary>
+        /// Serie del documento que se va dar de baja
+        /// </summary>
+        public string   DocumentSerialID    { get; set; }
+        /// <summary>
+        /// Número correlativo del documento que se va a dar de baja
+        /// </summary>
+        public string   DocumentNumberID    { get; set; }
+        /// <summary>
+        /// Motivo de la baja
+        /// </summary>
         public string   VoidReasonDescription   { get; set; }
         // A partir de aqui son los datos para el resumen diario.
+        /// <summary>
+        /// Identificador de la comunicacdión RA-Fecha-####
+        /// </summary>
         public string   Id  { get; set; }
         public int      StartDocumentNumberId   { get; set; }
         public int      EndDocumentNumberId     { get; set; }
@@ -23,7 +41,7 @@ namespace StructureUBL.SunatAggregateComponents
         public List<TaxTotal>       TaxTotals       { get; set; }
         public AccountingContributorParty AccountingCustomerParty { get; set; }
         public BillingReference BillingReference    { get; set; }
-        public int?         ConditionCode           { get; set; }
+        public int?             ConditionCode       { get; set; }
 
         public VoidedDocumentsLine()
         {

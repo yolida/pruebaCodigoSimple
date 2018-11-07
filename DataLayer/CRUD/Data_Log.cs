@@ -60,7 +60,7 @@ namespace DataLayer.CRUD
             return Convert.ToBoolean(sqlCommand.Parameters["@Validation"].Value.ToString());
         }
 
-        public Task<List<Data_Documentos>> GetListFiltered(short IdDatosFox, DateTime Start_FechaRegistro, DateTime End_FechaRegistro, int? idTipoDocumento)
+        public Task<List<Data_Documentos>> GetListFiltered(short IdDatosFox, DateTime Start_FechaRegistro, DateTime End_FechaRegistro, int? idTipoDocumento, bool? deBaja)
         {
             throw new NotImplementedException();
         }

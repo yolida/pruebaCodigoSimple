@@ -36,6 +36,7 @@ namespace DataLayer.CRUD
         public string   XmlFirmado          { get; set; }
         public String   FechaEmision        { get; set; }
         public String   HoraEmision         { get; set; }
+        public string   MotivoBaja          { get; set; }
         public Boolean  Selectable          { get; set; }
 
         public Data_Documentos(string idDocumento)
@@ -118,19 +119,13 @@ namespace DataLayer.CRUD
             connection.Disconnect();
         }
 
-        async Task<List<Data_Documentos>> IGetDataAsync.GetListFiltered(Int16 IdDatosFox, DateTime Start_FechaRegistro, DateTime End_FechaRegistro, int? idTipoDocumento)
+        async Task<List<Data_Documentos>> IGetDataAsync.GetListFiltered(Int16 IdDatosFox, DateTime Start_FechaRegistro, 
+            DateTime End_FechaRegistro, int? idTipoDocumento, bool? deBaja)
         {
             var task    =   Task.Factory.StartNew(()   =>
             { 
                 List<Data_Documentos> data_Documentos   =   new List<Data_Documentos>();
                 string procedure    =   string.Empty;
-                //if (idTipoDocumento != 0)
-                //    procedure   =   "[dbo].[Read_List_Documento_By_TipoDocumento]";
-                //else
-                //{
-                //    idTipoDocumento =   null;
-                //    procedure       =   "[dbo].[Read_List_Documento_By_Filters]";
-                //}
 
                 if (idTipoDocumento == 0)
                     idTipoDocumento =   null;
@@ -190,9 +185,12 @@ namespace DataLayer.CRUD
                 {
                     SqlDbType       =   SqlDbType.Bit,
                     ParameterName   =   "@ComunicacionBaja",
-                    IsNullable      =   true,
-                    Value           =   null ?? DBNull.Value
+                    IsNullable      =   true
                 };
+                if (deBaja == null)
+                    parameterComunicacionBaja.Value  = DBNull.Value;
+                else
+                    parameterComunicacionBaja.Value  = deBaja;
                 sqlCommand.Parameters.Add(parameterComunicacionBaja);
 
                 connection.Connect();
@@ -274,6 +272,8 @@ namespace DataLayer.CRUD
 
                     data_Documento.FechaEmision         =   DateTime.Parse(row["FechaEmision"].ToString()).ToShortDateString();
                     data_Documento.HoraEmision          =   row["HoraEmision"].ToString();
+                    data_Documento.MotivoBaja           =   row["MotivoBaja"].ToString();
+
                     data_Documento.Selectable           =   false;
                     data_Documentos.Add(data_Documento);
                 }
@@ -333,6 +333,14 @@ namespace DataLayer.CRUD
                         Value           =   EstadoSunat
                     };
                     sqlCommand.Parameters.Add(paramEstadoSunat);
+                    break;
+                case "[dbo].[Update_Documento_MotivoBaja]":
+                    SqlParameter parameterMotivoBaja    =   new SqlParameter() {
+                        SqlDbType       =   SqlDbType.NVarChar,
+                        ParameterName   =   "@MotivoBaja",
+                        Value           =   MotivoBaja
+                    };
+                    sqlCommand.Parameters.Add(parameterMotivoBaja);
                     break;
             }
             

@@ -195,8 +195,8 @@ namespace StructureUBL.EstandarUbl
                 {
                     writer.WriteElementString("cbc:LineID",                 item.LineId.ToString());
                     writer.WriteElementString("cbc:DocumentTypeCode",       item.DocumentTypeCode);
-                    writer.WriteElementString("sac:DocumentSerialID",       item.DocumentSerialId);
-                    writer.WriteElementString("sac:DocumentNumberID",       item.DocumentNumberId.ToString());
+                    writer.WriteElementString("sac:DocumentSerialID",       item.DocumentSerialID);
+                    writer.WriteElementString("sac:DocumentNumberID",       item.DocumentNumberID.ToString());
 
                     writer.WriteStartElement("sac:VoidReasonDescription");
                     writer.WriteCData(item.VoidReasonDescription);

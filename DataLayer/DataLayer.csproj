@@ -59,6 +59,7 @@
     <Compile Include="CRUD\Data_DatosFox.cs" />
     <Compile Include="CRUD\Data_Discrepancia.cs" />
     <Compile Include="CRUD\Data_DocumentoDetalle.cs" />
+    <Compile Include="CRUD\Data_DocumentoFigurativo.cs" />
     <Compile Include="CRUD\Data_DocumentoRelacionado.cs" />
     <Compile Include="CRUD\Data_Documentos.cs" />
     <Compile Include="CRUD\Data_Log.cs" />

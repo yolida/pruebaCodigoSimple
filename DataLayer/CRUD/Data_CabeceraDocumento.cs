@@ -20,15 +20,19 @@ namespace DataLayer.CRUD
         {
             string storedProcedure  =   "[dbo].[Read_CabeceraDocumento]";
             Connection connection   =   new Connection();
-            SqlCommand sqlCommand   =   new SqlCommand();
-            sqlCommand.CommandText  =   storedProcedure;
-            sqlCommand.CommandType  =   CommandType.StoredProcedure;
-            sqlCommand.Connection   =   connection.connectionString;
+            SqlCommand sqlCommand = new SqlCommand
+            {
+                CommandText =   storedProcedure,
+                CommandType =   CommandType.StoredProcedure,
+                Connection  =   connection.connectionString
+            };
 
-            SqlParameter paramIdCabeceraDocumento   =   new SqlParameter();
-            paramIdCabeceraDocumento.SqlDbType      =   SqlDbType.Int;
-            paramIdCabeceraDocumento.ParameterName  =   "@IdCabeceraDocumento";
-            paramIdCabeceraDocumento.Value          =   IdCabeceraDocumento;
+            SqlParameter paramIdCabeceraDocumento = new SqlParameter
+            {
+                SqlDbType       =   SqlDbType.Int,
+                ParameterName   =   "@IdCabeceraDocumento",
+                Value           =   IdCabeceraDocumento
+            };
             sqlCommand.Parameters.Add(paramIdCabeceraDocumento);
             
             connection.Connect();
@@ -50,6 +54,7 @@ namespace DataLayer.CRUD
                     }
                     OrdenCompra         =   reader["OrdenCompra"].ToString();
                     Moneda              =   reader["CodigoMoneda"].ToString();
+                    DescripcionMoneda   =   reader["DescripcionMoneda"].ToString();
                     TipoOperacion       =   reader["CodigoTipoOperacion"].ToString();
                     CantidadItems       =   Convert.ToInt16(reader["CantidadItems"].ToString());
                     TotalValorVenta     =   Convert.ToDecimal(reader["TotalValorVenta"].ToString());
