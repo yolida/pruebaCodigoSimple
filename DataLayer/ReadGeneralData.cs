@@ -158,13 +158,42 @@ namespace DataLayer
 
         /// <summary>
         /// Jorge Luis | 21/09/2018 | *
-        /// Requiere que se le pase el valor de uniqueidentifier para que obtenga el valor de cabecera de documenmto
+        /// Requiere que se le pase el valor de uniqueidentifier para que obtenga el valor de cabecera de documento
         /// </summary>
         /// <param name="storedProcedure"></param>
         /// <param name="nameColumn"></param>
         /// <param name="id"></param>
         /// <returns></returns>
         public int GetScalarValueINT(string storedProcedure, string nameColumn, string id)
+        {
+            int value;
+            Connection connection   = new Connection();
+            SqlCommand sqlCommand   = new SqlCommand();
+            sqlCommand.CommandText  = storedProcedure;
+            sqlCommand.CommandType  = CommandType.StoredProcedure;
+            sqlCommand.Connection   = connection.connectionString;
+
+            SqlParameter parameter  = new SqlParameter();
+            parameter.SqlDbType     = SqlDbType.NVarChar; // Tipo de dato NVarChar
+            parameter.ParameterName = nameColumn;
+            parameter.Value         = id;
+            sqlCommand.Parameters.Add(parameter);
+            
+            connection.Connect();
+            value   = (int)sqlCommand.ExecuteScalar(); // Devuelve el valor convertido explícitamente a int
+            connection.Disconnect();
+
+            return value;
+        }
+
+        /// <summary>
+        /// Se le pasa un valor Int16, para retornar un valor int
+        /// </summary>
+        /// <param name="storedProcedure"></param>
+        /// <param name="nameColumn"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int GetScalarValueINT(string storedProcedure, string nameColumn, Int16 id)
         {
             int value;
             Connection connection   = new Connection();

@@ -388,7 +388,6 @@ namespace FEICONT.pages
         {
             try
             {
-                int cantidadAceptados = 0;
                 List<Data_Documentos> selected_data_Documentos = new List<Data_Documentos>();
                 foreach (var data_Documento in data_Documentos)
                 {
@@ -396,10 +395,11 @@ namespace FEICONT.pages
                         selected_data_Documentos.Add(data_Documento);
                 }
 
+                List<Data_Documentos> dadosDeBaja = new List<Data_Documentos>();
                 foreach (var selected_data_Documento in selected_data_Documentos)
                 {
-                    if (selected_data_Documento.EnviadoSunat == true)
-                        cantidadAceptados++;
+                    if (selected_data_Documento.ComunicacionBaja == true)
+                        dadosDeBaja.Add(selected_data_Documento);
                 }
 
                 if (selected_data_Documentos.Count() > 0)
@@ -408,48 +408,13 @@ namespace FEICONT.pages
                     string noEnviados   =   string.Empty;
                     string mensajeFinal =   string.Empty;
 
-                    if (cantidadAceptados == 0)
+                    if (dadosDeBaja.Count == 0)
                     {
                         ProgressDialogResult result     =   ProgressWindow.Execute(padre, "Procesando...", () =>
                         {
                             ProcesarEnvio procesarEnvio =   new ProcesarEnvio(data_Usuario);
-                            IEnumerable<Data_Documentos> documentosProcesar         =   selected_data_Documentos.AsEnumerable();
-                            Parallel.ForEach(documentosProcesar, (data_Documento)   =>  procesarEnvio.Post(data_Documento));
+                            mensajeFinal = procesarEnvio.Post(selected_data_Documentos);
                         });
-
-                        List<Data_Documentos> selected_data_Documentos_updated = new List<Data_Documentos>();
-                        Data_Documentos documentoUpdated;
-
-                        foreach (var data_Documento in data_Documentos)
-                        {
-                            if (data_Documento.Selectable == true)
-                            {
-                                documentoUpdated    =   new Data_Documentos(data_Documento.IdDocumento);
-                                documentoUpdated.Read_Documento();
-                                selected_data_Documentos_updated.Add(documentoUpdated);
-                            }
-                        }
-
-                        foreach (var selected_data_Documento in selected_data_Documentos_updated)
-                        {
-                            if (selected_data_Documento.EnviadoSunat == true)
-                            {
-                                enviados    +=  $", {selected_data_Documento.SerieCorrelativo}";
-                            }
-                            else
-                            {
-                                noEnviados  +=  $", {selected_data_Documento.SerieCorrelativo}";
-                            }
-                        }
-
-                        if (string.IsNullOrEmpty(enviados)) //  Ningún enviado, puros rechazados como voz
-                            mensajeFinal    =   $"No se pudo enviar ningún documento, los documentos rechazados son:\n {noEnviados}";
-
-                        if (!string.IsNullOrEmpty(enviados) && string.IsNullOrEmpty(noEnviados))    //  Sin ningún documento rechazado
-                            mensajeFinal    =   $"Se ha enviado a Sunat el(los) documento(s):\n {enviados}";
-
-                        if (!string.IsNullOrEmpty(enviados) && !string.IsNullOrEmpty(noEnviados))   //  Con al menos un documento rechazado
-                            mensajeFinal    =   $"Se ha enviado a Sunat el(los) documento(s):\n {enviados} y se han rechazado los siguientes documentos:\n {noEnviados}";
 
                         LoadGrid();
 
@@ -457,15 +422,15 @@ namespace FEICONT.pages
                         customDialogWindow.Buttons                  =   CustomDialogButtons.OK;
                         customDialogWindow.Caption                  =   "Mensaje";
                         customDialogWindow.DefaultButton            =   CustomDialogResults.OK;
-                        customDialogWindow.InstructionHeading       =   "Resultados del envío a Sunat";
+                        customDialogWindow.InstructionHeading       =   "Resultados de la comunicación de baja";
                         customDialogWindow.InstructionIcon          =   CustomDialogIcons.Information;
                         customDialogWindow.InstructionText          =   mensajeFinal;
                         CustomDialogResults customDialogResults     =   customDialogWindow.Show();
                     }
                     else
                     {
-                        System.Windows.Forms.MessageBox.Show("Estimado usuario, está intentando enviar a Sunat uno o varios documentos que ya fueron aceptados, " +
-                            "sí desea revisar estos documento(s) selecciónelo y pulse descargar.", "Acción no permitida", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        System.Windows.Forms.MessageBox.Show("Estimado usuario, está intentando dar de baja documentos que ya fueron dados de baja previamente. ",
+                            "Acción no permitida", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                 }
                 else

@@ -16,6 +16,7 @@ namespace GenerateXML
             var documento = (ComunicacionBaja)request;
             var voidedDocument = new VoidedDocuments
             {
+                Id              =   documento.IdDocumento,
                 IdInvoice       =   documento.IdDocumento,
                 IssueDate       =   Convert.ToDateTime(documento.FechaEmision),
                 ReferenceDate   =   Convert.ToDateTime(documento.FechaReferencia),

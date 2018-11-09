@@ -7,9 +7,31 @@ namespace DataLayer.CRUD
     public class Data_DocumentoFigurativo
     {
         public string   XMLFirmado  { get; set; }
-        public string   CDR         { get; set; }
-        public string   IdDocumento { get; set; }
+        public string   CdrSunat    { get; set; }
+
+        public string   Tipo        { get; set; }
+        public string   ComentarioDocumento { get; set; }
+
+        /// <summary>
+        /// Es el ID que se le asigna al xml como identificador único del documento RA-Fecha-#####
+        /// </summary>
+        public string   Identificador       { get; set; }
+
+        /// <summary>
+        /// El ID del documento de la tabla Documentos, de tipo UniqueIdentifier
+        /// </summary>
+        public string   IdDocumento         { get; set; }
+
+        /// <summary>
+        /// Es el ID del documento figurativo, que podría ser un resumen diario o una comunicación de baja
+        /// pertenece a la tabla DocumentoFigurativo
+        /// </summary>
         public int      IdDocumentoFigurativo   { get; set; }
+
+        /// <summary>
+        /// Es el id resultante de la creación de un documento  figurativo, se emplea para crear registro en la tabla
+        /// Figurativo_Documentos, debido a que un documento figurativo puede estar relacionado con varios documentos
+        /// </summary>
         public int      SCOPE_IDENTITY_VALUE    { get; set; }
 
         /// <summary>
@@ -34,12 +56,33 @@ namespace DataLayer.CRUD
             };
             sqlCommand.Parameters.Add(parameterXMLFirmado);
 
-            SqlParameter parameterCDR   =   new SqlParameter() {
+            SqlParameter parameterCdrSunat  =   new SqlParameter() {
                 SqlDbType       =   SqlDbType.NVarChar,
-                ParameterName   =   "@CDR",
-                Value           =   CDR
+                ParameterName   =   "@CdrSunat",
+                Value           =   CdrSunat
             };
-            sqlCommand.Parameters.Add(parameterCDR);
+            sqlCommand.Parameters.Add(parameterCdrSunat);
+
+            SqlParameter parameterTipo  =   new SqlParameter() {
+                SqlDbType       =   SqlDbType.NVarChar,
+                ParameterName   =   "@Tipo",
+                Value           =   Tipo
+            };
+            sqlCommand.Parameters.Add(parameterTipo);
+
+            SqlParameter parameterComentarioDocumento   =   new SqlParameter() {
+                SqlDbType       =   SqlDbType.NVarChar,
+                ParameterName   =   "@ComentarioDocumento",
+                Value           =   ComentarioDocumento
+            };
+            sqlCommand.Parameters.Add(parameterComentarioDocumento);
+
+            SqlParameter parameterIdentificador =   new SqlParameter() {
+                SqlDbType       =   SqlDbType.NVarChar,
+                ParameterName   =   "@Identificador",
+                Value           =   Identificador
+            };
+            sqlCommand.Parameters.Add(parameterIdentificador);
 
             SqlParameter parameterValidation    =   new SqlParameter() {
                 SqlDbType       =   SqlDbType.Bit,

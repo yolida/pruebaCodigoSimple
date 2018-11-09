@@ -17,7 +17,15 @@ namespace StructureUBL.EstandarUbl
         public string           UblVersionId    { get; set; }
         public string           CustomizationId { get; set; }
         public string           IdInvoice       { get; set; }
+
+        /// <summary>
+        /// Fecha de generación de la comunicación
+        /// </summary>
         public DateTime         IssueDate       { get; set; }
+
+        /// <summary>
+        /// Fecha de generación del documento dado de baja
+        /// </summary>
         public DateTime         ReferenceDate   { get; set; }
         public Signature        Signature       { get; set; }
         public AccountingContributorParty   AccountingSupplierParty { get; set; }

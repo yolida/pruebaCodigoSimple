@@ -234,11 +234,12 @@ namespace DataLayer.CRUD
                     #endregion FechaEmisionSUNAT
 
                     #region EnviadoSunat
-                    data_Documento.EnviadoSunat        = Convert.ToBoolean(row["EnviadoSunat"].ToString());
+                    data_Documento.IdDatosFox           =   IdDatosFox;
+                    data_Documento.EnviadoSunat         =   Convert.ToBoolean(row["EnviadoSunat"].ToString());
                     if (data_Documento.EnviadoSunat)
-                        data_Documento.TextEnviadoSunat = "Enviado";
+                        data_Documento.TextEnviadoSunat =   "Enviado";
                     else
-                        data_Documento.TextEnviadoSunat = "No enviado";
+                        data_Documento.TextEnviadoSunat =   "No enviado";
                     #endregion EnviadoSunat
 
                     #region EnviadoServer
@@ -347,7 +348,7 @@ namespace DataLayer.CRUD
             SqlParameter paramComprobacion  =   new SqlParameter() {
                 Direction       =   ParameterDirection.Output,
                 SqlDbType       =   SqlDbType.Bit,
-                ParameterName   =   "Validation"
+                ParameterName   =   "@Validation"
             };
             sqlCommand.Parameters.Add(paramComprobacion);
 
@@ -361,6 +362,64 @@ namespace DataLayer.CRUD
         public Task<GetDataAsync> Read_List_Log(Data_Log data_Log)
         {
             throw new NotImplementedException();
+        }
+
+        public bool Update_Documento()
+        {
+            Connection connection   =   new Connection();
+            SqlCommand sqlCommand   =   new SqlCommand() {
+                CommandText =   "[dbo].[Update_Documento]",
+                CommandType =   CommandType.StoredProcedure,
+                Connection  =   connection.connectionString
+            };
+            
+            SqlParameter parameterIdDocumento   =   new SqlParameter() {
+                SqlDbType       =   SqlDbType.UniqueIdentifier,
+                ParameterName   =   "@IdDocumento",
+                Value           =   IdDocumento	
+            };
+            sqlCommand.Parameters.Add(parameterIdDocumento);
+
+            SqlParameter parameterEnviadoSunat  =   new SqlParameter() {
+                SqlDbType       =   SqlDbType.Bit,
+                ParameterName   =   "@EnviadoSunat",
+                Value           =   EnviadoSunat
+            };
+            sqlCommand.Parameters.Add(parameterEnviadoSunat);
+
+            SqlParameter parameterEstadoSunat   =   new SqlParameter() {
+                SqlDbType       =   SqlDbType.NVarChar,
+                ParameterName   =   "@EstadoSunat",
+                Value           =   EstadoSunat
+            };
+            sqlCommand.Parameters.Add(parameterEstadoSunat);
+
+            SqlParameter parameterComentarioDocumento   =   new SqlParameter() {
+                SqlDbType       =   SqlDbType.NVarChar,
+                ParameterName   =   "@ComentarioDocumento",
+                Value           =   ComentarioDocumento
+            };
+            sqlCommand.Parameters.Add(parameterComentarioDocumento);
+
+            SqlParameter parameterComunicacionBaja  =   new SqlParameter() {
+                SqlDbType       =   SqlDbType.Bit,
+                ParameterName   =   "@ComunicacionBaja",
+                Value           =   ComunicacionBaja
+            };
+            sqlCommand.Parameters.Add(parameterComunicacionBaja);
+
+            SqlParameter parameterValidation    =   new SqlParameter() {
+                Direction       =   ParameterDirection.Output,
+                SqlDbType       =   SqlDbType.Bit,
+                ParameterName   =   "@Validation"
+            };
+            sqlCommand.Parameters.Add(parameterValidation);
+
+            connection.Connect();
+            sqlCommand.ExecuteNonQuery();
+            connection.Disconnect();
+
+            return bool.Parse(sqlCommand.Parameters["@Validation"].Value.ToString());
         }
     }
 }
