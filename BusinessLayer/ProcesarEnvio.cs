@@ -100,7 +100,7 @@ namespace BusinessLayer
                                                                     GetURL(data_Documento.TipoDocumento));  // Obtenemos los datos para EnviarDocumentoRequest
 
                 //EnviarDocumentoResponse enviarDocumentoResponse =   await enviarSunat.Post_Documento(enviarDocumentoRequest);
-                EnviarDocumentoResponse enviarDocumentoResponse =   enviarSunat.Post_Documento(enviarDocumentoRequest, true);
+                EnviarDocumentoResponse enviarDocumentoResponse =   enviarSunat.Post_Documento(enviarDocumentoRequest,  true);
 
                 if (enviarDocumentoResponse.Exito && !string.IsNullOrEmpty(enviarDocumentoResponse.TramaZipCdr))    // Comprobar envío a sunat
                 {
@@ -215,60 +215,47 @@ namespace BusinessLayer
                     if (firmadoResponse.Exito)  //  Comprobamos que se haya firmado de forma correcta
                     {
                         EnviarSunat enviarSunat                         =   new EnviarSunat();
+
                         EnviarDocumentoRequest enviarDocumentoRequest   =   enviarSunat.Data(firmadoResponse.TramaXmlFirmado, data_Documentos[0], GetURL("03"));
-                        EnviarDocumentoResponse enviarDocumentoResponse =   enviarSunat.Post_Documento(enviarDocumentoRequest, true);
+                        string nombreZip    =   $"{documento.Emisor.NroDocumento}-{documento.IdDocumento}";
+                        EnviarResumenResponse enviarResumenResponse     =   enviarSunat.Post_Figurativo(enviarDocumentoRequest, nombreZip);
                 
-                        if (enviarDocumentoResponse.Exito && !string.IsNullOrEmpty(enviarDocumentoResponse.TramaZipCdr))    // Comprobar envío a sunat
+                        if (enviarResumenResponse.Exito)    // Comprobar envío a sunat
                         {
+                            ConsultaConstanciaRequest consultaConstanciaRequest =   new ConsultaConstanciaRequest() {
+                                Ruc         =   enviarDocumentoRequest.Ruc,
+                                UsuarioSol  =   enviarDocumentoRequest.UsuarioSol,
+                                ClaveSol    =   enviarDocumentoRequest.ClaveSol,
+                                EndPointUrl =   " https://e-factura.sunat.gob.pe/ol-it-wsconscpegem/billConsultService"
+                            };
+                            Consultar consultar =   new Consultar();
+                            EnviarDocumentoResponse enviarDocumentoResponse =   consultar.Post_Constancia(consultaConstanciaRequest);
+                            if (enviarDocumentoResponse.Exito)
+                                mensajeRespuesta    =   $"La comunicación de baja se ha realizado con éxito, detalle: {enviarDocumentoResponse.MensajeRespuesta}";
+                            else
+                            {
+                                mensajeRespuesta    =   $"La comunicación de baja se ha realizado con éxito, pero hemos tenido" +
+                                    $"inconvenietes al obtener el CDR del documento: {documento.IdDocumento}, probablemente se este empleado el usuario MODDATOS," +
+                                    $"para obtener el CDR debes descargarlo de forma manual en la opción 'Consulta de CDR'";
+                                data_Log = new Data_Log()
+                                {
+                                    DetalleError    =   mensajeRespuesta,
+                                    Comentario      =   $"Ha ocurrido un error al generar el CDR de la comunicación de baja: {documento.IdDocumento}, probablemente se este empleado MODDATOS",
+                                    IdUser_Empresa  =   data_Usuario.IdUser_Empresa
+                                };
+                                data_Log.Create_Log();
+                            }
+
                             Data_DocumentoFigurativo data_DocumentoFigurativo   =   new Data_DocumentoFigurativo()
                             {
                                 XMLFirmado          =   firmadoResponse.TramaXmlFirmado,
-                                CdrSunat            =   enviarDocumentoResponse.TramaZipCdr,
                                 Tipo                =   "Comunicación de baja",
-                                ComentarioDocumento =   enviarDocumentoResponse.MensajeRespuesta,
+                                ComentarioDocumento =   mensajeRespuesta,
                                 Identificador       =   documento.IdDocumento,
+                                NumeroTicket        =   enviarResumenResponse.NroTicket,
+                                CdrSunat            =   enviarDocumentoResponse.TramaZipCdr ?? string.Empty
                             };
-                            mensajeRespuesta    =   enviarDocumentoResponse.MensajeRespuesta;
-
-                            Data_DocumentoFigurativo dataUnion_DocumentoFigurativo;
-                            Data_Documentos updateDocumento;
-                            foreach (var data_Documento in data_Documentos)
-                            {
-                                dataUnion_DocumentoFigurativo   =   new Data_DocumentoFigurativo() {
-                                    IdDocumentoFigurativo   =   data_DocumentoFigurativo.SCOPE_IDENTITY_VALUE,
-                                    IdDocumento             =   data_Documento.IdDocumento
-                                };
-                                if (!dataUnion_DocumentoFigurativo.Create_Figurativo_Documentos())
-                                {
-                                    data_Log = new Data_Log()
-                                    {
-                                        DetalleError    =   $"Detalle de tablas: Documentos {data_Documento.IdDocumento},{data_Documento.SerieCorrelativo} con la " +
-                                        $"tabla Figurativo_Documentos {data_DocumentoFigurativo.SCOPE_IDENTITY_VALUE}, {data_DocumentoFigurativo.Identificador} ",
-                                        Comentario      =   "Ha ocurrido un error al guardar el registro de la comunicación de baja, en la tabla de unión",
-                                        IdUser_Empresa  =   data_Usuario.IdUser_Empresa
-                                    };
-                                    data_Log.Create_Log();
-                                }
-
-                                updateDocumento         =   new Data_Documentos() {
-                                    IdDocumento         =   data_Documento.IdDocumento,
-                                    EnviadoSunat        =   true,
-                                    EstadoSunat         =   "De baja",
-                                    ComentarioDocumento =   $"El documento figura dentro de la comunicación de baja con código de identificación: {data_DocumentoFigurativo.Identificador}",
-                                    ComunicacionBaja    =   true,
-                                };
-                                if (!updateDocumento.Update_Documento())
-                                {
-                                    data_Log = new Data_Log()
-                                    {
-                                        DetalleError    =   $"No se ha podido actualizar el documento{data_Documento.IdDocumento}, {data_Documento.SerieCorrelativo} para indicar que se ha dado de baja",
-                                        Comentario      =   "Error en la base de datos",
-                                        IdUser_Empresa  =   data_Usuario.IdUser_Empresa
-                                    };
-                                    data_Log.Create_Log();
-                                }
-                            }
-
+                            
                             if (!data_DocumentoFigurativo.Create_DocumentoFigurativo())
                             {
                                 data_Log = new Data_Log()
@@ -279,13 +266,54 @@ namespace BusinessLayer
                                 };
                                 data_Log.Create_Log();
                             }
+                            else
+                            {
+                                Data_DocumentoFigurativo dataUnion_DocumentoFigurativo;
+                                Data_Documentos updateDocumento;
+                                foreach (var data_Documento in data_Documentos)
+                                {
+                                    dataUnion_DocumentoFigurativo   =   new Data_DocumentoFigurativo() {
+                                        IdDocumentoFigurativo   =   data_DocumentoFigurativo.SCOPE_IDENTITY_VALUE,
+                                        IdDocumento             =   data_Documento.IdDocumento
+                                    };
+                                    if (!dataUnion_DocumentoFigurativo.Create_Figurativo_Documentos())
+                                    {
+                                        data_Log = new Data_Log()
+                                        {
+                                            DetalleError    =   $"Detalle de tablas: Documentos {data_Documento.IdDocumento},{data_Documento.SerieCorrelativo} con la " +
+                                            $"tabla Figurativo_Documentos {data_DocumentoFigurativo.SCOPE_IDENTITY_VALUE}, {data_DocumentoFigurativo.Identificador} ",
+                                            Comentario      =   "Ha ocurrido un error al guardar el registro de la comunicación de baja, en la tabla de unión",
+                                            IdUser_Empresa  =   data_Usuario.IdUser_Empresa
+                                        };
+                                        data_Log.Create_Log();
+                                    }
+
+                                    updateDocumento         =   new Data_Documentos() {
+                                        IdDocumento         =   data_Documento.IdDocumento,
+                                        EnviadoSunat        =   true,
+                                        EstadoSunat         =   "De baja",
+                                        ComentarioDocumento =   $"El documento figura dentro de la comunicación de baja con código de identificación: {data_DocumentoFigurativo.Identificador}",
+                                        ComunicacionBaja    =   true,
+                                    };
+                                    if (!updateDocumento.Update_Documento())
+                                    {
+                                        data_Log = new Data_Log()
+                                        {
+                                            DetalleError    =   $"No se ha podido actualizar el documento{data_Documento.IdDocumento}, {data_Documento.SerieCorrelativo} para indicar que se ha dado de baja",
+                                            Comentario      =   "Error en la base de datos",
+                                            IdUser_Empresa  =   data_Usuario.IdUser_Empresa
+                                        };
+                                        data_Log.Create_Log();
+                                    }
+                                }
+                            }
                         }
                         else
                         {
-                            mensajeRespuesta    = enviarDocumentoResponse.MensajeError;
+                            mensajeRespuesta    = enviarResumenResponse.MensajeError;
                             data_Log = new Data_Log()
                             {
-                                DetalleError    =   enviarDocumentoResponse.MensajeError,
+                                DetalleError    =   enviarResumenResponse.MensajeError,
                                 Comentario      =   "Error al crear la comunicación de baja",
                                 IdUser_Empresa  =   data_Usuario.IdUser_Empresa
                             };

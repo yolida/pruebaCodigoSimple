@@ -28,6 +28,8 @@ namespace DataLayer.CRUD
         /// </summary>
         public int      IdDocumentoFigurativo   { get; set; }
 
+        public string   NumeroTicket            { get; set; }
+
         /// <summary>
         /// Es el id resultante de la creación de un documento  figurativo, se emplea para crear registro en la tabla
         /// Figurativo_Documentos, debido a que un documento figurativo puede estar relacionado con varios documentos
@@ -84,6 +86,13 @@ namespace DataLayer.CRUD
             };
             sqlCommand.Parameters.Add(parameterIdentificador);
 
+            SqlParameter parameterNumeroTicket  =   new SqlParameter() {
+                SqlDbType       =   SqlDbType.NVarChar,
+                ParameterName   =   "@NumeroTicket",
+                Value           =   NumeroTicket
+            };
+            sqlCommand.Parameters.Add(parameterNumeroTicket);
+
             SqlParameter parameterValidation    =   new SqlParameter() {
                 SqlDbType       =   SqlDbType.Bit,
                 Direction       =   ParameterDirection.Output,
@@ -128,7 +137,7 @@ namespace DataLayer.CRUD
             sqlCommand.Parameters.Add(parameterIdDocumentoFigurativo);
 
             SqlParameter parameterIdDocumento   =   new SqlParameter() {
-                SqlDbType       =   SqlDbType.UniqueIdentifier,
+                SqlDbType       =   SqlDbType.NVarChar,
                 ParameterName   =   "@IdDocumento",
                 Value           =   IdDocumento
             };

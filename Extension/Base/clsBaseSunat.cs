@@ -1048,8 +1048,8 @@ namespace Extension.Base
             bool estado = false;
             try
             {
-                clsEntityVoidedDocuments entidad = new clsEntityVoidedDocuments(local).cs_fxObtenerUnoPorId(Id);
-                bool licencia = new clsBaseLicencia().licenceActive(entidad.Cs_tag_IssueDate, versionProducto);
+                clsEntityVoidedDocuments entidad    =   new clsEntityVoidedDocuments(local).cs_fxObtenerUnoPorId(Id);
+                bool licencia                       =   new clsBaseLicencia().licenceActive(entidad.Cs_tag_IssueDate, versionProducto);
                 ///cambiar es otro para retencion otro metodo 
                 /// solo este y el ticket 
                 if (licencia)
@@ -1058,12 +1058,17 @@ namespace Extension.Base
 
                     try
                     {
-
                         //clsBaseConfiguracion configuracion = new clsBaseConfiguracion();
                         clsEntityDeclarant declarante = new clsEntityDeclarant().cs_pxObtenerUnoPorId(local.Cs_pr_Declarant_Id);
                         SecurityBindingElement binding = SecurityBindingElement.CreateUserNameOverTransportBindingElement(); binding.IncludeTimestamp = false;
-                        www.sunat.gob.pe.billServiceClient bsc = new www.sunat.gob.pe.billServiceClient(new CustomBinding(binding, new TextMessageEncodingBindingElement(MessageVersion.Soap11, Encoding.UTF8), new HttpsTransportBindingElement()), new EndpointAddress(cs_fxObtenerWS(declarante, "1")));
-                        string documento_nombre = declarante.Cs_pr_Ruc + "-" + entidad.Cs_tag_ID.Split('-')[0].Trim().ToString() + "-" + entidad.Cs_tag_IssueDate.Replace("-", "") + "-" + entidad.Cs_tag_ID.Split('-')[2].Trim().ToString() + ".zip";
+
+                        www.sunat.gob.pe.billServiceClient bsc = new www.sunat.gob.pe.billServiceClient(
+                            new CustomBinding(binding, new TextMessageEncodingBindingElement(MessageVersion.Soap11, Encoding.UTF8), 
+                            new HttpsTransportBindingElement()), new EndpointAddress(cs_fxObtenerWS(declarante, "1")));
+
+                        string documento_nombre = declarante.Cs_pr_Ruc + "-" + entidad.Cs_tag_ID.Split('-')[0].Trim().ToString() + "-" + 
+                            entidad.Cs_tag_IssueDate.Replace("-", "") + "-" + entidad.Cs_tag_ID.Split('-')[2].Trim().ToString() + ".zip";
+
                         string xx = documento_nombre;
                         string FechaHora = DateTime.Now.ToString("yyyy-MM-dd hh-mm-ss");
                         bsc.ClientCredentials.UserName.UserName = declarante.Cs_pr_Ruc + declarante.Cs_pr_Usuariosol;

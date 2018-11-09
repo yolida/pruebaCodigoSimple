@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Consultar.cs" />
     <Compile Include="Firmar.cs" />
     <Compile Include="GenerarComunicacionBaja.cs" />
     <Compile Include="GenerarFactura.cs" />

@@ -113,6 +113,40 @@ namespace BusinessLayer
             return response;
         }
 
+        public EnviarResumenResponse Post_Figurativo(EnviarDocumentoRequest request, string nombreArchivo)
+        {
+            var response        =   new EnviarResumenResponse();
+            var tramaZip        =   _serializador.GenerarZip(request.TramaXmlFirmado, nombreArchivo, true);
+
+            _servicioSunatDocumentos.Inicializar(new ParametrosConexion
+            {
+                Ruc             =   request.Ruc,
+                UserName        =   request.UsuarioSol,
+                Password        =   request.ClaveSol,
+                EndPointUrl     =   request.EndPointUrl
+            });
+
+            var resultado = _servicioSunatDocumentos.EnviarResumen(new DocumentoSunat
+            {
+                TramaXml        =   tramaZip,
+                NombreArchivo   =   $"{nombreArchivo}.zip"
+            });
+
+            if (resultado.Exito)
+            {
+                response.NroTicket      =   resultado.NumeroTicket;
+                response.Exito          =   true;
+                response.NombreArchivo  =   nombreArchivo;
+            }
+            else
+            {
+                response.Exito          =   false;
+                response.MensajeError   =   resultado.MensajeError;
+            }
+
+            return response;
+        }
+
         public async Task<EnviarDocumentoResponse> Post_Resumen(EnviarDocumentoRequest request)
         {
             var response        =   new EnviarDocumentoResponse();

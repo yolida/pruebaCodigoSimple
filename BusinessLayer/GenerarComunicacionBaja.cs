@@ -40,8 +40,8 @@ namespace BusinessLayer
 
             var comunicacionBaja    =   new ComunicacionBaja() {
                 IdDocumento     =   $"RA-{dateTime.Year}{mes}{dia}-{numeracion}",
-                FechaEmision    =   data_Documentos[0].FechaEmision,    // Cuando se crea el documento
-                FechaReferencia =   dateTime.ToString(),                // Cuando se da de baja
+                FechaEmision    =   dateTime.ToString(),            // Cuando se da de baja
+                FechaReferencia =   data_Documentos[0].FechaEmision,// Cuando se crea el documento
                 Emisor          =   data_Emisor,
                 Bajas           =   new List<DocumentoBaja>()
             };

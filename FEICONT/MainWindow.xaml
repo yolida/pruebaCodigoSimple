@@ -421,7 +421,7 @@
                             <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem15"  Foreground="white" VerticalAlignment="Top">
                                 <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkRetencionAlertas" >Formas de alerta y envío de CRE</Hyperlink>
                             </Label>
-                           
+
                         </WrapPanel>
                     </Expander>
                     <Expander Background="#FF698B24" Template="{DynamicResource ExpanderControlTemplateCustom}">
@@ -438,7 +438,7 @@
                                 <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkReversionGenerar" >Generar reversión de CRE</Hyperlink>
                             </Label>
                             <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem29"  Foreground="white" VerticalAlignment="Top">
-                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkReversionSunat" >Envío Sunat y Consulta Ticket CRE </Hyperlink>
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkReversionSunat" >Envío Sunat y Consulta Ticket CRE</Hyperlink>
                             </Label>
                         </WrapPanel>
                     </Expander>
@@ -533,7 +533,7 @@
                         </Expander.Header>
                         <WrapPanel Background="#a1c46d">
                             <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem26"  Foreground="white" VerticalAlignment="Top">
-                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkAyuda" >Ayuda </Hyperlink>
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkAyuda" >Ayuda</Hyperlink>
                             </Label>
                             <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem27"  Foreground="white" VerticalAlignment="Top">
                                 <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkAcercaDe" >Acerca de FEI</Hyperlink>
@@ -579,17 +579,21 @@
                     <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" x:Name="lblEmpresa" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
                     <Label Grid.Column="2" Grid.Row="0" Content="Usuario: " HorizontalContentAlignment="Left" VerticalContentAlignment="Center" TextBlock.FontWeight="Bold"/>
                     <Label Grid.Column="3" Grid.Row="0" x:Name="lblUsuario" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
-                    <Button x:Name="btnCerrarSesion"  Padding="20 5"  HorizontalAlignment="Right" Grid.Column="4" Grid.Row="0"  TextBlock.FontWeight="Bold" Click="btnCerrarSesion_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <Image x:Name="imageButton" Source="images/logout.png" Height="15" Width="15"/>
-                            <Label x:Name="TextBoton" Content="Cerrar sesión"/>
-                        </StackPanel>
-                    </Button>
+                    <DockPanel Grid.Column="4" Grid.Row="0" Margin="5">
+                        <Button x:Name="btnCerrarSesion"  Padding="20 0"  HorizontalAlignment="Right"  TextBlock.FontWeight="Bold" Click="btnCerrarSesion_Click">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                </Style>
+                            </Button.Resources>
+                            <StackPanel Orientation="Horizontal">
+                                <Image x:Name="imageButton" Source="images/logout.png" Height="15" Width="15"/>
+                                <Label x:Name="TextBoton" Content="Cerrar sesión"/>
+                            </StackPanel>
+                        </Button>
+                    </DockPanel>
                 </Grid>
-
             </Grid>
-
         </Grid>
     </Grid>
-
 </Window>

@@ -341,20 +341,20 @@
                   CanUserResizeRows="False"
                   Background="White"
                   HeadersVisibility="Column"
-                  VerticalGridLinesBrush="#000000"
-                  GridLinesVisibility="None" SelectionUnit="FullRow" MinHeight="250"  >
+                  VerticalGridLinesBrush="Azure"
+                  GridLinesVisibility="Horizontal" SelectionUnit="FullRow"  >
                     <DataGrid.Resources>
                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#DEDCD9"/>
                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
                     </DataGrid.Resources>
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn MaxWidth="35" CanUserReorder="False" CanUserResize="False">
+                        <DataGridTemplateColumn CanUserReorder="False" CanUserResize="False">
                             <DataGridTemplateColumn.Header>
                                 <CheckBox HorizontalAlignment="Center" x:Name="chkAll" Checked="chkAll_Checked"  Unchecked="chkAll_Unchecked"/>
                             </DataGridTemplateColumn.Header>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <CheckBox Name="chkCell"  IsChecked="{Binding Path=Selectable, Mode=TwoWay}" Margin="0 2 0 0" Checked="chkCell_Checked"  Unchecked="chkCell_Unchecked" />
+                                    <CheckBox Name="chkCell" IsChecked="{Binding Path=Selectable, Mode=TwoWay}" Margin="0 2 0 0" Checked="chkCell_Checked"  Unchecked="chkCell_Unchecked" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                             <DataGridTemplateColumn.CellStyle>
@@ -367,7 +367,7 @@
 
                         <DataGridTextColumn Binding="{Binding Fecha}" IsReadOnly="True" CanUserReorder="False" Width="0.5*">
                             <DataGridTextColumn.Header>
-                                <TextBlock  Text="Fecha" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                                <TextBlock Text="Fecha" VerticalAlignment="Center" HorizontalAlignment="Center"  />
                             </DataGridTextColumn.Header>
                             <DataGridTextColumn.ElementStyle>
                                 <Style>

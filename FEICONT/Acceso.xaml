@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="Inicio de Sesión" Width="420" Height="400" Background="{x:Null}" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen" Icon="images/fei_cuadro.ico" Loaded="Window_Loaded"  Visibility="Visible">
     <Window.Resources>
+        <Style TargetType="{x:Type Border}">
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
         <Style TargetType="{x:Type ComboBoxItem}">
             <Setter Property="SnapsToDevicePixels" Value="true" />
             <Setter Property="HorizontalAlignment" Value="Stretch" />

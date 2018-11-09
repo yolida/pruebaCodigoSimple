@@ -88,12 +88,7 @@ namespace StructureUBL.EstandarUbl
                             #region PartyName
 
                             writer.WriteStartElement("cac:PartyName");
-
-                            //writer.WriteStartElement("cbc:Name");
-                            //writer.WriteCData(Signature.SignatoryParty.PartyName.Name);
-                            //writer.WriteEndElement();
                             writer.WriteElementString("cbc:Name", Signature.SignatoryParty.PartyName.Name);
-
                             writer.WriteEndElement();
 
                             #endregion PartyName
@@ -149,8 +144,6 @@ namespace StructureUBL.EstandarUbl
                         writer.WriteStartElement("cbc:Name");
                         writer.WriteCData(Signature.SignatoryParty.PartyName.Name);
                         writer.WriteEndElement();
-
-                        writer.WriteElementString("cbc:Name", Signature.SignatoryParty.PartyName.Name);
                     }
                     writer.WriteEndElement();
                     #endregion PartyName

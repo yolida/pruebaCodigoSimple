@@ -361,9 +361,17 @@ namespace FEICONT.pages
                         System.Windows.Forms.MessageBox.Show("Debe seleccionar un documento", "Error de elección", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
                     case 1:
-                        PromtMotivoBaja promtMotivoBaja =   new PromtMotivoBaja(data_Usuario, selected_data_Documentos[0].IdDocumento);
-                        promtMotivoBaja.ShowDialog();
-                        LoadGrid();
+                        if (!selected_data_Documentos[0].ComunicacionBaja)
+                        {
+                            PromtMotivoBaja promtMotivoBaja =   new PromtMotivoBaja(data_Usuario, selected_data_Documentos[0].IdDocumento);
+                            promtMotivoBaja.ShowDialog();
+                            LoadGrid();
+                        }
+                        else
+                        {
+                            System.Windows.Forms.MessageBox.Show("Estimado dino-usuario, ya dio de baja a este documento, y ya no puede cambiar el motivo de baja del documento.", 
+                                "Documento ya dado de baja", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
                         break;
                     default:
                         System.Windows.Forms.MessageBox.Show("Debe seleccionar sólo un documento", "Error de elección", MessageBoxButtons.OK, MessageBoxIcon.Information);

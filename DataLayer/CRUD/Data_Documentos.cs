@@ -374,7 +374,7 @@ namespace DataLayer.CRUD
             };
             
             SqlParameter parameterIdDocumento   =   new SqlParameter() {
-                SqlDbType       =   SqlDbType.UniqueIdentifier,
+                SqlDbType       =   SqlDbType.NVarChar,
                 ParameterName   =   "@IdDocumento",
                 Value           =   IdDocumento	
             };
