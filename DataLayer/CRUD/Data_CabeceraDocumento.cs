@@ -63,6 +63,11 @@ namespace DataLayer.CRUD
                     TotalOtrosCargos    =   Convert.ToDecimal(reader["TotalOtrosCargos"].ToString());
                     TotalAnticipos      =   Convert.ToDecimal(reader["TotalAnticipos"].ToString());
                     ImporteTotalVenta   =   Convert.ToDecimal(reader["ImporteTotalVenta"].ToString());
+                    Gravadas            =   Convert.ToDecimal(reader["Gravadas"].ToString());
+                    Exoneradas          =   Convert.ToDecimal(reader["Exoneradas"].ToString());
+                    Inafectas           =   Convert.ToDecimal(reader["Inafectas"].ToString());
+                    Exportaciones       =   Convert.ToDecimal(reader["Exportaciones"].ToString());
+                    Gratuitas           =   Convert.ToDecimal(reader["Gratuitas"].ToString());
                 }
             }
 

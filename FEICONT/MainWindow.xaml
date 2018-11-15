@@ -379,7 +379,7 @@
                                 <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkResumenDiarioGenerar" >Generar resumen diario</Hyperlink>
                             </Label>
                             <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem10"  Foreground="white" VerticalAlignment="Top">
-                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkResumenDiarioSunat" >Envío a Sunat y consulta Ticket de RC</Hyperlink>
+                                <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkResumenDiarioSunat" >Lista de  resumen diario</Hyperlink>
                             </Label>
                             <Label Width="250"  Padding="20,5,0,5" Margin="0,0,0,0" Name="lblItem11"  Foreground="white" VerticalAlignment="Top">
                                 <Hyperlink  TextDecorations="{x:Null}" Foreground="white" Click="clkResumenDiarioAlerta" >Formas de alerta y envío de RC</Hyperlink>

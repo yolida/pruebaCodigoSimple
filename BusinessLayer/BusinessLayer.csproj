@@ -55,6 +55,7 @@
     <Compile Include="GenerarFactura.cs" />
     <Compile Include="GenerarNotaCredito.cs" />
     <Compile Include="GenerarNotaDebito.cs" />
+    <Compile Include="GenerarResumenDiario.cs" />
     <Compile Include="ProcesarEnvio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EnviarSunat.cs" />

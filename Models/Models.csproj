@@ -98,7 +98,6 @@
     <Compile Include="Modelos\PrecioAlternativo.cs" />
     <Compile Include="Modelos\PropiedadAdicional.cs" />
     <Compile Include="Modelos\ResumenDiario.cs" />
-    <Compile Include="Modelos\ResumenDiarioNuevo.cs" />
     <Compile Include="Modelos\SubTotalImpuestos.cs" />
     <Compile Include="Modelos\TerminosEntrega.cs" />
     <Compile Include="Modelos\TerminosPago.cs" />
@@ -116,6 +115,12 @@
     <None Include="Diagramas\ResumenesDiarios.cd" />
     <None Include="Diagramas\Retenciones.cd" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StructureUBL\StructureUBL.csproj">
+      <Project>{B70D6A75-50B5-4FAC-887C-698C3B7B9860}</Project>
+      <Name>StructureUBL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

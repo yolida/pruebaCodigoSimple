@@ -342,6 +342,12 @@
     <Compile Include="pages\Listado.xaml.cs">
       <DependentUpon>Listado.xaml</DependentUpon>
     </Compile>
+    <Compile Include="pages\Page_GenerarResumenDiario.xaml.cs">
+      <DependentUpon>Page_GenerarResumenDiario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Page_ListaResumenDiario.xaml.cs">
+      <DependentUpon>Page_ListaResumenDiario.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\PromtMotivoBaja.xaml.cs">
       <DependentUpon>PromtMotivoBaja.xaml</DependentUpon>
     </Compile>
@@ -660,6 +666,14 @@
     <Page Include="pages\Listado.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\Page_GenerarResumenDiario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\Page_ListaResumenDiario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\PromtMotivoBaja.xaml">
       <SubType>Designer</SubType>
@@ -1041,6 +1055,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="fei_cuadro.ico" />
+    <Resource Include="images\document.png" />
+    <Resource Include="images\Dowload_app_1x.png" />
+    <Resource Include="images\Dowload_app_2x.png" />
+    <Content Include="images\link-solid.svg" />
+    <Resource Include="images\link.png" />
+    <Resource Include="images\link_18dp.png" />
     <Content Include="x64\liblept172.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

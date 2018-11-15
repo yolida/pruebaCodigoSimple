@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using StructureUBL.CommonAggregateComponents;
+using System.Collections.Generic;
 
 namespace Models.Modelos
 {
@@ -19,5 +21,8 @@ namespace Models.Modelos
         public string   DocumentoRelacionado    { get; set; }
 
         public string   TipoDocumentoRelacionado { get; set; }
+
+        public Contribuyente        Receptor        { get; set; } 
+        public List<TotalImpuesto>  TotalImpuestos  { get; set; }
     }
 }

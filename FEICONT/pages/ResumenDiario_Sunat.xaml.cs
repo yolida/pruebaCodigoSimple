@@ -479,7 +479,9 @@ namespace FEICONT.pages
 
                 if (seleccionados.Count > 0)
                 {
-                    if (System.Windows.Forms.MessageBox.Show("¿Está seguro que desea complementar los resumenes seleccionados?\n Los documentos asociados seran liberados y podra volverlos a agregar a resumen diario.", "¿Está seguro?", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.Yes)
+                    if (System.Windows.Forms.MessageBox.Show("¿Está seguro que desea complementar los resumenes seleccionados?\n Los documentos asociados seran" +
+                        " liberados y podra volverlos a agregar a resumen diario.", "¿Está seguro?", System.Windows.Forms.MessageBoxButtons.YesNo, 
+                        System.Windows.Forms.MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.Yes)
                     {
                         foreach (var item in lista_reporte)
                         {
@@ -563,7 +565,9 @@ namespace FEICONT.pages
                 if (seleccionados.Count > 0)
                 {
                     int noEliminados = 0;
-                    if (System.Windows.Forms.MessageBox.Show("¿Está seguro que desea descartar los resumenes seleccionados?\nEstos documentos serán eliminados completamente de la base de datos.", "¿Está seguro?", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.Yes)
+                    if (System.Windows.Forms.MessageBox.Show("¿Está seguro que desea descartar los resumenes seleccionados?\nEstos documentos" +
+                        " serán eliminados completamente de la base de datos.", "¿Está seguro?", System.Windows.Forms.MessageBoxButtons.YesNo,
+                        System.Windows.Forms.MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.Yes)
                     {
                         foreach (var item in lista_reporte)
                         {
@@ -583,7 +587,8 @@ namespace FEICONT.pages
                         refrescarGrilla();
                         if (noEliminados > 0)
                         {
-                            System.Windows.Forms.MessageBox.Show("No se descarto "+noEliminados+" documento(s) , ya tienen respuesta de Sunat.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                            System.Windows.Forms.MessageBox.Show("No se descarto "+noEliminados+" documento(s) , ya tienen respuesta de Sunat.", 
+                                "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         }
                     }
                 }

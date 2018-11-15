@@ -395,9 +395,8 @@ namespace FEICONT.pages
             {
 
             }
-
         }
-
+        
         private void chkAll_Unchecked(object sender, RoutedEventArgs e)
         {
 

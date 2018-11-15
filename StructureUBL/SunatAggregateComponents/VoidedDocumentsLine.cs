@@ -35,12 +35,24 @@ namespace StructureUBL.SunatAggregateComponents
         public string   Id  { get; set; }
         public int      StartDocumentNumberId   { get; set; }
         public int      EndDocumentNumberId     { get; set; }
+
+        /// <summary>
+        /// Importe total de la venta, cesión en uso o del servicio prestado
+        /// </summary>
         public PayableAmount        TotalAmount { get; set; }
         public List<BillingPayment> BillingPayments { get; set; }
         public AllowanceCharge      AllowanceCharge { get; set; }
         public List<TaxTotal>       TaxTotals       { get; set; }
         public AccountingContributorParty AccountingCustomerParty { get; set; }
+
+        /// <summary>
+        /// Referencia del comprobante modificado
+        /// </summary>
         public BillingReference BillingReference    { get; set; }
+
+        /// <summary>
+        /// Código de estado del ítem
+        /// </summary>
         public int?             ConditionCode       { get; set; }
 
         public VoidedDocumentsLine()

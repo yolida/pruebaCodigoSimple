@@ -480,24 +480,24 @@ namespace GenerateXML
                 }
             }
 
-            //// AllowanceCharge o Descuentos
-            //if (documento.Descuentos.Count > 0 && documento.Descuentos != null)
-            //{
-            //    foreach (var descuentos in documento.Descuentos)
-            //    {
-            //        if (!string.IsNullOrEmpty(descuentos.Indicador.ToString()))
-            //        {
-            //            invoice.AllowanceCharges.Add(new AllowanceCharge
-            //            {
-            //                ChargeIndicator             = descuentos.Indicador,
-            //                AllowanceChargeReasonCode   = new AllowanceChargeReasonCode() { Value = descuentos.CodigoMotivo },
-            //                MultiplierFactorNumeric     = descuentos.Factor,
-            //                Amount      = new PayableAmount { CurrencyId = descuentos.Moneda,       Value = descuentos.Monto },
-            //                BaseAmount  = new PayableAmount { CurrencyId = descuentos.MonedaBase,   Value = descuentos.MontoBase }
-            //            });
-            //        }
-            //    }
-            //}
+            // AllowanceCharge o Descuentos
+            if (documento.Descuentos.Count > 0 && documento.Descuentos != null)
+            {
+                foreach (var descuentos in documento.Descuentos)
+                {
+                    if (!string.IsNullOrEmpty(descuentos.Indicador.ToString()))
+                    {
+                        invoice.AllowanceCharges.Add(new AllowanceCharge
+                        {
+                            ChargeIndicator             = descuentos.Indicador,
+                            AllowanceChargeReasonCode   = new AllowanceChargeReasonCode() { Value = descuentos.CodigoMotivo },
+                            MultiplierFactorNumeric     = descuentos.Factor,
+                            Amount      = new PayableAmount { CurrencyId = descuentos.Moneda,       Value = descuentos.Monto },
+                            BaseAmount  = new PayableAmount { CurrencyId = descuentos.MonedaBase,   Value = descuentos.MontoBase }
+                        });
+                    }
+                }
+            }
 
             // TaxTotal o TotalImpuestos
             if (documento.TotalImpuestos.Count > 0 && documento.TotalImpuestos != null)

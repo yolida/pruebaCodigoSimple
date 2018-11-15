@@ -115,51 +115,45 @@ namespace StructureUBL.EstandarUbl
 
             writer.WriteElementString("cbc:UBLVersionID",       UblVersionId);
             writer.WriteElementString("cbc:CustomizationID",    CustomizationId);
-            writer.WriteElementString("cbc:ID",                 Id);
+            writer.WriteElementString("cbc:ID",                 Id);    // Identificador único ex: RC-20181026-2
             writer.WriteElementString("cbc:ReferenceDate",      ReferenceDate.ToString("yyyy-MM-dd"));
             writer.WriteElementString("cbc:IssueDate",          IssueDate.ToString("yyyy-MM-dd"));
             
             #region Signature
             writer.WriteStartElement("cac:Signature");
-            writer.WriteElementString("cbc:ID", Signature.Id);
+            {
+                writer.WriteElementString("cbc:ID", Signature.Id);
 
-            #region SignatoryParty
+                #region SignatoryParty
+                writer.WriteStartElement("cac:SignatoryParty");
+                {
+                    writer.WriteStartElement("cac:PartyIdentification");
+                    writer.WriteElementString("cbc:ID", Signature.SignatoryParty.PartyIdentification.Id.Value);
+                    writer.WriteEndElement();
 
-            writer.WriteStartElement("cac:SignatoryParty");
+                    #region PartyName
+                    writer.WriteStartElement("cac:PartyName");
+                    {
+                        writer.WriteStartElement("cbc:Name");
+                        writer.WriteCData(Signature.SignatoryParty.PartyName.Name);
+                        writer.WriteEndElement();
+                    }
+                    writer.WriteEndElement();
+                    #endregion PartyName
+                }
+                writer.WriteEndElement();
+                #endregion SignatoryParty
 
-            writer.WriteStartElement("cac:PartyIdentification");
-            writer.WriteElementString("cbc:ID", Signature.SignatoryParty.PartyIdentification.Id.Value);
-            writer.WriteEndElement();
-
-            #region PartyName
-
-            writer.WriteStartElement("cac:PartyName");
-
-            writer.WriteStartElement("cbc:Name");
-            writer.WriteCData(Signature.SignatoryParty.PartyName.Name);
-            writer.WriteEndElement();
-            writer.WriteElementString("cbc:Name", Signature.SignatoryParty.PartyName.Name);
-
-            writer.WriteEndElement();
-
-            #endregion PartyName
-
-            writer.WriteEndElement();
-
-            #endregion SignatoryParty
-
-            #region DigitalSignatureAttachment
-
-            writer.WriteStartElement("cac:DigitalSignatureAttachment");
-
-            writer.WriteStartElement("cac:ExternalReference");
-            writer.WriteElementString("cbc:URI", Signature.DigitalSignatureAttachment.ExternalReference.Uri.Trim());
-            writer.WriteEndElement();
-
-            writer.WriteEndElement();
-
-            #endregion DigitalSignatureAttachment
-
+                #region DigitalSignatureAttachment
+                writer.WriteStartElement("cac:DigitalSignatureAttachment");
+                {
+                    writer.WriteStartElement("cac:ExternalReference");
+                    writer.WriteElementString("cbc:URI", Signature.DigitalSignatureAttachment.ExternalReference.Uri.Trim());
+                    writer.WriteEndElement();
+                }
+                writer.WriteEndElement();
+                #endregion DigitalSignatureAttachment
+            }
             writer.WriteEndElement();
             #endregion Signature
 
@@ -190,68 +184,58 @@ namespace StructureUBL.EstandarUbl
 
             #region SummaryDocumentsLines
 
-            foreach (var item in SummaryDocumentsLines)
+            foreach (var summaryDocumentsLine in SummaryDocumentsLines)
             {
                 writer.WriteStartElement("sac:SummaryDocumentsLine");
                 {
-                    writer.WriteElementString("cbc:LineID", item.LineId.ToString());
-                    writer.WriteElementString("cbc:DocumentTypeCode", item.DocumentTypeCode);
-                    if (!string.IsNullOrEmpty(item.Id))
-                        writer.WriteElementString("cbc:ID", item.Id);
-                    else
-                    {
-                        writer.WriteElementString("sac:DocumentSerialID",       item.DocumentSerialId);
-                        writer.WriteElementString("sac:StartDocumentNumberID",  item.StartDocumentNumberId.ToString());
-                        writer.WriteElementString("sac:EndDocumentNumberID",    item.EndDocumentNumberId.ToString());
-                    }
-                    if (!string.IsNullOrEmpty(item.AccountingCustomerParty.AdditionalAccountId))
+                    writer.WriteElementString("cbc:LineID",             summaryDocumentsLine.LineId.ToString());
+                    writer.WriteElementString("cbc:DocumentTypeCode",   summaryDocumentsLine.DocumentTypeCode);
+                    writer.WriteElementString("cbc:ID", summaryDocumentsLine.Id); // Serie correlativo
+                    if (!string.IsNullOrEmpty(summaryDocumentsLine.AccountingCustomerParty.AdditionalAccountId))
                     {
                         writer.WriteStartElement("cac:AccountingCustomerParty");
                         {
-                            writer.WriteElementString("cbc:CustomerAssignedAccountID", item.AccountingCustomerParty.CustomerAssignedAccountId);
-                            writer.WriteElementString("cbc:AdditionalAccountID", item.AccountingCustomerParty.AdditionalAccountId);
+                            writer.WriteElementString("cbc:CustomerAssignedAccountID", summaryDocumentsLine.AccountingCustomerParty.CustomerAssignedAccountId);
+                            writer.WriteElementString("cbc:AdditionalAccountID", summaryDocumentsLine.AccountingCustomerParty.AdditionalAccountId);
                         }
                         writer.WriteEndElement();
                     }
-                    if (!string.IsNullOrEmpty(item.BillingReference.InvoiceDocumentReference.Id))
+                    if (!string.IsNullOrEmpty(summaryDocumentsLine.BillingReference.InvoiceDocumentReference.Id))
                     {
-                        writer.WriteStartElement("cac:BillingReference");
+                        writer.WriteStartElement("cac:BillingReference");   //  Referencia del comprobante modificado
                         {
                             writer.WriteStartElement("cac:InvoiceDocumentReference");
                             {
-                                writer.WriteElementString("cbc:ID", item.BillingReference.InvoiceDocumentReference.Id);
-                                writer.WriteElementString("cbc:DocumentTypeCode", item.BillingReference.InvoiceDocumentReference.DocumentTypeCode.Value);
+                                writer.WriteElementString("cbc:ID",                 summaryDocumentsLine.BillingReference.InvoiceDocumentReference.Id);
+                                writer.WriteElementString("cbc:DocumentTypeCode",   summaryDocumentsLine.BillingReference.InvoiceDocumentReference.DocumentTypeCode.Value);
                             }
                             writer.WriteEndElement();
                         }
                         writer.WriteEndElement();
                     }
-                    if (item.ConditionCode.HasValue)
+                    if (summaryDocumentsLine.ConditionCode.HasValue)
                     {
                         writer.WriteStartElement("cac:Status");
                         {
-                            writer.WriteElementString("cbc:ConditionCode", item.ConditionCode.Value.ToString());
+                            writer.WriteElementString("cbc:ConditionCode", summaryDocumentsLine.ConditionCode.Value.ToString());
                         }
                         writer.WriteEndElement();
                     }
                     writer.WriteStartElement("sac:TotalAmount");
                     {
-                        writer.WriteAttributeString("currencyID", item.TotalAmount.CurrencyId);
-                        writer.WriteValue(item.TotalAmount.Value.ToString(Formatos.FormatoNumerico, Formato));
+                        writer.WriteAttributeString("currencyID", summaryDocumentsLine.TotalAmount.CurrencyId);
+                        writer.WriteValue(summaryDocumentsLine.TotalAmount.Value.ToString(Formatos.FormatoNumerico, Formato));
                     }
                     writer.WriteEndElement();
 
-                    foreach (var billing in item.BillingPayments)
+                    foreach (var billing in summaryDocumentsLine.BillingPayments)
                     {
-                        if (billing.PaidAmount.Value <= 0) continue;
-
                         writer.WriteStartElement("sac:BillingPayment");
                         {
                             writer.WriteStartElement("cbc:PaidAmount");
                             {
-                                writer.WriteAttributeString("currencyID", item.TotalAmount.CurrencyId);
-                                writer.WriteValue(
-                                    billing.PaidAmount.Value.ToString(Formatos.FormatoNumerico, Formato));
+                                writer.WriteAttributeString("currencyID", summaryDocumentsLine.TotalAmount.CurrencyId);
+                                writer.WriteValue(billing.PaidAmount.Value.ToString(Formatos.FormatoNumerico, Formato));
                             }
                             writer.WriteEndElement();
                             writer.WriteElementString("cbc:InstructionID", billing.InstructionId);
@@ -259,71 +243,67 @@ namespace StructureUBL.EstandarUbl
                         writer.WriteEndElement();
                     }
 
-                    if (item.AllowanceCharge.Amount.Value > 0)
+                    if (summaryDocumentsLine.AllowanceCharge.Amount.Value > 0)
                     {
                         writer.WriteStartElement("cac:AllowanceCharge");
                         {
-                            writer.WriteElementString("cbc:ChargeIndicator", item.AllowanceCharge.ChargeIndicator ? "true" : "false");
+                            writer.WriteElementString("cbc:ChargeIndicator", summaryDocumentsLine.AllowanceCharge.ChargeIndicator ? "true" : "false");
 
                             writer.WriteStartElement("cbc:Amount");
                             {
-                                writer.WriteAttributeString("currencyID", item.AllowanceCharge.Amount.CurrencyId);
-                                writer.WriteValue(item.AllowanceCharge.Amount.Value.ToString(Formatos.FormatoNumerico, Formato));
+                                writer.WriteAttributeString("currencyID", summaryDocumentsLine.AllowanceCharge.Amount.CurrencyId);
+                                writer.WriteValue(summaryDocumentsLine.AllowanceCharge.Amount.Value.ToString(Formatos.FormatoNumerico, Formato));
                             }
                             writer.WriteEndElement();
                         }
                         writer.WriteEndElement();
                     }
-
-
-                    foreach (var taxTotal in item.TaxTotals)
+                    
+                    foreach (var taxTotal in summaryDocumentsLine.TaxTotals)
                     {
                         writer.WriteStartElement("cac:TaxTotal");
-
-                        writer.WriteStartElement("cbc:TaxAmount");
-                        writer.WriteAttributeString("currencyID", taxTotal.TaxAmount.CurrencyId);
-                        writer.WriteString(taxTotal.TaxAmount.Value.ToString(Formatos.FormatoNumerico, Formato));
-                        writer.WriteEndElement();
-
-                        #region TaxSubtotal
-
                         {
-                            writer.WriteStartElement("cac:TaxSubtotal");
-
                             writer.WriteStartElement("cbc:TaxAmount");
-                            writer.WriteAttributeString("currencyID", taxTotal.TaxSubtotal.TaxAmount.CurrencyId);
-                            writer.WriteString(taxTotal.TaxAmount.Value.ToString(Formatos.FormatoNumerico, Formato));
+                            {
+                                writer.WriteAttributeString("currencyID", taxTotal.TaxAmount.CurrencyId);
+                                writer.WriteString(taxTotal.TaxAmount.Value.ToString(Formatos.FormatoNumerico, Formato));
+                            }
                             writer.WriteEndElement();
 
-                            #region TaxCategory
-
+                            #region TaxSubtotal
+                            foreach (var taxSubtotal in taxTotal.TaxSubtotals)
                             {
-                                writer.WriteStartElement("cac:TaxCategory");
-
-                                #region TaxScheme
-
-                                {
-                                    writer.WriteStartElement("cac:TaxScheme");
-
-                                    writer.WriteElementString("cbc:ID", taxTotal.TaxSubtotal.TaxCategory.TaxScheme.Id);
-                                    writer.WriteElementString("cbc:Name", taxTotal.TaxSubtotal.TaxCategory.TaxScheme.Name);
-                                    writer.WriteElementString("cbc:TaxTypeCode", taxTotal.TaxSubtotal.TaxCategory.TaxScheme.TaxTypeCode);
-
+                                writer.WriteStartElement("cac:TaxSubtotal");
+                                { 
+                                    writer.WriteStartElement("cbc:TaxAmount");
+                                    {
+                                        writer.WriteAttributeString("currencyID", taxSubtotal.TaxAmount.CurrencyId);
+                                        writer.WriteString(taxSubtotal.TaxAmount.Value.ToString(Formatos.FormatoNumerico, Formato));
+                                    }
                                     writer.WriteEndElement();
+
+                                    #region TaxCategory
+                                    writer.WriteStartElement("cac:TaxCategory");
+                                    {
+                                        #region TaxScheme
+                                        {
+                                            writer.WriteStartElement("cac:TaxScheme");
+
+                                            writer.WriteElementString("cbc:ID",             taxSubtotal.TaxCategory.TaxScheme.TaxSchemeId.Value);
+                                            writer.WriteElementString("cbc:Name",           taxSubtotal.TaxCategory.TaxScheme.Name);
+                                            writer.WriteElementString("cbc:TaxTypeCode",    taxSubtotal.TaxCategory.TaxScheme.TaxTypeCode);
+
+                                            writer.WriteEndElement();
+                                        }
+                                        #endregion TaxScheme
+                                    }
+                                    writer.WriteEndElement();
+                                    #endregion TaxCategory
                                 }
-
-                                #endregion TaxScheme
-
                                 writer.WriteEndElement();
                             }
-
-                            #endregion TaxCategory
-
-                            writer.WriteEndElement();
+                            #endregion TaxSubtotal
                         }
-
-                        #endregion TaxSubtotal
-
                         writer.WriteEndElement();
                     }
                 }

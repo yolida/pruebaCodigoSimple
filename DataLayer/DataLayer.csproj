@@ -57,6 +57,7 @@
     <Compile Include="CRUD\Data_CabeceraDocumento.cs" />
     <Compile Include="CRUD\Data_Contribuyente.cs" />
     <Compile Include="CRUD\Data_DatosFox.cs" />
+    <Compile Include="CRUD\Data_Descuento.cs" />
     <Compile Include="CRUD\Data_Discrepancia.cs" />
     <Compile Include="CRUD\Data_DocumentoDetalle.cs" />
     <Compile Include="CRUD\Data_DocumentoFigurativo.cs" />

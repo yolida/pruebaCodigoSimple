@@ -1013,19 +1013,9 @@ namespace FEICONT
                 this.pageContainer.Navigate(resDiarioGen);
                 seleccionarItem(9, "12");
 
-                //bool permitido = clsEntityPermisos.accesoPermitido("09", Perfil.Cs_pr_Account_Id, Perfil.Cs_pr_Users_Id);
-                //if (permitido)
-                //{
-                //    // this.pageContainer.Source = new Uri("pages/ResumenDiario_Generar.xaml", UriKind.RelativeOrAbsolute);
-                //    ResumenDiario_Generar resDiarioGen = new ResumenDiario_Generar(this, DatabaseLocal);
-                //    this.pageContainer.Navigate(resDiarioGen);
-                //    seleccionarItem(9, "12");
-                //}
-                //else
-                //{
-                //    //MessageBox.Show("No tiene permiso para acceder a este módulo.", "Mensaje", MessageBoxButton.OK, MessageBoxImage.Stop);
-                //    seleccionarItem(9, "12");
-                //}
+                Page_GenerarResumenDiario generarResumenDiario  =   new Page_GenerarResumenDiario(this, data_Usuario);
+                this.pageContainer.Navigate(generarResumenDiario);
+                seleccionarItem(9, "12");
             }
             else
                 MessageBox.Show(mensaje, mensajeCabecera, MessageBoxButton.OK, MessageBoxImage.Exclamation);
@@ -1034,19 +1024,9 @@ namespace FEICONT
         {
             if (disponible)
             {
-                //bool permitido = clsEntityPermisos.accesoPermitido("10", Perfil.Cs_pr_Account_Id, Perfil.Cs_pr_Users_Id);
-                //if (permitido)
-                //{
-                //    ResumenDiario_Sunat resDiarioSun = new ResumenDiario_Sunat(this, DatabaseLocal);
-                //    this.pageContainer.Navigate(resDiarioSun);
-                //    // this.pageContainer.Source = new Uri("pages/ResumenDiario_Sunat.xaml", UriKind.RelativeOrAbsolute);
-                //    seleccionarItem(10, "13");
-                //}
-                //else
-                //{
-                //    //MessageBox.Show("No tiene permiso para acceder a este módulo.", "Mensaje", MessageBoxButton.OK, MessageBoxImage.Stop);
-                //    seleccionarItem(10, "13");
-                //}
+                Page_ListaResumenDiario listaResumenDiario  =   new Page_ListaResumenDiario(this, data_Usuario);
+                this.pageContainer.Navigate(listaResumenDiario);
+                seleccionarItem(10, "13");
             }
             else
                 MessageBox.Show(mensaje, mensajeCabecera, MessageBoxButton.OK, MessageBoxImage.Exclamation);

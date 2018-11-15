@@ -29,7 +29,7 @@ namespace Models.Modelos
 
         public decimal Inafectas { get; set; }
 
-        public decimal Exportacion { get; set; }
+        public decimal Exportaciones { get; set; }
 
         public decimal Gratuitas { get; set; }
     }

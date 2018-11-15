@@ -37,6 +37,7 @@ namespace DataLayer.CRUD
         public String   FechaEmision        { get; set; }
         public String   HoraEmision         { get; set; }
         public string   MotivoBaja          { get; set; }
+        public string   Identificador       { get; set; }  
         public Boolean  Selectable          { get; set; }
 
         public Data_Documentos(string idDocumento)
@@ -274,7 +275,7 @@ namespace DataLayer.CRUD
                     data_Documento.FechaEmision         =   DateTime.Parse(row["FechaEmision"].ToString()).ToShortDateString();
                     data_Documento.HoraEmision          =   row["HoraEmision"].ToString();
                     data_Documento.MotivoBaja           =   row["MotivoBaja"].ToString();
-
+                    data_Documento.Identificador        =   row["Identificador"].ToString();
                     data_Documento.Selectable           =   false;
                     data_Documentos.Add(data_Documento);
                 }

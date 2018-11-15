@@ -30,7 +30,7 @@ namespace BusinessLayer
         /// </summary>
         /// <param name="data_Documento"></param>
         /// <returns></returns>
-        public DocumentoElectronico data(Data_Documentos data_Documento)
+        public DocumentoElectronico Data(Data_Documentos data_Documento)
         {
             DocumentoElectronico documento;
             try
@@ -109,10 +109,6 @@ namespace BusinessLayer
                         #endregion PrecioAlternativo
 
                         #region emergency
-                        List<Descuento> descuentos = new List<Descuento>();
-
-                        detalleDocumento.Descuentos = descuentos;
-
                         List<PropiedadAdicional> propiedadAdicionales = new List<PropiedadAdicional>();
                         detalleDocumento.PropiedadesAdicionales = propiedadAdicionales;
 
@@ -132,8 +128,6 @@ namespace BusinessLayer
                     }
                     documento.DetalleDocumentos     =   detalleDocumentos;
                 }
-
-
                 #endregion documentoDetalle
 
                 #region TotalImpuestos
@@ -173,16 +167,20 @@ namespace BusinessLayer
                 documento.Relacionados                              =   documentoRelacionados;
                 #endregion Relacionados
 
+                #region Descuentos
+                Data_Descuento data_Descuento   =   new Data_Descuento(data_Documento.IdCabeceraDocumento);
+                List<Descuento> descuentos      =   data_Descuento.Read_Descuento_Total();
+                documento.Descuentos            =   descuentos;
+                #endregion Descuentos
+
                 List<PeriodoFactura> periodoFacturas = null;
                 List<DocumentoRelacionado> otrosDocumentosRelacionados = null;
                 List<Entrega> entregas = null;
                 List<MedioPago> medioPagos = null;
-                List<Descuento> item_descuentos = null;
 
                 documento.OtrosDocumentosRelacionados   = otrosDocumentosRelacionados;
                 documento.Entregas                      = entregas;
                 documento.MedioPagos                    = medioPagos;
-                documento.Descuentos                    = item_descuentos;
                 documento.PeriodosFactura               = periodoFacturas;
 
             }

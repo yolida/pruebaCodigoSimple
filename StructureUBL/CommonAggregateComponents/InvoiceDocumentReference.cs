@@ -15,10 +15,13 @@ namespace StructureUBL.CommonAggregateComponents
         -----------------------------------------------------------------------------------------------------*/
 
         /// <summary>
-        /// Serie y Número de comprobante que se realizó el anticipo
+        /// Serie y Número de comprobante que se realizó el anticipo, resumen
         /// </summary>
         public string Id { get; set; }
 
+        /// <summary>
+        /// Tipo de comprobante
+        /// </summary>
         public DocumentTypeCode DocumentTypeCode { get; set; }
 
         public DocumentStatusCode DocumentStatusCode { get; set; }

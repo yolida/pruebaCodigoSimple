@@ -38,7 +38,7 @@ namespace BusinessLayer
                 switch (data_Documento.TipoDocumento)
                 {
                     case "01":  //  Factura y boletas
-                        documento   =   generarFactura.data(data_Documento);
+                        documento   =   generarFactura.Data(data_Documento);
                         response    =   generarFactura.Post(documento, true);
                         break;
                     case "07":  //  Nota de crédito
@@ -50,7 +50,7 @@ namespace BusinessLayer
                         response    =   generarNotaDebito.Post(documento, true);
                         break;
                     default:
-                        documento   =   generarFactura.data(data_Documento);
+                        documento   =   generarFactura.Data(data_Documento);
                         response    =   generarFactura.Post(documento, true);
                         break;
                 }
@@ -189,10 +189,9 @@ namespace BusinessLayer
             try
             {
                 GenerarComunicacionBaja generarComunicacionBaja =   new GenerarComunicacionBaja();
-
                 ComunicacionBaja documento  =   generarComunicacionBaja.data(data_Documentos);
                 DocumentoResponse response  =   generarComunicacionBaja.Post(documento);
-
+                
                 if (!response.Exito)
                 {
                     Data_Log data_Log   =   new Data_Log()
@@ -337,6 +336,162 @@ namespace BusinessLayer
                     IdUser_Empresa  =   data_Usuario.IdUser_Empresa
                 };
                 data_Log.Create_Log();
+            }
+            return mensajeRespuesta;
+        }
+
+        public string PostResumen(List<Data_Documentos> data_Documentos)
+        {
+            string mensajeRespuesta =   string.Empty;
+            try
+            {
+                GenerarResumenDiario generarResumenDiario   =   new GenerarResumenDiario();
+                ResumenDiario resumenDiario =   generarResumenDiario.Data(data_Documentos);
+                DocumentoResponse response  =   generarResumenDiario.Post(resumenDiario);
+                
+                if (!response.Exito)
+                {
+                    Data_Log data_Log   =   new Data_Log()
+                    {
+                        DetalleError    =   response.MensajeError,
+                        Comentario      =   $"El XML con identificador: {resumenDiario.IdDocumento} no se pudo generar",
+                        IdUser_Empresa  =   data_Usuario.IdUser_Empresa
+                    };
+                    data_Log.Create_Log();
+                }
+                else
+                {
+                    string rutaArchivo  =   Path.Combine(data_Documentos[0].Ruta, $"{resumenDiario.IdDocumento}.xml");
+                
+                    Firmar firmar   =   new Firmar();
+                    FirmadoRequest firmadoRequest   =   firmar.Data(data_Usuario.IdAccesosSunat, response.TramaXmlSinFirma);
+                    FirmadoResponse firmadoResponse =   firmar.Post(firmadoRequest, true);      //  Ya se obtuvo el documento firmado
+                    
+                    if (firmadoResponse.Exito)  //  Comprobamos que se haya firmado de forma correcta
+                    {
+                        EnviarSunat enviarSunat                         =   new EnviarSunat();
+                        EnviarDocumentoRequest enviarDocumentoRequest   =   enviarSunat.Data(firmadoResponse.TramaXmlFirmado, data_Documentos[0], GetURL("03"));
+                        string nombreZip                                =   $"{resumenDiario.Emisor.NroDocumento}-{resumenDiario.IdDocumento}";
+                        EnviarResumenResponse enviarResumenResponse     =   enviarSunat.Post_Figurativo(enviarDocumentoRequest, nombreZip);
+                
+                        if (enviarResumenResponse.Exito)    // Comprobar envío a sunat
+                        {
+                            ConsultaConstanciaRequest consultaConstanciaRequest =   new ConsultaConstanciaRequest() {
+                                Ruc         =   enviarDocumentoRequest.Ruc,
+                                UsuarioSol  =   enviarDocumentoRequest.UsuarioSol,
+                                ClaveSol    =   enviarDocumentoRequest.ClaveSol,
+                                EndPointUrl =   " https://e-factura.sunat.gob.pe/ol-it-wsconscpegem/billConsultService"
+                            };
+                            Consultar consultar =   new Consultar();
+                            EnviarDocumentoResponse enviarDocumentoResponse =   consultar.Post_Constancia(consultaConstanciaRequest);
+                            if (enviarDocumentoResponse.Exito)
+                                mensajeRespuesta    =   $"El resumen diario ha realizado con éxito, detalle: {enviarDocumentoResponse.MensajeRespuesta}";
+                            else
+                            {
+                                mensajeRespuesta    =   "El resumen diario ha realizado con éxito, pero hemos tenido inconvenietes al obtener" +
+                                    " el CDR del documento: " + resumenDiario.IdDocumento + ", probablemente se este empleado el usuario MODDATOS," +
+                                    "para obtener el CDR debes descargarlo de forma manual en la opción 'Consulta de CDR'";
+                                data_Log = new Data_Log()
+                                {
+                                    DetalleError    =   mensajeRespuesta,
+                                    Comentario      =   $"Ha ocurrido un error al generar el CDR del resumen diario: {resumenDiario.IdDocumento}, probablemente se este empleado MODDATOS",
+                                    IdUser_Empresa  =   data_Usuario.IdUser_Empresa
+                                };
+                                data_Log.Create_Log();
+                            }
+
+                            Data_DocumentoFigurativo data_DocumentoFigurativo   =   new Data_DocumentoFigurativo()
+                            {
+                                XMLFirmado          =   firmadoResponse.TramaXmlFirmado,
+                                Tipo                =   "Resumen diario",
+                                ComentarioDocumento =   mensajeRespuesta,
+                                Identificador       =   resumenDiario.IdDocumento,
+                                NumeroTicket        =   enviarResumenResponse.NroTicket,
+                                CdrSunat            =   enviarDocumentoResponse.TramaZipCdr ?? string.Empty
+                            };
+                            
+                            if (!data_DocumentoFigurativo.Create_DocumentoFigurativo())
+                            {
+                                data_Log = new Data_Log()
+                                {
+                                    DetalleError    =   "Error inesperado en la base de datos",
+                                    Comentario      =   "Ha ocurrido un error al guardar el registro del resumen diario",
+                                    IdUser_Empresa  =   data_Usuario.IdUser_Empresa
+                                };
+                                data_Log.Create_Log();
+                            }
+                            else
+                            {
+                                Data_DocumentoFigurativo dataUnion_DocumentoFigurativo;
+                                Data_Documentos updateDocumento;
+                                foreach (var data_Documento in data_Documentos)
+                                {
+                                    dataUnion_DocumentoFigurativo   =   new Data_DocumentoFigurativo() {
+                                        IdDocumentoFigurativo   =   data_DocumentoFigurativo.SCOPE_IDENTITY_VALUE,
+                                        IdDocumento             =   data_Documento.IdDocumento
+                                    };
+                                    if (!dataUnion_DocumentoFigurativo.Create_Figurativo_Documentos())
+                                    {
+                                        data_Log = new Data_Log()
+                                        {
+                                            DetalleError    =   $"Detalle de tablas: Documentos {data_Documento.IdDocumento},{data_Documento.SerieCorrelativo} con la " +
+                                            $"tabla Figurativo_Documentos {data_DocumentoFigurativo.SCOPE_IDENTITY_VALUE}, {data_DocumentoFigurativo.Identificador} ",
+                                            Comentario      =   "Ha ocurrido un error al guardar el registro del resumen diario, en la tabla de unión",
+                                            IdUser_Empresa  =   data_Usuario.IdUser_Empresa
+                                        };
+                                        data_Log.Create_Log();
+                                    }
+
+                                    updateDocumento         =   new Data_Documentos() {
+                                        IdDocumento         =   data_Documento.IdDocumento,
+                                        EnviadoSunat        =   true,
+                                        EstadoSunat         =   "Aceptado",
+                                        ComentarioDocumento =   $"El documento figura dentro del resumen diario con el código de identificación: {data_DocumentoFigurativo.Identificador}",
+                                        ComunicacionBaja    =   false,
+                                    };
+                                    if (!updateDocumento.Update_Documento())
+                                    {
+                                        data_Log = new Data_Log()
+                                        {
+                                            DetalleError    =   $"No se ha podido actualizar el documento{data_Documento.IdDocumento}, {data_Documento.SerieCorrelativo} para indicar que resumen diario",
+                                            Comentario      =   "Error en la base de datos",
+                                            IdUser_Empresa  =   data_Usuario.IdUser_Empresa
+                                        };
+                                        data_Log.Create_Log();
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            mensajeRespuesta    = enviarResumenResponse.MensajeError;
+                            data_Log = new Data_Log()
+                            {
+                                DetalleError    =   enviarResumenResponse.MensajeError,
+                                Comentario      =   "Error al crear resumen diario",
+                                IdUser_Empresa  =   data_Usuario.IdUser_Empresa
+                            };
+                            data_Log.Create_Log();
+                        }
+                    }
+                    else
+                    {
+                        data_Log = new Data_Log() { DetalleError = response.MensajeError, Comentario = "Error al firmar el documento", IdUser_Empresa = data_Usuario.IdUser_Empresa };
+                        data_Log.Create_Log();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var msg =   string.Concat(ex.InnerException?.Message,   ex.Message);
+                data_Log = new Data_Log()
+                {
+                    DetalleError    =   $"Detalle del error: {msg}",
+                    Comentario      =   "Error al procesar el envío del documento",
+                    IdUser_Empresa  =   data_Usuario.IdUser_Empresa
+                };
+                data_Log.Create_Log();
+                mensajeRespuesta    =    $"Detalle del error: {msg}";
             }
             return mensajeRespuesta;
         }

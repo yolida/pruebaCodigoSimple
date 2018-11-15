@@ -1254,50 +1254,56 @@ namespace StructureUBL.EstandarUbl
             }
             #endregion PrepaidPayment
 
-            //#region AllowanceCharge
-            //if (AllowanceCharges.Count > 0)
-            //{
-            //    foreach (var allowanceCharge in AllowanceCharges)
-            //    {
-            //        if (!string.IsNullOrEmpty(allowanceCharge.ChargeIndicator.ToString()))
-            //        {
-            //            writer.WriteStartElement("cac:AllowanceCharge"); // [0..*] 
-            //            {
-            //                writer.WriteElementString("cbc:ChargeIndicator",    allowanceCharge.ChargeIndicator.ToString()); //  [1..1] | Indicador de cargo
+            #region AllowanceCharge
+            if (AllowanceCharges.Count > 0)
+            {
+                foreach (var allowanceCharge in AllowanceCharges)
+                {
+                    if (!string.IsNullOrEmpty(allowanceCharge.ChargeIndicator.ToString()))
+                    {
+                        writer.WriteStartElement("cac:AllowanceCharge"); // [0..*] 
+                        {
+                            writer.WriteElementString("cbc:ChargeIndicator",    allowanceCharge.ChargeIndicator.ToString()); //  [1..1] | Indicador de cargo
 
-            //                writer.WriteStartElement("cbc:AllowanceChargeReasonCode");
-            //                {   // [0..1]
-            //                    writer.WriteAttributeString("listAgencyName",   allowanceCharge.AllowanceChargeReasonCode.ListAgencyName);
-            //                    writer.WriteAttributeString("listName",         allowanceCharge.AllowanceChargeReasonCode.ListName);
-            //                    writer.WriteAttributeString("listURI",          allowanceCharge.AllowanceChargeReasonCode.ListURI);
-            //                    writer.WriteValue(allowanceCharge.AllowanceChargeReasonCode.Value);
-            //                }
-            //                writer.WriteEndElement();
-                            
-            //                writer.WriteElementString("cbc:MultiplierFactorNumeric", allowanceCharge.MultiplierFactorNumeric.ToString()); // [0..1] 
-                            
-            //                writer.WriteStartElement("cbc:Amount"); // [1..1] Monto del cargo/descuento global
-            //                {   // Código de tipo de moneda del monto del cargo/descuento global
-            //                    writer.WriteAttributeString("currencyID",       allowanceCharge.Amount.CurrencyId.ToString());
-            //                    writer.WriteValue(allowanceCharge.Amount.Value.ToString()); // Monto del cargo/descuento global
-            //                }
-            //                writer.WriteEndElement();
+                            if (!string.IsNullOrEmpty(allowanceCharge.AllowanceChargeReasonCode.Value))
+                            {
+                                writer.WriteStartElement("cbc:AllowanceChargeReasonCode");
+                                {   // [0..1]
+                                    writer.WriteAttributeString("listAgencyName",   allowanceCharge.AllowanceChargeReasonCode.ListAgencyName);
+                                    writer.WriteAttributeString("listName",         allowanceCharge.AllowanceChargeReasonCode.ListName);
+                                    writer.WriteAttributeString("listURI",          allowanceCharge.AllowanceChargeReasonCode.ListURI);
+                                    writer.WriteValue(allowanceCharge.AllowanceChargeReasonCode.Value);
+                                }
+                                writer.WriteEndElement();
+                            }
 
-            //                if (!string.IsNullOrEmpty(allowanceCharge.BaseAmount.Value.ToString()))
-            //                {
-            //                    writer.WriteStartElement("cbc:BaseAmount"); // [0..1] Monto de base de cargo/descuento global
-            //                    {   // Código de tipo de moneda del monto de base del cargo/descuento global
-            //                        writer.WriteAttributeString("currencyID",   allowanceCharge.BaseAmount.CurrencyId.ToString());
-            //                        writer.WriteValue(allowanceCharge.BaseAmount.Value.ToString()); // Monto de base de cargo/descuento global
-            //                    }
-            //                    writer.WriteEndElement();
-            //                }
-            //            }
-            //            writer.WriteEndElement();
-            //        }
-            //    }
-            //}
-            //#endregion AllowanceCharge
+                            if (allowanceCharge.MultiplierFactorNumeric >= 0)
+                                writer.WriteElementString("cbc:MultiplierFactorNumeric", allowanceCharge.MultiplierFactorNumeric.ToString()); // [0..1] 
+                            if (allowanceCharge.Amount.Value > 0)
+                            {
+                                writer.WriteStartElement("cbc:Amount"); // [1..1] Monto del cargo/descuento global
+                                {   // Código de tipo de moneda del monto del cargo/descuento global
+                                    writer.WriteAttributeString("currencyID",       allowanceCharge.Amount.CurrencyId.ToString());
+                                    writer.WriteValue(allowanceCharge.Amount.Value.ToString()); // Monto del cargo/descuento global
+                                }
+                                writer.WriteEndElement();
+                            }
+
+                            if (allowanceCharge.BaseAmount.Value > 0)
+                            {
+                                writer.WriteStartElement("cbc:BaseAmount"); // [0..1] Monto de base de cargo/descuento global
+                                {   // Código de tipo de moneda del monto de base del cargo/descuento global
+                                    writer.WriteAttributeString("currencyID",   allowanceCharge.BaseAmount.CurrencyId.ToString());
+                                    writer.WriteValue(allowanceCharge.BaseAmount.Value.ToString()); // Monto de base de cargo/descuento global
+                                }
+                                writer.WriteEndElement();
+                            }
+                        }
+                        writer.WriteEndElement();
+                    }
+                }
+            }
+            #endregion AllowanceCharge
 
             #region TaxTotal
             if (TaxTotals.Count > 0)

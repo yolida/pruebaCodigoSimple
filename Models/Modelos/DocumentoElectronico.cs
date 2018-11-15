@@ -127,7 +127,13 @@ namespace Models.Modelos
         public List<Nota> Notas { get; set; }
 
         public List<DatoAdicional> DatoAdicionales { get; set; }
-        
+
+        public decimal Gravadas     { get; set; }
+        public decimal Exoneradas   { get; set; }
+        public decimal Inafectas    { get; set; }
+        public decimal Exportaciones{ get; set; }
+        public decimal Gratuitas    { get; set; }
+
         [JsonProperty(Required = Required.AllowNull)]
         public List<Discrepancia> Discrepancias { get; set; }
 
